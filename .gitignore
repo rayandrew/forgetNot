@@ -49,3 +49,6 @@ screenshot/
 # Java dependencies
 *.jar
 *.MF
+
+# Project file dependencies
+*.sql

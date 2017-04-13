@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Created by rufus on 4/12/2017.
+ * Created by rayandrew on 4/12/2017.
  */
 public class PasswordEncryptor {
   private static String hashString(String message, String algorithm)
