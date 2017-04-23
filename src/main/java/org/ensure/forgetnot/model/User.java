@@ -1,14 +1,24 @@
 package org.ensure.forgetnot.model;
 
 import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.annotations.IdName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Created by rufus on 4/13/2017.
  */
+@IdName("user_id")
 public class User extends Model {
   static final Logger logger = LoggerFactory.getLogger(User.class);
+
+  public User() {
+
+  }
+
+  public User(String username) {
+    set("user_name", username);
+  }
 
   static {
     validatePresenceOf(
@@ -47,14 +57,17 @@ public class User extends Model {
     logger.info(e.getString("user_name"));
   }
 
-  public static void selectUser(int id) {
-    User e = User.findFirst("user_id = ?", String.valueOf(id));
-    logger.info(e.getString("user_id"));
+  public static void deleteUser(String username) {
+    User e = User.findFirst("user_name = ?", "\"" + username + "\"");
+    e.delete();
   }
 
-  public static void deleteUser(String username) {
-    User e = User.findFirst("user_name = ?", username);
-    e.delete();
+  public static void updateUser(String username, String columnName, String value) {
+    User.findFirst("user_name = ?", username).set(columnName, value).saveIt();
+  }
+
+  public static String getAttribute(String columnName, String username) {
+    return User.findFirst("user_name = ?", username).getString(columnName);
   }
 
   public static void deleteAllUsers() {
@@ -62,6 +75,6 @@ public class User extends Model {
   }
 
   public static void selectAllUsers() {
-    logger.info("Employees list: " + User.findAll());
+    logger.info("User list: " + User.findAll());
   }
 }

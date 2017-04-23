@@ -1,12 +1,22 @@
 package org.ensure.forgetnot;
 
+import com.alee.laf.WebLookAndFeel;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.SwingUtilities;
+
 import org.ensure.forgetnot.core.DatabaseDaemon;
 import org.ensure.forgetnot.core.DatabaseDaemonException;
+import org.ensure.forgetnot.core.Launcher;
+import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.model.User;
+import org.ensure.forgetnot.utility.PasswordEncryptor;
+import org.ensure.forgetnot.utility.PasswordEncryptorException;
+
 import org.javalite.activejdbc.Base;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +27,17 @@ public class MainClass {
   static final Logger logger = LoggerFactory.getLogger(MainClass.class);
 
   public static void main(String[] args) {
+    SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+        // Install WebLaF as application L&F
+        WebLookAndFeel.install();
+        Launcher launcher = new Launcher();
+        launcher.launch();
+        // Create you Swing application here
+        // JFrame frame = ...
+      }
+    });
+
     String timeStamp = LocalDateTime.now().format(
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     );
@@ -32,15 +53,37 @@ public class MainClass {
           "root",
           ""
       );
-      User.createUser(
-          "rayandrew",
-          "testPassword",
-          "Ray",
-          "Andrew",
-          "raydreww@gmail.com",
+      try {
+        User.createUser(
+            "rayandrew",
+            PasswordEncryptor.generateMd5("testPassword"),
+            "Ray",
+            "Andrew",
+            "raydreww@gmail.com",
+            timeStamp,
+            "lel"
+        );
+      } catch (PasswordEncryptorException e) {
+        e.printStackTrace();
+      }
+      Reminder.createReminder(
+          "Testing123",
+          1,
+          "Testing to input something to database! LOLLLL",
           timeStamp,
-          "lel"
+          timeStamp,
+          false
       );
+      Reminder.createReminder(
+          "LELLLLL",
+          1,
+          "Anything but not good wew",
+          timeStamp,
+          timeStamp,
+          true
+      );
+      User.updateUser("rayandrew", "first_name", "aldrich");
+      Reminder.getAllReminderFromUser(1);
       Base.close();
     }
   }

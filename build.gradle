@@ -6,8 +6,7 @@ apply plugin: 'org.javalite.activejdbc'
 
 buildscript {
     repositories {
-        mavenCentral()
-        maven { url 'http://repo.javalite.io' }
+        jcenter()
     }
     dependencies {
         classpath group: 'org.javalite', name: 'activejdbc-gradle-plugin', version: '1.4.13'
@@ -16,11 +15,13 @@ buildscript {
 }
 
 repositories {
-    mavenCentral()
-    maven { url 'http://repo.javalite.io' }
+    jcenter()
 }
 
 dependencies {
+    compile fileTree(dir: 'lib', include: '*.jar')
+    compile 'org.springframework:spring-context:4.3.7.RELEASE'
+    compile group: 'cglib', name: 'cglib', version: '3.2.5'
     compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.8.11.2'
     compile group: 'org.javalite', name: 'activejdbc', version: '1.4.13'
@@ -28,9 +29,22 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
+task processConfig(type: Copy) {
+    from('src/main/java/org/ensure/forgetnot') {
+        include 'app-context.xml'
+    }
+
+    into 'build/classes/main/org/ensure/forgetnot'
+}
+
+classes {
+    classes.dependsOn processConfig
+}
+
 task run(dependsOn: 'build', type: JavaExec) {
     main = 'org.ensure.forgetnot.MainClass'
     classpath = sourceSets.main.runtimeClasspath
+    classpath += files('build/config/main')
 }
 
 sourceCompatibility = 1.8
