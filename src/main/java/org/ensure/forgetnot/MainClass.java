@@ -68,7 +68,7 @@ public class MainClass {
       }
       Reminder.createReminder(
           "Testing123",
-          1,
+          "rayandrew",
           "Testing to input something to database! LOLLLL",
           timeStamp,
           timeStamp,
@@ -76,14 +76,16 @@ public class MainClass {
       );
       Reminder.createReminder(
           "LELLLLL",
-          1,
+          "rayandrew",
           "Anything but not good wew",
           timeStamp,
           timeStamp,
           true
       );
       User.updateUser("rayandrew", "first_name", "aldrich");
-      Reminder.getAllReminderFromUser(1);
+      User.selectUser("rayandrew");
+      Reminder.getAllReminderFromUser("rayandrew");
+      Reminder.selectReminder("rayandrew", 1);
       Base.close();
     }
   }

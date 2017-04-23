@@ -58,16 +58,21 @@ public class User extends Model {
   }
 
   public static void deleteUser(String username) {
-    User e = User.findFirst("user_name = ?", "\"" + username + "\"");
+    User e = User.findFirst("user_name = ?", username);
     e.delete();
   }
 
   public static void updateUser(String username, String columnName, String value) {
-    User.findFirst("user_name = ?", username).set(columnName, value).saveIt();
+    User.findFirst("user_name = ?", username)
+        .set(columnName, value)
+        .saveIt();
   }
 
   public static String getAttribute(String columnName, String username) {
-    return User.findFirst("user_name = ?", username).getString(columnName);
+    return User.findFirst(
+        "user_name = ?",
+        username)
+        .getString(columnName);
   }
 
   public static void deleteAllUsers() {

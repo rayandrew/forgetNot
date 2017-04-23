@@ -88,8 +88,8 @@ public class DatabaseDaemon {
     } else {
       String sqlIfUsersExist = "DROP TABLE IF EXISTS users;";
       String sqlCreateUsers = "CREATE TABLE users (\n"
-          + "user_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n"
-          + "user_name VARCHAR(10) NOT NULL,\n"
+          + "user_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,\n"
+          + "user_name VARCHAR(25) NOT NULL PRIMARY KEY,\n"
           + "password VARCHAR(100) NOT NULL,\n"
           + "first_name VARCHAR(25) NOT NULL,\n"
           + "last_name VARCHAR(25) NOT NULL,\n"
@@ -102,15 +102,16 @@ public class DatabaseDaemon {
 
       String sqlIfRemindersExist = "DROP TABLE IF EXISTS reminders;";
       String sqlCreateReminders = "CREATE TABLE reminders (\n"
-          + "reminder_id INT(15) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,\n"
+          + "reminder_user VARCHAR(25) NOT NULL,\n"
+          + "reminder_id INT(15) UNSIGNED NOT NULL AUTO_INCREMENT,\n"
           + "reminder_title VARCHAR(50) NOT NULL,\n"
-          + "reminder_user INT(11) UNSIGNED NOT NULL,\n"
           + "priority BOOLEAN NOT NULL DEFAULT 0,\n"
           + "content TEXT,\n"
           + "created_time DATETIME NOT NULL,\n"
           + "due_time DATETIME NOT NULL,\n"
+          + "PRIMARY KEY(reminder_id, reminder_user), \n"
           + "CONSTRAINT `reminder_user_foreign`\n"
-          + "FOREIGN KEY (reminder_user) REFERENCES users (user_id)\n"
+          + "FOREIGN KEY (reminder_user) REFERENCES users (user_name)\n"
           + "ON DELETE CASCADE\n"
           + "ON UPDATE RESTRICT\n"
           + ");";

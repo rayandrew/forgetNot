@@ -33,7 +33,7 @@ public class Reminder extends Model {
 
   public static void createReminder(
       String reminderTitle,
-      int reminderUser,
+      String reminderUser,
       String content,
       String createdTime,
       String dueTime
@@ -49,7 +49,7 @@ public class Reminder extends Model {
 
   public static void createReminder(
       String reminderTitle,
-      int reminderUser,
+      String reminderUser,
       String content,
       String createdTime,
       String dueTime,
@@ -64,35 +64,58 @@ public class Reminder extends Model {
     e.saveIt();
   }
 
-  public static void selectReminder(int id) {
-    Reminder e = Reminder.findFirst("reminder_id = ?", id);
+  public static void selectReminder(String username, int id) {
+    Reminder e = Reminder.findFirst(
+        "reminder_user = ? and reminder_id = ?",
+        username,
+        id
+    );
     logger.info(e.getString("reminder_title"));
   }
 
-  public static void getAllReminderFromUser(int userId) {
-    Reminder.find("reminder_user =" + userId,
+  public static void getAllReminderFromUser(String username) {
+    Reminder.find("reminder_user =" + "\"" + username + "\"",
         e -> logger.info(e.getString("reminder_title"))
     );
   }
 
-  public static void deleteReminder(int id) {
-    Reminder e = Reminder.findFirst("reminder_id = ?", id);
+  public static void deleteReminder(String username, int id) {
+    Reminder e = Reminder.findFirst(
+        "reminder_user = ? and reminder_id = ?",
+        username,
+        id
+    );
     e.delete();
   }
 
-  public static void updateReminder(int id, String columnName, String value) {
-    Reminder.findFirst("reminder_id = ?", id).set(columnName, value).saveIt();
+  public static void updateReminder(
+      String username,
+      int id,
+      String columnName,
+      String value
+  ) {
+    Reminder.findFirst("reminder_user = ? and reminder_id = ?",
+        username,
+        id
+    ).set(columnName, value).saveIt();
   }
 
-  public static String getAttribute(String columnName, int id) {
-    return Reminder.findFirst("reminder_id = ?", id).getString(columnName);
+  public static String getAttribute(
+      String username,
+      int id,
+      String columnName
+  ) {
+    return Reminder.findFirst("reminder_user = ? and reminder_id = ?",
+        username,
+        id
+    ).getString(columnName);
   }
 
-  public static void deleteAllUsers() {
+  public static void deleteAllReminders() {
     Reminder.deleteAll();
   }
 
-  public static void selectAllUsers() {
-    logger.info("User list: " + Reminder.findAll());
+  public static void selectAllReminders() {
+    logger.info("Reminder list: " + Reminder.findAll());
   }
 }
