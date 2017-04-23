@@ -1,20 +1,19 @@
-package org.ensure.forgetnot.view;
+package org.ensure.forgetnot.core;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.ensure.forgetnot.utility.Pair;
-import org.ensure.forgetnot.view.viewcore.ViewInterface;
-
 
 
 /**
  * Created by rufus on 4/23/2017.
  */
-public abstract class View implements ViewInterface {
+public abstract class View {
   protected List<Pair<String, Object>> dataInput = new ArrayList<Pair<String, Object>>();
-  protected String componentName = new String();
-  protected String componentDescription = new String();
+  protected String componentName;
+  protected String componentDescription;
 
   public View(String componentName) {
     this.componentName = componentName;
@@ -45,4 +44,14 @@ public abstract class View implements ViewInterface {
   protected List<Pair<String, Object>> getData() {
     return dataInput;
   }
+
+  public String getTitle() {
+    return this.componentName;
+  }
+
+  public String getDescription() {
+    return this.componentDescription;
+  }
+
+  public abstract Component init();
 }

@@ -6,10 +6,11 @@ import java.awt.Component;
 import org.ensure.forgetnot.core.Controller;
 
 /**
- * Created by rufus on 4/22/2017.
+ * Created by rufus on 4/23/2017.
  */
-public class LoginController extends Controller {
+public class RegisterController extends Controller {
+  @Override
   public Component init() {
-    return new Button("Login");
+    return new Button("Register");
   }
 }
