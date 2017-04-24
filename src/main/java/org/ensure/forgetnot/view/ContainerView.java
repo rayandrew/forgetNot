@@ -1,4 +1,4 @@
-package org.ensure.forgetnot.core;
+package org.ensure.forgetnot.view;
 
 import com.alee.laf.panel.WebPanel;
 
@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 
+import org.ensure.forgetnot.controller.Controller;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
@@ -39,7 +40,10 @@ public class ContainerView extends WebPanel {
         if (!bean
             .getBeanClassName()
             .equals("org.ensure.forgetnot.controller.MainController")
-            ) {
+            &&
+            !bean
+            .getBeanClassName()
+            .equals("org.ensure.forgetnot.controller.Controller")) {
           Class<?> classController = Class.forName(bean.getBeanClassName());
           Controller c = (Controller) classController.newInstance();
           panelComponent.add(c.init());

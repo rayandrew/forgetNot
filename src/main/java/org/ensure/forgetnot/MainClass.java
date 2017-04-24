@@ -41,6 +41,7 @@ public class MainClass {
     String timeStamp = LocalDateTime.now().format(
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     );
+
     System.out.println(timeStamp);
     try {
       DatabaseDaemon.createNewDatabase("root", "", "forgetNot");
