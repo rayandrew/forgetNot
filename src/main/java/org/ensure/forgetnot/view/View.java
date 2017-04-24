@@ -11,7 +11,7 @@ import org.ensure.forgetnot.utility.Pair;
  * Created by rufus on 4/23/2017.
  */
 public abstract class View {
-  protected List<Pair<String, Object>> dataInput = new ArrayList<Pair<String, Object>>();
+  protected List<Pair<String, Object>> dataInput = new ArrayList<>();
   protected String componentName;
   protected String componentDescription;
 

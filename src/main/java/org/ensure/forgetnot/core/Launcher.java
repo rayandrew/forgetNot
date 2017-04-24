@@ -8,10 +8,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class Launcher {
   public void launch() {
-    // String[] contextPaths = new String[]{
-    //"org/ensure/forgetnot/app-context.xml"
-    //};
-    //new ClassPathXmlApplicationContext(contextPaths);
     new AnnotationConfigApplicationContext(MainController.class);
   }
 }

@@ -19,10 +19,10 @@ import org.springframework.core.type.filter.RegexPatternTypeFilter;
  */
 
 public class ContainerView extends WebPanel {
-  private List<Component> panelComponent = new ArrayList<Component>();
+  private List<Component> panelComponent = new ArrayList<>();
   private int axis;
 
-  public ContainerView() {
+  ContainerView() {
     final ClassPathScanningCandidateComponentProvider provider =
         new ClassPathScanningCandidateComponentProvider(false);
     provider.addIncludeFilter(
@@ -62,7 +62,7 @@ public class ContainerView extends WebPanel {
     }
   }
 
-  public void setAxis(int axis) {
+  void setAxis(int axis) {
     this.axis = axis;
   }
 
