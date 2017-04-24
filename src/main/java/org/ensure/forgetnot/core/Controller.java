@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ensure.forgetnot.core.View;
 import org.ensure.forgetnot.utility.Pair;
 
 /**
