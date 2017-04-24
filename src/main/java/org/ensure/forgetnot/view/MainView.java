@@ -6,8 +6,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.util.List;
 
-import org.ensure.forgetnot.core.ContainerView;
-import org.ensure.forgetnot.core.View;
 import org.ensure.forgetnot.utility.Pair;
 
 /**
@@ -57,7 +55,6 @@ public class MainView extends View {
     */
     container.init();
     mainWindow.setContentPane(container);
-
 
     mainWindow.setState(WebFrame.NORMAL);
     mainWindow.pack();

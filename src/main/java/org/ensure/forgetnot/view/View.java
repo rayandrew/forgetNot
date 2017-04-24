@@ -1,4 +1,4 @@
-package org.ensure.forgetnot.core;
+package org.ensure.forgetnot.view;
 
 import java.awt.Component;
 import java.util.ArrayList;

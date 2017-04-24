@@ -2,7 +2,6 @@ package org.ensure.forgetnot.controller;
 
 import java.awt.Component;
 
-import org.ensure.forgetnot.core.Controller;
 import org.ensure.forgetnot.view.MainView;
 import org.springframework.context.annotation.Bean;
 
