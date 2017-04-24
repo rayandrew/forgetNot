@@ -19,7 +19,7 @@ import org.springframework.core.type.filter.RegexPatternTypeFilter;
  */
 
 public class ContainerView extends WebPanel {
-  private List<Component> panelComponent = new ArrayList<>();
+  private List<Component> panelComponent = new ArrayList<Component>();
   private int axis;
 
   ContainerView() {
@@ -42,8 +42,8 @@ public class ContainerView extends WebPanel {
             .equals("org.ensure.forgetnot.controller.MainController")
             &&
             !bean
-            .getBeanClassName()
-            .equals("org.ensure.forgetnot.controller.Controller")) {
+                .getBeanClassName()
+                .equals("org.ensure.forgetnot.controller.Controller")) {
           Class<?> classController = Class.forName(bean.getBeanClassName());
           Controller c = (Controller) classController.newInstance();
           panelComponent.add(c.init());
@@ -56,13 +56,9 @@ public class ContainerView extends WebPanel {
         e.printStackTrace();
       }
     }
-
-    for (Component c : panelComponent) {
-      System.out.println(c.getName());
-    }
   }
 
-  void setAxis(int axis) {
+  public void setAxis(int axis) {
     this.axis = axis;
   }
 

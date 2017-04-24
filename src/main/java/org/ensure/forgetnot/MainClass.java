@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 import javax.swing.SwingUtilities;
 
+import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.core.DatabaseDaemon;
 import org.ensure.forgetnot.core.DatabaseDaemonException;
 import org.ensure.forgetnot.core.Launcher;
@@ -49,11 +50,7 @@ public class MainClass {
     } catch (DatabaseDaemonException e) {
       e.printStackTrace();
     } finally {
-      Base.open("com.mysql.cj.jdbc.Driver",
-          "jdbc:mysql://localhost/forgetNot?nullNamePatternMatchesAll=true",
-          "root",
-          ""
-      );
+      Database.connect();
       try {
         User.createUser(
             "rayandrew",
@@ -87,7 +84,7 @@ public class MainClass {
       User.selectUser("rayandrew");
       Reminder.getAllReminderFromUser("rayandrew");
       Reminder.selectReminder("rayandrew", 1);
-      Base.close();
+      Database.close();
     }
   }
 }
