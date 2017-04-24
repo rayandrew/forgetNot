@@ -45,6 +45,7 @@ lib/
 data/
 screenshot/
 .idea/
+.gradle/
 
 # Java dependencies
 *.jar
