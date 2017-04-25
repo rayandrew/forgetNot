@@ -14,14 +14,9 @@ import org.ensure.forgetnot.controller.ActivityController;
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.SpinnerDateModel;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.xml.crypto.Data;
-import java.awt.Button;
-import java.awt.Component;
-import java.awt.Panel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
@@ -50,12 +45,12 @@ public class ActivityView extends View {
       @Override
       public void actionPerformed(ActionEvent e) {
         Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
-            null,
-            "Insert reminder ID to be deleted",
-            "Delete Reminder",
-            WebOptionPane.WARNING_MESSAGE));
+          null,
+          "Insert reminder ID to be deleted",
+          "Delete Reminder",
+          WebOptionPane.WARNING_MESSAGE));
         //TODO: usernamenya jgn lupa
-        if(temp != null) {
+        if (temp != null) {
           Database.connect();
           Reminder.deleteReminder("rayandrew", temp);
           Database.close();
@@ -67,16 +62,16 @@ public class ActivityView extends View {
       @Override
       public void actionPerformed(ActionEvent e) {
         Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
-            null,
-            "Please input your reminder ID",
-            "Modify Reminder",
-            WebOptionPane.WARNING_MESSAGE)
+          null,
+          "Please input your reminder ID",
+          "Modify Reminder",
+          WebOptionPane.WARNING_MESSAGE)
         );
         new UpdateDialog(temp);
       }
     });
 
-    String[] columns = {"ID","Activity", "Description", "Time"};
+    String[] columns = {"ID", "Activity", "Description", "Time"};
     /*DefaultTableModel tableModel = new DefaultTableModel(columns, dataInput.length) {
       public boolean isCellEditable(int row, int column) {
         return false;//This causes all cells to be not editable
@@ -116,7 +111,7 @@ public class ActivityView extends View {
       activityDescription = new String[7];
 
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
-          {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+        {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
       layout.setHGap(2);
       layout.setVGap(2);
       WebPanel content = new WebPanel(layout);
@@ -146,7 +141,7 @@ public class ActivityView extends View {
           //System.out.println("ini waktu format dari input : " + activityDescription[6]);
           ActivityController.addActivity(activityDescription);
           WebOptionPane.showMessageDialog(null,
-              "Your reminder has been saved!","Success",WebOptionPane.INFORMATION_MESSAGE);
+            "Your reminder has been saved!", "Success", WebOptionPane.INFORMATION_MESSAGE);
         }
       };
       confirm.addActionListener(saveToDatabase);
@@ -188,7 +183,7 @@ public class ActivityView extends View {
       activityDescription = new String[7];
 
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
-          {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+        {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
       layout.setHGap(2);
       layout.setVGap(2);
       WebPanel content = new WebPanel(layout);
@@ -217,12 +212,12 @@ public class ActivityView extends View {
           activityDescription[6] = tempDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
           Database.connect();
-          Reminder.updateReminder(activityDescription[0],id,"reminder_title",activityDescription[2]);
-          Reminder.updateReminder(activityDescription[0],id,"content",activityDescription[4]);
-          Reminder.updateReminder(activityDescription[0],id,"due_time",activityDescription[6]);
+          Reminder.updateReminder(activityDescription[0], id, "reminder_title", activityDescription[2]);
+          Reminder.updateReminder(activityDescription[0], id, "content", activityDescription[4]);
+          Reminder.updateReminder(activityDescription[0], id, "due_time", activityDescription[6]);
           Database.close();
           WebOptionPane.showMessageDialog(null,
-              "Your reminder has been updated!","Success",WebOptionPane.INFORMATION_MESSAGE);
+            "Your reminder has been updated!", "Success", WebOptionPane.INFORMATION_MESSAGE);
         }
       };
       confirm.addActionListener(saveToDatabase);

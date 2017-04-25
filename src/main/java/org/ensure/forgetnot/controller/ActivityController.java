@@ -2,14 +2,11 @@ package org.ensure.forgetnot.controller;
 
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
-import org.ensure.forgetnot.utility.Pair;
 import org.ensure.forgetnot.view.ActivityView;
-import org.javalite.activejdbc.Base;
 
-import java.awt.Component;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,10 +22,10 @@ public class ActivityController extends Controller {
     activities = Reminder.getAllReminderFromUser("rayandrew");
 
     String[][] temp = new String[activities.size()][4];
-    for(int idx = 0; idx < activities.size(); idx++){
+    for (int idx = 0; idx < activities.size(); idx++) {
       temp[idx][0] = activities.get(idx).get("reminder_id").toString();
-      temp[idx][1] = (String)activities.get(idx).get("reminder_title");
-      temp[idx][2] = (String)activities.get(idx).get("content");
+      temp[idx][1] = (String) activities.get(idx).get("reminder_title");
+      temp[idx][2] = (String) activities.get(idx).get("content");
       temp[idx][3] = activities.get(idx).get("due_time").toString();
     }
 
@@ -41,7 +38,7 @@ public class ActivityController extends Controller {
     String title = activityDescription[2];
     String content = activityDescription[4];
     String timeCreate = LocalDateTime.now().format(
-        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+      DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     );
     System.out.println(timeCreate);
     String timeDue = activityDescription[6];
@@ -52,16 +49,16 @@ public class ActivityController extends Controller {
     Database.close();
   }
 
-  public static Object[][] refresh(){
+  public static Object[][] refresh() {
     String username = "rayandrew"; //TODO: nanti ambil secara static
     Database.connect();
     List<Reminder> update = Reminder.getAllReminderFromUser("rayandrew");
 
     String[][] test = new String[update.size()][4];
-    for(int idx = 0; idx < update.size(); idx++){
-      test[idx][0] = (String)update.get(idx).get("reminder_id");
-      test[idx][1] = (String)update.get(idx).get("reminder_title");
-      test[idx][2] = (String)update.get(idx).get("content");
+    for (int idx = 0; idx < update.size(); idx++) {
+      test[idx][0] = (String) update.get(idx).get("reminder_id");
+      test[idx][1] = (String) update.get(idx).get("reminder_title");
+      test[idx][2] = (String) update.get(idx).get("content");
       test[idx][3] = update.get(idx).get("due_time").toString();
     }
 

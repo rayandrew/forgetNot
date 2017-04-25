@@ -7,8 +7,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
-import javax.swing.BoxLayout;
-import java.awt.Component;
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -27,29 +27,29 @@ public class ContainerView extends WebPanel {
     Clock.clock.start();
 
     final ClassPathScanningCandidateComponentProvider provider =
-        new ClassPathScanningCandidateComponentProvider(false);
+      new ClassPathScanningCandidateComponentProvider(false);
     provider.addIncludeFilter(
-        new RegexPatternTypeFilter(Pattern.compile(".*"))
+      new RegexPatternTypeFilter(Pattern.compile(".*"))
     );
 
     final Set<BeanDefinition> classes = provider.findCandidateComponents(
-        "org.ensure.forgetnot.controller"
+      "org.ensure.forgetnot.controller"
     );
 
     for (BeanDefinition bean : classes) {
       try {
         if (!bean
+          .getBeanClassName()
+          .equals("org.ensure.forgetnot.controller.MainController")
+          &&
+          !bean
             .getBeanClassName()
-            .equals("org.ensure.forgetnot.controller.MainController")
-            &&
-            !bean
-                .getBeanClassName()
-                .equals("org.ensure.forgetnot.controller.Controller")
-            &&
-            !bean
-                .getBeanClassName()
-                .equals("org.ensure.forgetnot.controller.RegisterController")
-            ) {
+            .equals("org.ensure.forgetnot.controller.Controller")
+          &&
+          !bean
+            .getBeanClassName()
+            .equals("org.ensure.forgetnot.controller.RegisterController")
+          ) {
           Class<?> classController = Class.forName(bean.getBeanClassName());
           Controller c = (Controller) classController.newInstance();
           if (c.isShow()) {
@@ -57,8 +57,8 @@ public class ContainerView extends WebPanel {
           }
         }
       } catch (ClassNotFoundException
-          | IllegalAccessException
-          | InstantiationException e) {
+        | IllegalAccessException
+        | InstantiationException e) {
         e.printStackTrace();
       }
     }

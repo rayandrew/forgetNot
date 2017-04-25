@@ -4,10 +4,8 @@ import com.alee.laf.label.WebLabel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by agath on 24/04/2017.
@@ -91,13 +89,13 @@ public class Clock implements Runnable {
       while (!stopStatus) {
         AddSecond(1);
         logger.info("Thread: "
-            + threadname
-            + ", jam: "
-            + getJam()
-            + ", menit: "
-            + getMenit()
-            + ", detik: "
-            + getDetik()
+          + threadname
+          + ", jam: "
+          + getJam()
+          + ", menit: "
+          + getMenit()
+          + ", detik: "
+          + getDetik()
         );
         SwingUtilities.invokeLater(() -> clockLabel.setText(this.toString()));
         Thread.sleep(1000);

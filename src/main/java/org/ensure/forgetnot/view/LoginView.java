@@ -8,13 +8,9 @@ import com.alee.laf.text.WebPasswordField;
 import com.alee.laf.text.WebTextField;
 import org.ensure.forgetnot.utility.Pair;
 
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -22,8 +18,8 @@ import java.util.List;
  */
 public class LoginView extends View {
   private WebPanel content;
-  private WebLabel usernameLabel = new WebLabel("Username",WebLabel.TRAILING);
-  private WebLabel passwordLabel = new WebLabel("Password",WebLabel.TRAILING);
+  private WebLabel usernameLabel = new WebLabel("Username", WebLabel.TRAILING);
+  private WebLabel passwordLabel = new WebLabel("Password", WebLabel.TRAILING);
   private WebButton loginButton = new WebButton("Login");
   private WebButton registerButton = new WebButton("Register");
   private WebTextField usernameField = new WebTextField(15);
@@ -36,14 +32,14 @@ public class LoginView extends View {
     layout.setHGap(5);
     layout.setVGap(5);
     content = new WebPanel(layout);
-    content.add(usernameLabel,"0,0");
+    content.add(usernameLabel, "0,0");
     usernameField.setInputPrompt("Enter Username..");
-    usernameField.setInputPromptFont ( usernameField.getFont ().deriveFont ( Font.ITALIC ) );
-    content.add(usernameField,"1,0");
-    content.add(passwordLabel,"0,1");
+    usernameField.setInputPromptFont(usernameField.getFont().deriveFont(Font.ITALIC));
+    content.add(usernameField, "1,0");
+    content.add(passwordLabel, "0,1");
     passwordField.setInputPrompt("Enter Password..");
-    passwordField.setInputPromptFont ( passwordField.getFont ().deriveFont ( Font.ITALIC ) );
-    content.add(passwordField,"1,1");
+    passwordField.setInputPromptFont(passwordField.getFont().deriveFont(Font.ITALIC));
+    content.add(passwordField, "1,1");
     ActionListener buttonclick = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -51,8 +47,8 @@ public class LoginView extends View {
       }
     };
     registerButton.addActionListener(buttonclick);
-    content.add(loginButton,"1,2");
-    content.add(registerButton,"0,2");
+    content.add(loginButton, "1,2");
+    content.add(registerButton, "0,2");
   }
 
   public LoginView(String componentName, String componentDescription) {

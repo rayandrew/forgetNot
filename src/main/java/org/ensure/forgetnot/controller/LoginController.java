@@ -7,7 +7,7 @@ import org.ensure.forgetnot.utility.PasswordEncryptor;
 import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.ensure.forgetnot.view.LoginView;
 
-import java.awt.Component;
+import java.awt.*;
 
 /**
  * Created by rufus on 4/22/2017.
@@ -24,11 +24,11 @@ public class LoginController extends Controller {
     boolean loginStatus = false;
     try {
       loginStatus = u.getString("password")
-          .equals(
-              PasswordEncryptor.generateMd5(
-                  password
-              )
-          );
+        .equals(
+          PasswordEncryptor.generateMd5(
+            password
+          )
+        );
     } catch (PasswordEncryptorException e) {
       e.printStackTrace();
     }

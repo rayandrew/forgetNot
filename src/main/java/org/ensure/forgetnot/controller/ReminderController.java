@@ -3,7 +3,7 @@ package org.ensure.forgetnot.controller;
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.view.ReminderView;
 
-import java.awt.Component;
+import java.awt.*;
 import java.util.List;
 
 

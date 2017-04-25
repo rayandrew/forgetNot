@@ -3,7 +3,7 @@ package org.ensure.forgetnot.controller;
 import org.ensure.forgetnot.utility.Pair;
 import org.ensure.forgetnot.view.View;
 
-import java.awt.Component;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
