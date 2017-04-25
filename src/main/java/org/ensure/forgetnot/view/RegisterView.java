@@ -42,55 +42,6 @@ public class RegisterView extends View {
     super(dataInput);
   }
 
-  private class Dialog implements ActionListener {
-    private String[] arr = new String[5];
-
-    public Dialog() {
-      super();
-      arr[0] = WebOptionPane.showInputDialog(
-        null,
-        "Enter Username",
-        "Register",
-        WebOptionPane.QUESTION_MESSAGE);
-      arr[1] = WebOptionPane.showInputDialog(
-        null,
-        "Enter Password",
-        "Register",
-        WebOptionPane.QUESTION_MESSAGE);
-      arr[2] = WebOptionPane.showInputDialog(
-        null,
-        "Enter First Name",
-        "Register",
-        WebOptionPane.QUESTION_MESSAGE);
-      arr[3] = WebOptionPane.showInputDialog(
-        null,
-        "Enter Last Name",
-        "Register",
-        WebOptionPane.QUESTION_MESSAGE);
-      arr[4] = WebOptionPane.showInputDialog(
-        null,
-        "Enter Email",
-        "Register",
-        WebOptionPane.QUESTION_MESSAGE);
-
-      String timeStamp = LocalDateTime.now().format(
-        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-      );
-
-      Database.connect();
-      for (String a : arr) {
-        System.out.println(a);
-      }
-      User.createUser(arr[0], arr[1], arr[2], arr[3], arr[4], timeStamp, arr[0]);
-      Database.close();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-  }
-
   /*
     private class Dialog1 extends WebDialog {
       public Dialog1(Button owner) {
@@ -235,5 +186,54 @@ public class RegisterView extends View {
   @Override
   public Component init() {
     return test;
+  }
+
+  private class Dialog implements ActionListener {
+    private String[] arr = new String[5];
+
+    public Dialog() {
+      super();
+      arr[0] = WebOptionPane.showInputDialog(
+          null,
+          "Enter Username",
+          "Register",
+          WebOptionPane.QUESTION_MESSAGE);
+      arr[1] = WebOptionPane.showInputDialog(
+          null,
+          "Enter Password",
+          "Register",
+          WebOptionPane.QUESTION_MESSAGE);
+      arr[2] = WebOptionPane.showInputDialog(
+          null,
+          "Enter First Name",
+          "Register",
+          WebOptionPane.QUESTION_MESSAGE);
+      arr[3] = WebOptionPane.showInputDialog(
+          null,
+          "Enter Last Name",
+          "Register",
+          WebOptionPane.QUESTION_MESSAGE);
+      arr[4] = WebOptionPane.showInputDialog(
+          null,
+          "Enter Email",
+          "Register",
+          WebOptionPane.QUESTION_MESSAGE);
+
+      String timeStamp = LocalDateTime.now().format(
+          DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+      );
+
+      Database.connect();
+      for (String a : arr) {
+        System.out.println(a);
+      }
+      User.createUser(arr[0], arr[1], arr[2], arr[3], arr[4], timeStamp, arr[0]);
+      Database.close();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
   }
 }

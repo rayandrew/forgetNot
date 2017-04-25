@@ -20,24 +20,24 @@ public class RegisterController extends Controller {
   }
 
   public void registerUser(
-    String username,
-    String password,
-    String first_name,
-    String last_name,
-    String user_email
+      String username,
+      String password,
+      String first_name,
+      String last_name,
+      String user_email
   ) {
     Database.connect();
-    if (!User.findFirst("user_name = ?", username).exists()) {
+    if(!User.findFirst("user_name = ?", username).exists()){
       try {
         User.createUser(username,
-          PasswordEncryptor.generateMd5(password),
-          first_name,
-          last_name,
-          user_email,
-          LocalDateTime.now().format(
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-          ),
-          null);
+            PasswordEncryptor.generateMd5(password),
+            first_name,
+            last_name,
+            user_email,
+            LocalDateTime.now().format(
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            ),
+            null);
       } catch (PasswordEncryptorException e) {
         e.printStackTrace();
       }

@@ -24,16 +24,16 @@ public class LoginController extends Controller {
     boolean loginStatus = false;
     try {
       loginStatus = u.getString("password")
-        .equals(
-          PasswordEncryptor.generateMd5(
-            password
-          )
-        );
+          .equals(
+              PasswordEncryptor.generateMd5(
+                  password
+              )
+          );
     } catch (PasswordEncryptorException e) {
       e.printStackTrace();
     }
     Database.close();
-    if (loginStatus) {
+    if(loginStatus){
       Config.setLoginUser(username);
     }
     return loginStatus;

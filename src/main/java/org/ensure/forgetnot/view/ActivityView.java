@@ -46,12 +46,12 @@ public class ActivityView extends View {
       @Override
       public void actionPerformed(ActionEvent e) {
         Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
-          null,
-          "Insert reminder ID to be deleted",
-          "Delete Reminder",
-          WebOptionPane.WARNING_MESSAGE));
+            null,
+            "Insert reminder ID to be deleted",
+            "Delete Reminder",
+            WebOptionPane.WARNING_MESSAGE));
         //TODO: usernamenya jgn lupa
-        if (temp != null) {
+        if(temp != null){
           Database.connect();
           Reminder.deleteReminder("rayandrew", temp);
           Database.close();
@@ -63,10 +63,10 @@ public class ActivityView extends View {
       @Override
       public void actionPerformed(ActionEvent e) {
         Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
-          null,
-          "Please input your reminder ID",
-          "Modify Reminder",
-          WebOptionPane.WARNING_MESSAGE)
+            null,
+            "Please input your reminder ID",
+            "Modify Reminder",
+            WebOptionPane.WARNING_MESSAGE)
         );
         new UpdateDialog(temp);
       }
@@ -98,6 +98,11 @@ public class ActivityView extends View {
     tab.setModel(table);
   }
 
+  @Override
+  public Component init() {
+    return activityPanel;
+  }
+
   private class Dialog extends WebDialog implements ActionListener {
     private WebTextField title;
     private WebTextField contentReminder;
@@ -112,7 +117,7 @@ public class ActivityView extends View {
       activityDescription = new String[7];
 
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
-        {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+          {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
       layout.setHGap(2);
       layout.setVGap(2);
       WebPanel content = new WebPanel(layout);
@@ -142,7 +147,7 @@ public class ActivityView extends View {
           //System.out.println("ini waktu format dari input : " + activityDescription[6]);
           ActivityController.addActivity(activityDescription);
           WebOptionPane.showMessageDialog(null,
-            "Your reminder has been saved!", "Success", WebOptionPane.INFORMATION_MESSAGE);
+              "Your reminder has been saved!", "Success", WebOptionPane.INFORMATION_MESSAGE);
         }
       };
       confirm.addActionListener(saveToDatabase);
@@ -184,7 +189,7 @@ public class ActivityView extends View {
       activityDescription = new String[7];
 
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
-        {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+          {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
       layout.setHGap(2);
       layout.setVGap(2);
       WebPanel content = new WebPanel(layout);
@@ -218,7 +223,7 @@ public class ActivityView extends View {
           Reminder.updateReminder(activityDescription[0], id, "due_time", activityDescription[6]);
           Database.close();
           WebOptionPane.showMessageDialog(null,
-            "Your reminder has been updated!", "Success", WebOptionPane.INFORMATION_MESSAGE);
+              "Your reminder has been updated!", "Success", WebOptionPane.INFORMATION_MESSAGE);
         }
       };
       confirm.addActionListener(saveToDatabase);
@@ -238,17 +243,5 @@ public class ActivityView extends View {
       center();
       setVisible(true);
     }
-    /*
-    @Override
-    public void actionPerformed(ActionEvent e) {
-      //String[] columns = {"Activity","Description","Time"};
-      //tab = new JTable(ActivityController.refresh(),columns);
-      setVisible(true);
-    }*/
-  }
-
-  @Override
-  public Component init() {
-    return activityPanel;
   }
 }

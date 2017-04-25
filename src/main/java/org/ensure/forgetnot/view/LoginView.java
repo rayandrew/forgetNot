@@ -29,7 +29,7 @@ public class LoginView extends View {
   public LoginView(String componentName) {
     super(componentName);
     TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
-      {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+        {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
     layout.setHGap(5);
     layout.setVGap(5);
     content = new WebPanel(layout);

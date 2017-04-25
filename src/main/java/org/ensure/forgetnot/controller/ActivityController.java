@@ -38,7 +38,7 @@ public class ActivityController extends Controller {
     String title = activityDescription[2];
     String content = activityDescription[4];
     String timeCreate = LocalDateTime.now().format(
-      DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     );
     System.out.println(timeCreate);
     String timeDue = activityDescription[6];

@@ -25,7 +25,7 @@ public class MainClass {
   public static void main(String[] args) {
 
     String timeStamp = LocalDateTime.now().format(
-      DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     );
 
     System.out.println(timeStamp);
@@ -38,32 +38,32 @@ public class MainClass {
       Database.connect();
       try {
         User.createUser(
-          "rayandrew",
-          PasswordEncryptor.generateMd5("testPassword"),
-          "Ray",
-          "Andrew",
-          "raydreww@gmail.com",
-          timeStamp,
-          "lel"
+            "rayandrew",
+            PasswordEncryptor.generateMd5("testPassword"),
+            "Ray",
+            "Andrew",
+            "raydreww@gmail.com",
+            timeStamp,
+            "lel"
         );
       } catch (PasswordEncryptorException e) {
         e.printStackTrace();
       }
       Reminder.createReminder(
-        "Testing123",
-        "rayandrew",
-        "Testing to input something to database! LOLLLL",
-        timeStamp,
-        timeStamp,
-        1
+          "Testing123",
+          "rayandrew",
+          "Testing to input something to database! LOLLLL",
+          timeStamp,
+          timeStamp,
+          1
       );
       Reminder.createReminder(
-        "LELLLLL",
-        "rayandrew",
-        "Anything but not good wew",
-        timeStamp,
-        timeStamp,
-        2
+          "LELLLLL",
+          "rayandrew",
+          "Anything but not good wew",
+          timeStamp,
+          timeStamp,
+          2
       );
       User.updateUser("rayandrew", "first_name", "aldrich");
       User.selectUser("rayandrew");

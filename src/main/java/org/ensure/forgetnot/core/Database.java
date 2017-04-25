@@ -18,14 +18,14 @@ public class Database {
     dbSetting.add(new Pair<>("dbUser", "root"));
     dbSetting.add(new Pair<>("dbPass", ""));
     dbSetting.add(new Pair<>(
-      "dbUrl",
-      "jdbc:mysql://localhost/forgetNot?nullNamePatternMatchesAll=true")
+        "dbUrl",
+        "jdbc:mysql://localhost/forgetNot?nullNamePatternMatchesAll=true")
     );
   }
 
   public static String getDbSetting(String key) {
     for (Pair<String, String> p : dbSetting) {
-      if (p.getLeft().equals(key)) {
+      if(p.getLeft().equals(key)){
         return p.getRight();
       }
     }
@@ -34,9 +34,9 @@ public class Database {
 
   public static void connect() {
     Base.open(getDbSetting("dbDriver"),
-      getDbSetting("dbUrl"),
-      getDbSetting("dbUser"),
-      getDbSetting("dbPass")
+        getDbSetting("dbUrl"),
+        getDbSetting("dbUser"),
+        getDbSetting("dbPass")
     );
   }
 

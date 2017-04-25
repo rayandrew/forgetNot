@@ -23,7 +23,7 @@ public class ReminderView extends View {
     final WebButton notification2 = new WebButton("Limited duration notification");
     int x = 2;
     int y = 2;
-    if (x == y) {
+    if(x == y){
       final WebNotification notificationPopup = new WebNotification();
       notificationPopup.setIcon(NotificationIcon.clock);
       notificationPopup.setDisplayTime(8000);

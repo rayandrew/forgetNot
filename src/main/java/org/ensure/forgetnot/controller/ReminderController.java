@@ -27,9 +27,9 @@ public class ReminderController extends Controller {
       System.out.println(r.get("priority"));
       System.out.println(text);
       Integer temp = r.getInteger("priority");
-      if (temp > currprio) {
+      if(temp > currprio){
         System.out.println("masuk1");
-        if (text.equals(r.getString("due_time"))) {
+        if(text.equals(r.getString("due_time"))){
           System.out.println("masuk2");
           ret = true;
           id = r.getInteger("reminder_id");

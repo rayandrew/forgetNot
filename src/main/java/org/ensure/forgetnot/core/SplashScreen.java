@@ -16,8 +16,8 @@ import java.awt.event.ActionListener;
  * Created by rufus on 4/25/2017.
  */
 public class SplashScreen extends JWindow {
-  private static WebProgressBar progressBar = new WebProgressBar();
   public static SplashScreen execute;
+  private static WebProgressBar progressBar = new WebProgressBar();
   private static int count;
   private static Timer timer1;
 
@@ -57,7 +57,7 @@ public class SplashScreen extends JWindow {
       count++;
       progressBar.setValue(count);
 
-      if (count == 10) {
+      if(count == 10){
         Launcher launcher = new Launcher();
         execute.setVisible(false);
         launcher.launch();

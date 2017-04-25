@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
  */
 public class Clock implements Runnable {
   static final Logger logger = LoggerFactory.getLogger(Clock.class);
+  public static Clock clock = new Clock("ClockController");
+  public boolean stopStatus = false;
   private int hh, mm, ss;
   private Thread t;
   private String threadname;
-  public static Clock clock = new Clock("ClockController");
-  public boolean stopStatus = false;
   private WebLabel clockLabel = new WebLabel();
 
 
@@ -44,20 +44,20 @@ public class Clock implements Runnable {
     return hh;
   }
 
-  public int getMenit() {
-    return mm;
-  }
-
-  public int getDetik() {
-    return ss;
-  }
-
   public void setJam(int jam) {
     hh = jam;
   }
 
+  public int getMenit() {
+    return mm;
+  }
+
   public void setMenit(int menit) {
     mm = menit;
+  }
+
+  public int getDetik() {
+    return ss;
   }
 
   public void setDetik(int detik) {
@@ -67,17 +67,17 @@ public class Clock implements Runnable {
   public void AddSecond(int second) {
     setDetik(getDetik() + second);
 
-    if (getDetik() >= 60) {
+    if(getDetik() >= 60){
       setMenit(getMenit() + getDetik() / 60);
       setDetik(getDetik() % 60);
     }
 
-    if (getMenit() >= 60) {
+    if(getMenit() >= 60){
       setJam(getJam() + getMenit() / 60);
       setMenit(getMenit() % 60);
     }
 
-    if (getJam() >= 24) {
+    if(getJam() >= 24){
       setJam(getJam() % 24);
     }
   }
@@ -89,13 +89,13 @@ public class Clock implements Runnable {
       while (!stopStatus) {
         AddSecond(1);
         logger.info("Thread: "
-          + threadname
-          + ", jam: "
-          + getJam()
-          + ", menit: "
-          + getMenit()
-          + ", detik: "
-          + getDetik()
+            + threadname
+            + ", jam: "
+            + getJam()
+            + ", menit: "
+            + getMenit()
+            + ", detik: "
+            + getDetik()
         );
         SwingUtilities.invokeLater(() -> clockLabel.setText(this.toString()));
         Thread.sleep(1000);
@@ -108,7 +108,7 @@ public class Clock implements Runnable {
 
   public void start() {
     logger.info("Starting " + threadname);
-    if (t == null) {
+    if(t == null){
       t = new Thread(this, threadname);
       t.start();
     }
@@ -124,7 +124,7 @@ public class Clock implements Runnable {
 
   @Override
   public String toString() {
-    if (getJam() < 10) {
+    if(getJam() < 10){
       return "0" + getJam() + ":" + getMenit() + ":" + getDetik();
     } else {
       return getJam() + ":" + getMenit() + ":" + getDetik();

@@ -37,12 +37,12 @@ public abstract class View {
     this.dataInput = dataInput;
   }
 
-  protected void setData(List<Pair<String, Object>> dataInput) {
-    this.dataInput = dataInput;
-  }
-
   protected List<Pair<String, Object>> getData() {
     return dataInput;
+  }
+
+  protected void setData(List<Pair<String, Object>> dataInput) {
+    this.dataInput = dataInput;
   }
 
   public String getTitle() {
