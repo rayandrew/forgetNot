@@ -5,6 +5,8 @@ import org.javalite.activejdbc.annotations.IdName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 /**
  * Created by rufus on 4/13/2017.
  */
@@ -53,7 +55,7 @@ public class Reminder extends Model {
       String content,
       String createdTime,
       String dueTime,
-      boolean priority
+      int priority
   ) {
     Reminder e = new Reminder(reminderTitle);
     e.set("reminder_user", reminderUser);
@@ -61,43 +63,82 @@ public class Reminder extends Model {
     e.set("created_time", createdTime);
     e.set("priority", priority);
     e.set("due_time", dueTime);
+    logger.info(
+        "Creating reminder for user = "
+            + reminderUser
+            + "to table Reminders, title = "
+            + reminderTitle
+            + "content = "
+            + content
+            + "priority = "
+            + priority
+            + "due time = "
+            + dueTime
+    );
     e.saveIt();
   }
 
-  public static void selectReminder(String username, int id) {
+  public static Reminder selectReminder(String username, int id) {
     Reminder e = Reminder.findFirst(
         "reminder_user = ? and reminder_id = ?",
         username,
         id
     );
-    logger.info(e.getString("reminder_title"));
-  }
-
-  public static void getAllReminderFromUser(String username) {
-    Reminder.find("reminder_user =" + "\"" + username + "\"",
-        e -> logger.info(e.getString("reminder_title"))
+    logger.info(
+        "Reminder title = "
+            + e.getString("reminder_title")
+            + " , user : "
+            + username
     );
+    return e;
   }
 
-  public static void deleteReminder(String username, int id) {
+  public static List<Reminder> getAllReminderFromUser(String username) {
+    List<Reminder> reminderList = Reminder
+        .where("reminder_user =" + "\"" + username + "\"")
+        .orderBy("reminder_id asc");
+
+    for (Reminder reminder : reminderList) {
+      logger.info(reminder.getString("reminder_title"));
+    }
+    return reminderList;
+  }
+
+  public static boolean deleteReminder(String username, int id) {
     Reminder e = Reminder.findFirst(
         "reminder_user = ? and reminder_id = ?",
         username,
         id
     );
-    e.delete();
+
+    logger.info(
+        "Deleting reminder id " + id + ", username " + username + "from table Reminders"
+    );
+
+    return e.delete();
   }
 
-  public static void updateReminder(
+  public static boolean updateReminder(
       String username,
       int id,
       String columnName,
       String value
   ) {
-    Reminder.findFirst("reminder_user = ? and reminder_id = ?",
-        username,
-        id
-    ).set(columnName, value).saveIt();
+    logger.info(
+        "Change from table Reminder => username : "
+            + username
+            + " , column "
+            + columnName
+            + " to "
+            + value
+    );
+    return Reminder
+        .findFirst("reminder_user = ? and reminder_id = ?",
+            username,
+            id
+        ).set(
+            columnName, value
+        ).saveIt();
   }
 
   public static String getAttribute(
@@ -105,17 +146,19 @@ public class Reminder extends Model {
       int id,
       String columnName
   ) {
-    return Reminder.findFirst("reminder_user = ? and reminder_id = ?",
+    Reminder e = Reminder.findFirst("reminder_user = ? and reminder_id = ?",
         username,
         id
-    ).getString(columnName);
-  }
+    );
+    logger.info(
+        "Get attribute table Reminders => username : "
+            + username
+            + " column "
+            + columnName
+            + " value "
+            + e.getString(columnName)
+    );
 
-  public static void deleteAllReminders() {
-    Reminder.deleteAll();
-  }
-
-  public static void selectAllReminders() {
-    logger.info("Reminder list: " + Reminder.findAll());
+    return e.getString(columnName);
   }
 }
