@@ -66,7 +66,12 @@ public class ActivityView extends View {
     updateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        Integer temp = Integer.parseInt(WebOptionPane.showInputDialog("input id"));
+        Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
+            null,
+            "Please input your reminder ID",
+            "Modify Reminder",
+            WebOptionPane.WARNING_MESSAGE)
+        );
         new UpdateDialog(temp);
       }
     });
@@ -107,6 +112,7 @@ public class ActivityView extends View {
     public Dialog() {
       super();
       setSize(500, 175);
+      setTitle("Add New Reminder");
       activityDescription = new String[7];
 
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
@@ -177,14 +183,8 @@ public class ActivityView extends View {
 
     public UpdateDialog(int id) {
       super();
-      /*Integer id = Integer.parseInt(WebOptionPane.showInputDialog(
-          null,
-          "Input the reminder ID",
-          "Update Reminder",
-          WebOptionPane.WARNING_MESSAGE
-      ));*/
-
       setSize(500, 175);
+      setTitle("Modify Reminder");
       activityDescription = new String[7];
 
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
