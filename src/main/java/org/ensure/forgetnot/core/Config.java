@@ -1,10 +1,5 @@
 package org.ensure.forgetnot.core;
 
-import org.ensure.forgetnot.utility.Pair;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by rufus on 4/19/2017.
  */

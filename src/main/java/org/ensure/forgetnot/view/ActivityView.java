@@ -1,7 +1,5 @@
 package org.ensure.forgetnot.view;
 
-import com.alee.laf.panel.WebPanel;
-import com.alee.laf.table.WebTable;
 import com.alee.laf.text.WebTextField;
 
 import javax.swing.JTable;
@@ -26,9 +24,9 @@ public class ActivityView extends View {
 
 
     String[] columns = {"Activity", "Time"};
-    Object[][] data = {{"Memasak","20.20"},{"Memasak","20.20"},{"Memasak","20.20"},{"Memasak","20.20"}};
+    Object[][] data = {{"Memasak", "20.20"}, {"Memasak", "20.20"}, {"Memasak", "20.20"}, {"Memasak", "20.20"}};
 
-    tab = new JTable(data,columns);
+    tab = new JTable(data, columns);
 
     activityPanel.add(tab);
     activityPanel.add(textPane);

@@ -6,7 +6,6 @@ import org.ensure.forgetnot.utility.PasswordEncryptor;
 import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.ensure.forgetnot.view.LoginView;
 
-import java.awt.Button;
 import java.awt.Component;
 
 /**

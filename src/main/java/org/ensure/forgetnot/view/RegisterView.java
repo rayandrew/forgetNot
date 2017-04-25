@@ -3,7 +3,6 @@ package org.ensure.forgetnot.view;
 import com.alee.laf.button.WebButton;
 import org.ensure.forgetnot.utility.Pair;
 
-import java.awt.Button;
 import java.awt.Component;
 import java.util.List;
 
