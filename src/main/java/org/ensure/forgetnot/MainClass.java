@@ -1,12 +1,6 @@
 package org.ensure.forgetnot;
 
 import com.alee.laf.WebLookAndFeel;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import javax.swing.SwingUtilities;
-
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.core.DatabaseDaemon;
 import org.ensure.forgetnot.core.DatabaseDaemonException;
@@ -15,11 +9,12 @@ import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.model.User;
 import org.ensure.forgetnot.utility.PasswordEncryptor;
 import org.ensure.forgetnot.utility.PasswordEncryptorException;
-
-import org.javalite.activejdbc.Base;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.swing.SwingUtilities;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by rayandrew on 4/12/2017.

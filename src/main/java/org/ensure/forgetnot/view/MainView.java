@@ -1,12 +1,11 @@
 package org.ensure.forgetnot.view;
 
 import com.alee.laf.rootpane.WebFrame;
+import org.ensure.forgetnot.utility.Pair;
 
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.List;
-
-import org.ensure.forgetnot.utility.Pair;
 
 /**
  * Created by rufus on 4/15/2017.

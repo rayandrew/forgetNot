@@ -1,18 +1,17 @@
 package org.ensure.forgetnot.view;
 
 import com.alee.laf.panel.WebPanel;
+import org.ensure.forgetnot.controller.Controller;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
+import javax.swing.BoxLayout;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
-import javax.swing.BoxLayout;
-
-import org.ensure.forgetnot.controller.Controller;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
-import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
 /**
  * Created by rufus on 4/15/2017.
