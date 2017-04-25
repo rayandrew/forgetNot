@@ -1,6 +1,7 @@
 package org.ensure.forgetnot.controller;
 
 import com.alee.laf.button.WebButton;
+
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.User;
 import org.ensure.forgetnot.utility.PasswordEncryptor;

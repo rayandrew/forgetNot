@@ -1,6 +1,7 @@
 package org.ensure.forgetnot.controller;
 
 import org.ensure.forgetnot.core.Config;
+import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.User;
 import org.ensure.forgetnot.utility.PasswordEncryptor;
 import org.ensure.forgetnot.utility.PasswordEncryptorException;
@@ -18,6 +19,7 @@ public class LoginController extends Controller {
   }
 
   public boolean verifyLogin(String username, String password) {
+    Database.connect();
     User u = User.findFirst("user_name = ?", username);
     boolean loginStatus = false;
     try {
@@ -30,7 +32,7 @@ public class LoginController extends Controller {
     } catch (PasswordEncryptorException e) {
       e.printStackTrace();
     }
-
+    Database.close();
     if (loginStatus) {
       Config.setLoginUser(username);
     }
