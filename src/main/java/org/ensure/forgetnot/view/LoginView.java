@@ -1,5 +1,6 @@
 package org.ensure.forgetnot.view;
 
+import com.alee.extended.layout.TableLayout;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
@@ -20,9 +21,9 @@ import java.util.List;
  * Created by rufus on 4/23/2017.
  */
 public class LoginView extends View {
-  private Panel allPanel;
-  private WebLabel usernameLabel = new WebLabel("Username");
-  private WebLabel passwordLabel = new WebLabel("Password");
+  private WebPanel content;
+  private WebLabel usernameLabel = new WebLabel("Username",WebLabel.TRAILING);
+  private WebLabel passwordLabel = new WebLabel("Password",WebLabel.TRAILING);
   private WebButton loginButton = new WebButton("Login");
   private WebButton registerButton = new WebButton("Register");
   private WebTextField usernameField = new WebTextField(15);
@@ -30,14 +31,19 @@ public class LoginView extends View {
 
   public LoginView(String componentName) {
     super(componentName);
-    allPanel = new Panel();
-    Panel username = new Panel();
-    Panel password = new Panel();
-    Panel button = new Panel();
-    username.add(usernameLabel);
-    username.add(usernameField);
-    password.add(passwordLabel);
-    password.add(passwordField);
+    TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
+      {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+    layout.setHGap(5);
+    layout.setVGap(5);
+    content = new WebPanel(layout);
+    content.add(usernameLabel,"0,0");
+    usernameField.setInputPrompt("Enter Username..");
+    usernameField.setInputPromptFont ( usernameField.getFont ().deriveFont ( Font.ITALIC ) );
+    content.add(usernameField,"1,0");
+    content.add(passwordLabel,"0,1");
+    passwordField.setInputPrompt("Enter Password..");
+    passwordField.setInputPromptFont ( passwordField.getFont ().deriveFont ( Font.ITALIC ) );
+    content.add(passwordField,"1,1");
     ActionListener buttonclick = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -45,11 +51,8 @@ public class LoginView extends View {
       }
     };
     registerButton.addActionListener(buttonclick);
-    button.add(loginButton);
-    button.add(registerButton);
-    allPanel.add(username);
-    allPanel.add(password);
-    allPanel.add(button);
+    content.add(loginButton,"1,2");
+    content.add(registerButton,"0,2");
   }
 
   public LoginView(String componentName, String componentDescription) {
@@ -69,6 +72,6 @@ public class LoginView extends View {
 
   @Override
   public Component init() {
-    return allPanel;
+    return content;
   }
 }
