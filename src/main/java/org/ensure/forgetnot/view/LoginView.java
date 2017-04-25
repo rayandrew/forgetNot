@@ -41,7 +41,7 @@ public class LoginView extends View {
     ActionListener buttonclick = new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        RegisterView reg = new RegisterView("apakek");
+        RegisterView reg = new RegisterView("Register");
       }
     };
     registerButton.addActionListener(buttonclick);
