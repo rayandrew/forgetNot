@@ -1,10 +1,13 @@
 package org.ensure.forgetnot.controller;
 
+import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.view.ActivityView;
 import org.javalite.activejdbc.Base;
 
 import java.awt.Component;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -29,8 +32,7 @@ public class ActivityController extends Controller {
     Base.close();
   }
 
-  public void addActivity() {
-    /*String[] activityDescription = viewer.returnInput();
+  public static void addActivity(String[] activityDescription) {
     for (String a : activityDescription) {
       System.out.println(a);
     }
@@ -38,10 +40,16 @@ public class ActivityController extends Controller {
     String username = activityDescription[0];
     String title = activityDescription[2];
     String content = activityDescription[4];
-    String timeCreate = activityDescription[5];
+    String timeCreate = LocalDateTime.now().format(
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+    );
+    System.out.println(timeCreate);
     String timeDue = activityDescription[6];
-    Reminder newReminder = new Reminder(title);
-    newReminder.createReminder(title, username, content, timeCreate, timeDue);*/
+
+    //connect to database
+    Database.connect();
+    Reminder.createReminder(title, username, content, timeCreate, timeDue);
+    Database.close();
   }
 
   @Override
