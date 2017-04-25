@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class ActivityController extends Controller {
   private List<Reminder> activities;
+  private ActivityView viewer;
 
   public ActivityController() {
     String username = "rayandrew";
@@ -24,20 +25,27 @@ public class ActivityController extends Controller {
 
     //System.out.println(activities.size());
     view = new ActivityView(5);
+    viewer = new ActivityView(5);
     Base.close();
   }
 
-  public void AddActivity(String username) {
-    String title = ""; //ambil title dari textbox masukan
-    String content = "";
-    String timeCreate = "";
-    String timeDue = "";
+  public void addActivity() {
+    String[] activityDescription = viewer.returnInput();
+    for (String a : activityDescription) {
+      System.out.println(a);
+    }
+
+    String username = activityDescription[0];
+    String title = activityDescription[2];
+    String content = activityDescription[4];
+    String timeCreate = activityDescription[5];
+    String timeDue = activityDescription[6];
     Reminder newReminder = new Reminder(title);
     newReminder.createReminder(title, username, content, timeCreate, timeDue);
   }
 
   @Override
   public Component init() {
-    return view.init();
+    return viewer.init();
   }
 }
