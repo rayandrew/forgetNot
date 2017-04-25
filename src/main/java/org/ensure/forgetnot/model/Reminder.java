@@ -45,7 +45,20 @@ public class Reminder extends Model {
     e.set("content", content);
     e.set("created_time", createdTime);
     e.set("due_time", dueTime);
-    e.set("priority", false);
+    e.set("priority", 1);
+    logger.info(
+        "Creating reminder "
+            + reminderTitle
+            + "to table Reminders, reminder user = "
+            + reminderUser
+            + "content = "
+            + content
+            + "created time = "
+            + createdTime
+            + "due time = "
+            + dueTime
+            + "priority = 1"
+    );
     e.saveIt();
   }
 
@@ -64,16 +77,18 @@ public class Reminder extends Model {
     e.set("priority", priority);
     e.set("due_time", dueTime);
     logger.info(
-        "Creating reminder for user = "
-            + reminderUser
-            + "to table Reminders, title = "
+        "Creating reminder "
             + reminderTitle
+            + "to table Reminders, reminder user = "
+            + reminderUser
             + "content = "
             + content
-            + "priority = "
-            + priority
+            + "created time = "
+            + createdTime
             + "due time = "
             + dueTime
+            + "priority = "
+            + priority
     );
     e.saveIt();
   }

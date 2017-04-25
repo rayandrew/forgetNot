@@ -2,6 +2,7 @@ package org.ensure.forgetnot.view;
 
 import com.alee.laf.panel.WebPanel;
 import org.ensure.forgetnot.controller.Controller;
+import org.ensure.forgetnot.utility.Clock;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
@@ -22,6 +23,9 @@ public class ContainerView extends WebPanel {
   private int axis;
 
   ContainerView() {
+    panelComponent.add(Clock.clock.getClockLabel());
+    Clock.clock.start();
+
     final ClassPathScanningCandidateComponentProvider provider =
         new ClassPathScanningCandidateComponentProvider(false);
     provider.addIncludeFilter(
@@ -32,9 +36,7 @@ public class ContainerView extends WebPanel {
         "org.ensure.forgetnot.controller"
     );
 
-    //System.out.println("List of controller :");
     for (BeanDefinition bean : classes) {
-      //System.out.println(bean.getBeanClassName());
       try {
         if (!bean
             .getBeanClassName()
@@ -54,11 +56,9 @@ public class ContainerView extends WebPanel {
             panelComponent.add(c.init());
           }
         }
-      } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-      } catch (InstantiationException e) {
-        e.printStackTrace();
-      } catch (IllegalAccessException e) {
+      } catch (ClassNotFoundException
+          | IllegalAccessException
+          | InstantiationException e) {
         e.printStackTrace();
       }
     }

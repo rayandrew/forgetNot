@@ -1,10 +1,14 @@
 package org.ensure.forgetnot.view;
 
+import com.alee.laf.label.WebLabel;
 import com.alee.laf.rootpane.WebFrame;
+import org.ensure.forgetnot.utility.Clock;
 import org.ensure.forgetnot.utility.Pair;
 
+import javax.swing.SwingUtilities;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.util.List;
 
 /**
