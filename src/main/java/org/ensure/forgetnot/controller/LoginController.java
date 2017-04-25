@@ -15,6 +15,7 @@ import java.awt.Component;
 public class LoginController extends Controller {
   public LoginController() {
     view = new LoginView("Login");
+    show = true;
   }
 
   public boolean verifyLogin(String username, String password) {

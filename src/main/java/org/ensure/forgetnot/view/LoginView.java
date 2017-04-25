@@ -30,7 +30,6 @@ public class LoginView extends View {
 
   public LoginView(String componentName) {
     super(componentName);
-    Action buttonclick = new Action();
     allPanel = new Panel();
     Panel username = new Panel();
     Panel password = new Panel();
@@ -39,6 +38,12 @@ public class LoginView extends View {
     username.add(usernameField);
     password.add(passwordLabel);
     password.add(passwordField);
+    ActionListener buttonclick = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        RegisterView reg = new RegisterView("apakek");
+      }
+    };
     registerButton.addActionListener(buttonclick);
     button.add(loginButton);
     button.add(registerButton);
@@ -60,13 +65,6 @@ public class LoginView extends View {
 
   public LoginView(List<Pair<String, Object>> dataInput) {
     super(dataInput);
-  }
-
-  static class Action implements ActionListener {
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
   }
 
   @Override

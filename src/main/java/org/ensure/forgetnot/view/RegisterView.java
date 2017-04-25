@@ -26,6 +26,7 @@ import java.util.List;
  */
 public class RegisterView extends View {
   Dialog dialog;
+  WebButton test = new WebButton();
   public RegisterView(String componentName) {
     super(componentName);
     Dialog dialog = new Dialog();
@@ -87,7 +88,6 @@ public class RegisterView extends View {
 
   @Override
   public Component init() {
-    dialog.setLocationRelativeTo(null);
-    return dialog;
+    return test;
   }
 }

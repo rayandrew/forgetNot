@@ -42,10 +42,17 @@ public class ContainerView extends WebPanel {
             &&
             !bean
                 .getBeanClassName()
-                .equals("org.ensure.forgetnot.controller.Controller")) {
+                .equals("org.ensure.forgetnot.controller.Controller")
+            &&
+            !bean
+                .getBeanClassName()
+                .equals("org.ensure.forgetnot.controller.RegisterController")
+            ) {
           Class<?> classController = Class.forName(bean.getBeanClassName());
           Controller c = (Controller) classController.newInstance();
-          panelComponent.add(c.init());
+          if (c.isShow()) {
+            panelComponent.add(c.init());
+          }
         }
       } catch (ClassNotFoundException e) {
         e.printStackTrace();

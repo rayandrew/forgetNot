@@ -13,6 +13,11 @@ import java.util.List;
 public abstract class Controller {
   protected List<Pair<String, Object>> data = new ArrayList<>();
   protected View view;
+  protected boolean show = true;
+
+  public boolean isShow() {
+    return show;
+  }
 
   public abstract Component init();
 }

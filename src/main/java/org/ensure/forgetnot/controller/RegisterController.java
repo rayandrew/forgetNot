@@ -20,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 public class RegisterController extends Controller {
   public RegisterController() {
     view = new RegisterView("Register");
+    show = false;
   }
 
   public void registerUser(
