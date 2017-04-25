@@ -3,7 +3,7 @@ package org.ensure.forgetnot.controller;
 import org.ensure.forgetnot.view.MainView;
 import org.springframework.context.annotation.Bean;
 
-import java.awt.*;
+import java.awt.Component;
 
 /**
  * Created by rufus on 4/23/2017.

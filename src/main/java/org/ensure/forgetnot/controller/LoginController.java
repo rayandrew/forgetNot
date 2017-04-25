@@ -7,7 +7,7 @@ import org.ensure.forgetnot.utility.PasswordEncryptor;
 import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.ensure.forgetnot.view.LoginView;
 
-import java.awt.*;
+import java.awt.Component;
 
 /**
  * Created by rufus on 4/22/2017.

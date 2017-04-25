@@ -6,7 +6,7 @@ import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.User;
 import org.ensure.forgetnot.utility.Pair;
 
-import java.awt.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;

@@ -8,7 +8,7 @@ import com.alee.managers.notification.NotificationIcon;
 import com.alee.managers.notification.NotificationManager;
 import com.alee.managers.notification.WebNotification;
 
-import java.awt.*;
+import java.awt.Component;
 
 /**
  * Created by DELL on 4/24/2017.

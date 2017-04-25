@@ -4,7 +4,7 @@ import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.view.ActivityView;
 
-import java.awt.*;
+import java.awt.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;

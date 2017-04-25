@@ -7,8 +7,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BoxLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;

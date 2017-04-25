@@ -8,7 +8,8 @@ import com.alee.laf.text.WebPasswordField;
 import com.alee.laf.text.WebTextField;
 import org.ensure.forgetnot.utility.Pair;
 
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;

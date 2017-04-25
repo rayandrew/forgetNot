@@ -14,9 +14,10 @@ import org.ensure.forgetnot.controller.ActivityController;
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 
-import javax.swing.*;
+import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;

@@ -6,7 +6,7 @@ import org.ensure.forgetnot.utility.PasswordEncryptor;
 import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.ensure.forgetnot.view.RegisterView;
 
-import java.awt.*;
+import java.awt.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

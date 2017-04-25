@@ -1,6 +1,10 @@
 package org.ensure.forgetnot.core;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by rayandrew on 4/13/2017.
