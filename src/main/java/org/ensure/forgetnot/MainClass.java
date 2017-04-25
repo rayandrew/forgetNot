@@ -5,6 +5,7 @@ import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.core.DatabaseDaemon;
 import org.ensure.forgetnot.core.DatabaseDaemonException;
 import org.ensure.forgetnot.core.Launcher;
+import org.ensure.forgetnot.core.SplashScreen;
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.model.User;
 import org.ensure.forgetnot.utility.PasswordEncryptor;
@@ -27,10 +28,7 @@ public class MainClass {
       public void run() {
         // Install WebLaF as application L&F
         WebLookAndFeel.install();
-        Launcher launcher = new Launcher();
-        launcher.launch();
-        // Create you Swing application here
-        // JFrame frame = ...
+        SplashScreen.execute = new SplashScreen("./image/forget.png");
       }
     });
 
