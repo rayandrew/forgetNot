@@ -30,7 +30,7 @@ public class ActivityController extends Controller {
   }
 
   public void addActivity() {
-    String[] activityDescription = viewer.returnInput();
+    /*String[] activityDescription = viewer.returnInput();
     for (String a : activityDescription) {
       System.out.println(a);
     }
@@ -41,7 +41,7 @@ public class ActivityController extends Controller {
     String timeCreate = activityDescription[5];
     String timeDue = activityDescription[6];
     Reminder newReminder = new Reminder(title);
-    newReminder.createReminder(title, username, content, timeCreate, timeDue);
+    newReminder.createReminder(title, username, content, timeCreate, timeDue);*/
   }
 
   @Override
