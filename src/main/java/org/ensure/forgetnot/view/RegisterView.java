@@ -29,7 +29,7 @@ public class RegisterView extends View {
   WebButton test = new WebButton();
   public RegisterView(String componentName) {
     super(componentName);
-    Dialog dialog = new Dialog();
+    Dialog dialog = new Dialog(new Button());
     dialog.pack();
     dialog.setVisible(true);
   }
@@ -50,14 +50,13 @@ public class RegisterView extends View {
   }
 
   private class Dialog extends WebDialog {
-    public Dialog() {
-      super();
-      setIconImages(WebLookAndFeel.getImages());
+    public Dialog(Button owner) {
+      super(owner, "Register");
       setDefaultCloseOperation(WebDialog.DISPOSE_ON_CLOSE);
       setResizable(false);
       setModal(true);
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
-          {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+        {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
       layout.setHGap(5);
       layout.setVGap(5);
       WebPanel content = new WebPanel(layout);
@@ -83,6 +82,7 @@ public class RegisterView extends View {
       add(content);
       HotkeyManager.registerHotkey(this, login, Hotkey.ESCAPE);
       HotkeyManager.registerHotkey(this, login, Hotkey.ENTER);
+      center();
     }
   }
 
