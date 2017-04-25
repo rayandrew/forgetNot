@@ -63,10 +63,15 @@ public class RegisterView extends View {
       content.setMargin(15, 30, 15, 30);
       content.setOpaque(false);
       content.add(new WebLabel("Username", WebLabel.TRAILING), "0,0");
-      content.add(new WebTextField(15), "1,0");
-
+      WebTextField username = new WebTextField(15);
+      username.setInputPrompt("Enter Username..");
+      username.setInputPromptFont ( username.getFont ().deriveFont ( Font.ITALIC ) );
+      content.add(username, "1,0");
       content.add(new WebLabel("Password", WebLabel.TRAILING), "0,1");
-      content.add(new WebPasswordField(15), "1,1");
+      WebPasswordField password = new WebPasswordField(15);
+      password.setInputPrompt("Enter Password..");
+      password.setInputPromptFont ( password.getFont ().deriveFont ( Font.ITALIC ) );
+      content.add(password, "1,1");
       WebButton login = new WebButton("Register");
       WebButton cancel = new WebButton("Cancel");
       ActionListener listener = new ActionListener() {
