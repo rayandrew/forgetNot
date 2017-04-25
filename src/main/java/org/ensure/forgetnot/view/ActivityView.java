@@ -4,28 +4,27 @@ import com.alee.extended.layout.TableLayout;
 import com.alee.extended.panel.GroupPanel;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.label.WebLabel;
+import com.alee.laf.optionpane.WebOptionPane;
 import com.alee.laf.panel.WebPanel;
 import com.alee.laf.rootpane.WebDialog;
 import com.alee.laf.spinner.WebSpinner;
-import com.alee.laf.table.WebTable;
 import com.alee.laf.text.WebTextField;
 import org.ensure.forgetnot.controller.ActivityController;
+import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
-import org.ensure.forgetnot.utility.Pair;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Button;
 import java.awt.Component;
-import java.awt.List;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -35,22 +34,48 @@ import java.util.Date;
 public class ActivityView extends View {
   private Panel activityPanel;
   private JTable tab;
-  private Button addActivityButton;
+  private WebButton addActivityButton;
+  private WebButton deleteButton;
 
   public ActivityView(Object[][] dataInput) {
     super("activityViewer");
     activityPanel = new Panel();
-    addActivityButton = new Button("Add a Reminder");
+    addActivityButton = new WebButton("Add a Reminder");
     addActivityButton.addActionListener(new Dialog());
+    deleteButton = new WebButton("Delete a Reminder");
+    deleteButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        int temp = Integer.parseInt(WebOptionPane.showInputDialog(
+            null,
+            "Insert reminder ID to be deleted",
+            "Delete Reminder",
+            WebOptionPane.WARNING_MESSAGE));
+        //TODO: usernamenya jgn lupa
+        Database.connect();
+        Reminder.deleteReminder("rayandrew",temp);
+        Database.close();
+      }
+    });
 
-    String[] columns = {"Activity","Description","Time"};
+    String[] columns = {"ID","Activity", "Description", "Time"};
+    /*DefaultTableModel tableModel = new DefaultTableModel(columns, dataInput.length) {
+      public boolean isCellEditable(int row, int column) {
+        return false;//This causes all cells to be not editable
+      }
+    };*/
+
     tab = new JTable(dataInput, columns);
+    //tab.setModel(tableModel);
+    tab.getColumnModel().getColumn(0).setPreferredWidth(20);
+    tab.getColumnModel().getColumn(1).setPreferredWidth(100);
+    tab.getColumnModel().getColumn(2).setPreferredWidth(400);
+    tab.getColumnModel().getColumn(3).setPreferredWidth(150);
 
     activityPanel.add(tab);
     activityPanel.add(addActivityButton);
-    activityPanel.add(new GroupPanel(false,tab,addActivityButton));
-
-    //TODO: buat array untuk simpan masukan pengguna
+    activityPanel.add(deleteButton);
+    activityPanel.add(new GroupPanel(false, tab, addActivityButton,deleteButton));
   }
 
   public void addWebContent(DefaultTableModel table) {
@@ -66,7 +91,7 @@ public class ActivityView extends View {
 
     public Dialog() {
       super();
-      setSize(500, 200);
+      setSize(500, 175);
       activityDescription = new String[7];
 
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
@@ -99,6 +124,8 @@ public class ActivityView extends View {
           activityDescription[6] = tempDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
           //System.out.println("ini waktu format dari input : " + activityDescription[6]);
           ActivityController.addActivity(activityDescription);
+          WebOptionPane.showMessageDialog(null,
+              "Your reminder has been saved!","Success",WebOptionPane.INFORMATION_MESSAGE);
         }
       };
       confirm.addActionListener(saveToDatabase);
