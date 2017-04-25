@@ -24,13 +24,6 @@ public class MainClass {
   static final Logger logger = LoggerFactory.getLogger(MainClass.class);
 
   public static void main(String[] args) {
-    SwingUtilities.invokeLater(new Runnable() {
-      public void run() {
-        // Install WebLaF as application L&F
-        WebLookAndFeel.install();
-        SplashScreen.execute = new SplashScreen("./image/forget.png");
-      }
-    });
 
     String timeStamp = LocalDateTime.now().format(
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
@@ -79,5 +72,13 @@ public class MainClass {
       Reminder.selectReminder("rayandrew", 1);
       Database.close();
     }
+
+    SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+        // Install WebLaF as application L&F
+        WebLookAndFeel.install();
+        SplashScreen.execute = new SplashScreen("./image/forget.png");
+      }
+    });
   }
 }

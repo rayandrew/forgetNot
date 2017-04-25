@@ -7,20 +7,25 @@ import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
 import com.alee.laf.rootpane.WebDialog;
 import com.alee.laf.spinner.WebSpinner;
+import com.alee.laf.table.WebTable;
 import com.alee.laf.text.WebTextField;
 import org.ensure.forgetnot.controller.ActivityController;
+import org.ensure.forgetnot.model.Reminder;
+import org.ensure.forgetnot.utility.Pair;
 
 import javax.swing.JTable;
 import javax.swing.SpinnerDateModel;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Button;
 import java.awt.Component;
+import java.awt.List;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,24 +35,20 @@ import java.util.Date;
 public class ActivityView extends View {
   private Panel activityPanel;
   private JTable tab;
-  private WebTextField textPane;
   private Button addActivityButton;
 
-  public ActivityView(int numOfActivities) {
-    super("activityView");
+  public ActivityView(Object[][] dataInput) {
+    super("activityViewer");
     activityPanel = new Panel();
-    textPane = new WebTextField(null, 10);
     addActivityButton = new Button("Add a Reminder");
     addActivityButton.addActionListener(new Dialog());
 
-    String[] columns = {"Activity", "Time"};
-    Object[][] data = {{"Memasak", "20.20"}, {"Memasak", "20.20"}, {"Memasak", "20.20"}, {"Memasak", "20.20"}};
-
-    tab = new JTable(data, columns);
+    String[] columns = {"Activity","Description","Time"};
+    tab = new JTable(dataInput, columns);
 
     activityPanel.add(tab);
-    activityPanel.add(textPane);
     activityPanel.add(addActivityButton);
+    activityPanel.add(new GroupPanel(false,tab,addActivityButton));
 
     //TODO: buat array untuk simpan masukan pengguna
   }
@@ -119,6 +120,8 @@ public class ActivityView extends View {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+      //String[] columns = {"Activity","Description","Time"};
+      //tab = new JTable(ActivityController.refresh(),columns);
       setVisible(true);
     }
   }

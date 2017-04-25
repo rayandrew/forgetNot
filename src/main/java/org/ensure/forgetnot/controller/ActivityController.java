@@ -2,12 +2,14 @@ package org.ensure.forgetnot.controller;
 
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
+import org.ensure.forgetnot.utility.Pair;
 import org.ensure.forgetnot.view.ActivityView;
 import org.javalite.activejdbc.Base;
 
 import java.awt.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,25 +20,22 @@ public class ActivityController extends Controller {
   private ActivityView viewer;
 
   public ActivityController() {
-    String username = "rayandrew";
-    Base.open("com.mysql.cj.jdbc.Driver",
-        "jdbc:mysql://localhost/forgetNot?nullNamePatternMatchesAll=true",
-        "root",
-        ""
-    );
-    activities = Reminder.where("reminder_user ?", username);
+    String username = "rayandrew"; //TODO: nanti ambil secara static
+    Database.connect();
+    activities = Reminder.getAllReminderFromUser("rayandrew");
 
-    //System.out.println(activities.size());
-    view = new ActivityView(5);
-    viewer = new ActivityView(5);
-    Base.close();
+    String[][] temp = new String[activities.size()][3];
+    for(int idx = 0; idx < activities.size(); idx++){
+      temp[idx][0] = (String)activities.get(idx).get("reminder_title");
+      temp[idx][1] = (String)activities.get(idx).get("content");
+      temp[idx][2] = activities.get(idx).get("due_time").toString();
+    }
+
+    viewer = new ActivityView(temp);
+    Database.close();
   }
 
   public static void addActivity(String[] activityDescription) {
-    for (String a : activityDescription) {
-      System.out.println(a);
-    }
-
     String username = activityDescription[0];
     String title = activityDescription[2];
     String content = activityDescription[4];
@@ -50,6 +49,22 @@ public class ActivityController extends Controller {
     Database.connect();
     Reminder.createReminder(title, username, content, timeCreate, timeDue);
     Database.close();
+  }
+
+  public static Object[][] refresh(){
+    String username = "rayandrew"; //TODO: nanti ambil secara static
+    Database.connect();
+    List<Reminder> update = Reminder.getAllReminderFromUser("rayandrew");
+
+    String[][] test = new String[update.size()][3];
+    for(int idx = 0; idx < update.size(); idx++){
+      test[idx][0] = (String)update.get(idx).get("reminder_title");
+      test[idx][1] = (String)update.get(idx).get("content");
+      test[idx][2] = update.get(idx).get("due_time").toString();
+    }
+
+    Database.close();
+    return test;
   }
 
   @Override
