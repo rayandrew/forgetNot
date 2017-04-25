@@ -105,7 +105,7 @@ public class DatabaseDaemon {
           + "reminder_user VARCHAR(25) NOT NULL,\n"
           + "reminder_id INT(15) UNSIGNED NOT NULL AUTO_INCREMENT,\n"
           + "reminder_title VARCHAR(50) NOT NULL,\n"
-          + "priority BOOLEAN NOT NULL DEFAULT 0,\n"
+          + "priority INT(2) NOT NULL DEFAULT 0,\n"
           + "content TEXT,\n"
           + "created_time DATETIME NOT NULL,\n"
           + "due_time DATETIME NOT NULL,\n"

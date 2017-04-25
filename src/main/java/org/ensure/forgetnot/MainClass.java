@@ -63,7 +63,7 @@ public class MainClass {
           "Testing to input something to database! LOLLLL",
           timeStamp,
           timeStamp,
-          false
+          1
       );
       Reminder.createReminder(
           "LELLLLL",
@@ -71,7 +71,7 @@ public class MainClass {
           "Anything but not good wew",
           timeStamp,
           timeStamp,
-          true
+          2
       );
       User.updateUser("rayandrew", "first_name", "aldrich");
       User.selectUser("rayandrew");

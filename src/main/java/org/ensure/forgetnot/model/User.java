@@ -32,7 +32,7 @@ public class User extends Model {
     );
   }
 
-  public static void createUser(
+  public static boolean createUser(
       String userName,
       String password,
       String firstName,
@@ -49,37 +49,73 @@ public class User extends Model {
     e.set("user_email", userEmail);
     e.set("join_date", joinDate);
     e.set("profile_pic", profilePic);
-    e.saveIt();
+    logger.info(
+        "Creating user "
+            + userName
+            + "to table Users, firstname = "
+            + firstName
+            + "lastname = "
+            + lastName
+            + "email = "
+            + userEmail
+            + "joindate = "
+            + joinDate
+            + "profile pic ="
+            + profilePic
+    );
+    return e.saveIt();
   }
 
-  public static void selectUser(String username) {
+  public static User selectUser(String username) {
     User e = User.findFirst("user_name = ?", username);
-    logger.info(e.getString("user_name"));
+    logger.info("User : " + e.getString("user_name"));
+    return e;
   }
 
-  public static void deleteUser(String username) {
+  public static boolean deleteUser(String username) {
     User e = User.findFirst("user_name = ?", username);
-    e.delete();
+    logger.info(
+        "Deleting user " + username + "from table Users"
+    );
+    return e.delete();
   }
 
-  public static void updateUser(String username, String columnName, String value) {
-    User.findFirst("user_name = ?", username)
+  public static boolean updateUser(String username, String columnName, String value) {
+    logger.info(
+        "Change from table Users => username : "
+            + username
+            + " , column "
+            + columnName
+            + " to "
+            + value
+    );
+    return User.findFirst("user_name = ?", username)
         .set(columnName, value)
         .saveIt();
   }
 
   public static String getAttribute(String columnName, String username) {
-    return User.findFirst(
+    User u = User.findFirst(
         "user_name = ?",
-        username)
-        .getString(columnName);
+        username
+    );
+
+    logger.info(
+        "Get attribute table Users => username : "
+            + username
+            + " column "
+            + columnName
+            + " value "
+            + u.getString(columnName)
+    );
+
+    return u.getString(columnName);
   }
 
-  public static void deleteAllUsers() {
-    User.deleteAll();
-  }
-
-  public static void selectAllUsers() {
-    logger.info("User list: " + User.findAll());
+  public static boolean deleteAllUsers() {
+    logger.info(
+        "Delete all users from table Users"
+    );
+    return User.deleteAllUsers();
   }
 }
