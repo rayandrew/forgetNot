@@ -34,8 +34,8 @@ public class LoginController extends Controller {
    * @param password password yang dimasukkan oleh user
    * @return loginStatus
    * <p>
-   *   sebuah boolean yang menunjukkan apakah password yang
-   *   dimasukkan cocok dengan password dalam database
+   * sebuah boolean yang menunjukkan apakah password yang
+   * dimasukkan cocok dengan password dalam database
    * </p>
    */
   public static boolean verifyLogin(String username, String password) {

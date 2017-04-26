@@ -16,26 +16,36 @@ import java.util.List;
  * @author aldrich
  */
 public class ActivityController extends Controller {
-  private List<Reminder> activities;
   private ActivityView viewer;
+  private static String[][] tabelEntry;
+
+  static {
+    Database.connect();
+    List<Reminder> activities = Reminder.getAllReminderFromUser(Config.getLoginUser());
+    tabelEntry = new String[activities.size()][4];
+    for (int idx = 0; idx < activities.size(); idx++) {
+      tabelEntry[idx][0] = activities.get(idx).get("reminder_id").toString();
+      tabelEntry[idx][1] = (String) activities.get(idx).get("reminder_title");
+      tabelEntry[idx][2] = (String) activities.get(idx).get("content");
+      tabelEntry[idx][3] = activities.get(idx).get("due_time").toString();
+    }
+    Database.close();
+  }
 
   /**
    * Constructor.
    */
   public ActivityController() {
-    Database.connect();
-    activities = Reminder.getAllReminderFromUser(Config.getLoginUser());
+    viewer = new ActivityView();
+  }
 
-    String[][] temp = new String[activities.size()][4];
-    for (int idx = 0; idx < activities.size(); idx++) {
-      temp[idx][0] = activities.get(idx).get("reminder_id").toString();
-      temp[idx][1] = (String) activities.get(idx).get("reminder_title");
-      temp[idx][2] = (String) activities.get(idx).get("content");
-      temp[idx][3] = activities.get(idx).get("due_time").toString();
-    }
-
-    viewer = new ActivityView(temp);
-    Database.close();
+  /**
+   * Get tabel entry.
+   *
+   * @return tabel entry.
+   */
+  public static Object[][] getTabelEntry() {
+    return tabelEntry;
   }
 
   /**
@@ -50,7 +60,7 @@ public class ActivityController extends Controller {
     String timeCreate = LocalDateTime.now().format(
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     );
-    System.out.println(timeCreate);
+    //System.out.println(timeCreate);
     String timeDue = activityDescription[6];
 
     //connect to database
@@ -68,17 +78,18 @@ public class ActivityController extends Controller {
   public static Object[][] refresh() {
     Database.connect();
     List<Reminder> update = Reminder.getAllReminderFromUser(Config.getLoginUser());
-
-    String[][] test = new String[update.size()][4];
-    for (int idx = 0; idx < update.size(); idx++) {
-      test[idx][0] = (String) update.get(idx).get("reminder_id");
-      test[idx][1] = (String) update.get(idx).get("reminder_title");
-      test[idx][2] = (String) update.get(idx).get("content");
-      test[idx][3] = update.get(idx).get("due_time").toString();
+    tabelEntry = new String[update.size()][4];
+    if (update.size() > 0) {
+      for (int idx = 0; idx < update.size(); idx++) {
+        tabelEntry[idx][0] = String.valueOf(update.get(idx).get("reminder_id"));
+        tabelEntry[idx][1] = (String) update.get(idx).get("reminder_title");
+        tabelEntry[idx][2] = (String) update.get(idx).get("content");
+        tabelEntry[idx][3] = update.get(idx).get("due_time").toString();
+      }
     }
 
     Database.close();
-    return test;
+    return tabelEntry;
   }
 
   @Override

@@ -16,6 +16,8 @@ import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 
 import javax.swing.SpinnerDateModel;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 import java.awt.Component;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
@@ -37,50 +39,58 @@ public class ActivityView extends View {
   private WebButton addActivityButton;
   private WebButton deleteButton;
   private WebButton updateButton;
+  private String[] columns = {"ID", "Activity", "Description", "Time"};
 
   /**
    * Konstruktor.
-   *
-   * @param dataInput array of object yang akan ditampilkan di layar sebagai tabel
    */
-  public ActivityView(Object[][] dataInput) {
+  public ActivityView() {
     super("activityViewer");
     activityPanel = new Panel();
     addActivityButton = new WebButton("Add a Reminder");
     addActivityButton.addActionListener(new Dialog());
     deleteButton = new WebButton("Delete a Reminder");
-    deleteButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
+    deleteButton.addActionListener(e -> {
+      Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
+          null,
+          "Insert reminder ID to be deleted",
+          "Delete Reminder",
+          WebOptionPane.WARNING_MESSAGE));
+      Database.connect();
+      boolean status = Reminder.deleteReminder(Config.getLoginUser(), temp);
+      Database.close();
+      if (status) {
+        DefaultTableModel table = new DefaultTableModel(
+            ActivityController.refresh(),
+            columns
+        );
+        tab.setModel(table);
+        SwingUtilities.getRootPane(activityPanel).revalidate();
+        WebOptionPane.showMessageDialog(
             null,
-            "Insert reminder ID to be deleted",
+            "Success deleted reminder id" + temp,
             "Delete Reminder",
-            WebOptionPane.WARNING_MESSAGE));
-        //TODO: usernamenya jgn lupa
-        if (temp != null) {
-          Database.connect();
-          Reminder.deleteReminder("rayandrew", temp);
-          Database.close();
-        }
+            WebOptionPane.INFORMATION_MESSAGE);
+      } else {
+        WebOptionPane.showMessageDialog(
+            null,
+            "Failed to delete reminder id" + temp,
+            "Delete Reminder",
+            WebOptionPane.WARNING_MESSAGE);
       }
     });
     updateButton = new WebButton("Modify a Reminder");
-    updateButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
-            null,
-            "Please input your reminder ID",
-            "Modify Reminder",
-            WebOptionPane.WARNING_MESSAGE)
-        );
-        new UpdateDialog(temp);
-      }
+    updateButton.addActionListener(e -> {
+      Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
+          null,
+          "Please input your reminder ID",
+          "Modify Reminder",
+          WebOptionPane.WARNING_MESSAGE)
+      );
+      new UpdateDialog(temp);
     });
 
-    String[] columns = {"ID", "Activity", "Description", "Time"};
-    tab = new WebTable(dataInput, columns);
+    tab = new WebTable(ActivityController.getTabelEntry(), columns);
     tab.getColumnModel().getColumn(0).setPreferredWidth(20);
     tab.getColumnModel().getColumn(1).setPreferredWidth(100);
     tab.getColumnModel().getColumn(2).setPreferredWidth(400);
@@ -108,7 +118,7 @@ public class ActivityView extends View {
     /**
      * Konstruktor.
      */
-    public Dialog() {
+    Dialog() {
       super();
       setSize(500, 175);
       setTitle("Add New Reminder");
@@ -133,36 +143,39 @@ public class ActivityView extends View {
       confirm = new WebButton("Set Reminder");
 
       //add ActionListener for confirm Button
-      ActionListener saveToDatabase = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-          activityDescription[0] = Config.getLoginUser(); //nanti diisi dengan user
-          activityDescription[2] = title.getText();
-          activityDescription[4] = contentReminder.getText();
-          Date temp = (Date) dueDate.getValue();
-          LocalDateTime tempDate = LocalDateTime.ofInstant(
-              temp.toInstant(),
-              ZoneId.systemDefault()
+      ActionListener saveToDatabase = (ActionEvent e) -> {
+        activityDescription[0] = Config.getLoginUser();
+        activityDescription[2] = title.getText();
+        activityDescription[4] = contentReminder.getText();
+        Date temp = (Date) dueDate.getValue();
+        LocalDateTime tempDate = LocalDateTime.ofInstant(
+            temp.toInstant(),
+            ZoneId.systemDefault()
+        );
+        activityDescription[6] = tempDate.format(
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        );
+        if (ActivityController.addActivity(activityDescription)) {
+          WebOptionPane.showMessageDialog(null,
+              "Your reminder has been saved!",
+              "Success",
+              WebOptionPane.INFORMATION_MESSAGE
           );
-          activityDescription[6] = tempDate.format(
-              DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        } else {
+          WebOptionPane.showMessageDialog(null,
+              "Your reminder cannot be saved",
+              "Failed",
+              WebOptionPane.ERROR_MESSAGE
           );
-          if (ActivityController.addActivity(activityDescription)) {
-            WebOptionPane.showMessageDialog(null,
-                "Your reminder has been saved!",
-                "Success",
-                WebOptionPane.INFORMATION_MESSAGE
-            );
-          } else {
-            WebOptionPane.showMessageDialog(null,
-                "Your reminder cannot be saved",
-                "Failed",
-                WebOptionPane.ERROR_MESSAGE
-            );
-          }
-          setVisible(false);
-          dispose();
         }
+        DefaultTableModel table = new DefaultTableModel(
+            ActivityController.refresh(),
+            columns
+        );
+        tab.setModel(table);
+        SwingUtilities.getRootPane(activityPanel).revalidate();
+        setVisible(false);
+        dispose();
       };
       confirm.addActionListener(saveToDatabase);
       content.add(new WebLabel("Reminder Title", WebLabel.TRAILING), "0,0");
@@ -179,8 +192,6 @@ public class ActivityView extends View {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      //String[] columns = {"Activity","Description","Time"};
-      //tab = new JTable(ActivityController.refresh(),columns);
       setVisible(true);
     }
   }
@@ -195,7 +206,7 @@ public class ActivityView extends View {
     /**
      * Konstruktor.
      */
-    public UpdateDialog(int id) {
+    UpdateDialog(int id) {
       super();
       setSize(500, 175);
       setTitle("Modify Reminder");
@@ -262,6 +273,13 @@ public class ActivityView extends View {
         );
         Database.close();
         if (status) {
+          DefaultTableModel table = new DefaultTableModel(
+              ActivityController.refresh(),
+              columns
+          );
+          tab.setModel(table);
+          SwingUtilities.getRootPane(activityPanel).revalidate();
+
           WebOptionPane.showMessageDialog(null,
               "Your reminder has been updated!",
               "Success",

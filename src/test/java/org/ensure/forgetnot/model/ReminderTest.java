@@ -1,23 +1,16 @@
 package org.ensure.forgetnot.model;
 
-import org.ensure.forgetnot.core.Database;
-import org.ensure.forgetnot.core.DatabaseDaemon;
-import org.ensure.forgetnot.core.DatabaseDaemonException;
-import org.ensure.forgetnot.utility.PasswordEncryptor;
-import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.junit.Test;
-
-import javax.xml.crypto.Data;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Aldrich on 4/26/2017.
  */
 public class ReminderTest {
+
+
   private String timeStamp = LocalDateTime.now().format(
       DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
   );
@@ -47,6 +40,9 @@ public class ReminderTest {
       }
     }
   }*/
+public ReminderTest() {
+
+}
 
   @Test
   public void createReminder() throws Exception {

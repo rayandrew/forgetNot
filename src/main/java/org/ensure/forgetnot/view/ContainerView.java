@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ClassPathScanningCandidateComponen
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
 import javax.swing.BoxLayout;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.regex.Pattern;
  */
 
 public class ContainerView extends WebPanel {
-  private List<Component> panelComponent = new ArrayList<Component>();
+  private List<Component> panelComponent = new ArrayList<>();
   private int axis;
 
   /**
@@ -109,8 +110,9 @@ public class ContainerView extends WebPanel {
     setLayout(new BoxLayout(this, axis));
 
     for (Component component : panelComponent) {
-      System.out.println(component.getName());
-      add(component);
+      //System.out.println(component.getName());
+      component.setMaximumSize(component.getPreferredSize());
+      add(component, BorderLayout.SOUTH);
     }
   }
 }

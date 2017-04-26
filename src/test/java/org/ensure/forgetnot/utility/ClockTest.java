@@ -2,12 +2,18 @@ package org.ensure.forgetnot.utility;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by Aldrich on 4/26/2017.
  */
 public class ClockTest {
+
+  public ClockTest() {
+
+  }
+
   @Test
   public void getJam() throws Exception {
     Clock clock = new Clock("test");

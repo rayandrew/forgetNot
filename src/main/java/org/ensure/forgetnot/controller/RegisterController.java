@@ -27,10 +27,10 @@ public class RegisterController extends Controller {
   /**
    * Method untuk registrasi user.
    *
-   * @param username   username yang akan di register
-   * @param password   password yang akan di register
+   * @param username  username yang akan di register
+   * @param password  password yang akan di register
    * @param firstname first name yang di register
-   * @param lastname last name yang di register
+   * @param lastname  last name yang di register
    * @param useremail email yang diregister
    */
   public void registerUser(

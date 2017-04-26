@@ -47,4 +47,9 @@ task run(dependsOn: 'build', type: JavaExec) {
     classpath += files('build/config/main')
 }
 
+task runTest(dependsOn: 'build', type: JavaExec) {
+    main = 'org.ensure.forgetnot.MainTest'
+    classpath = sourceSets.test.runtimeClasspath
+}
+
 sourceCompatibility = 1.8

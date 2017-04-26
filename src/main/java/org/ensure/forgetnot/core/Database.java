@@ -28,6 +28,7 @@ public class Database {
 
   /**
    * Method getdbSetting.
+   *
    * @param key untuk mengambil value dari sebuah key
    * @return left value dari key
    */
