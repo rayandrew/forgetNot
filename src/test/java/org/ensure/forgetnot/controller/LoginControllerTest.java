@@ -13,13 +13,13 @@ public class LoginControllerTest {
   }
 
   @Test
-  public void createTest(){
+  public void createTest() {
     LoginController L = new LoginController();
     assertNotNull(L);
   }
 
   @Test
-  public void initTest(){
+  public void initTest() {
     LoginController L = new LoginController();
     assertNotNull(L.init());
   }

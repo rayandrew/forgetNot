@@ -12,37 +12,38 @@ public class ReminderTest {
 
 
   private String timeStamp = LocalDateTime.now().format(
-      DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
   );
-/*
-  public ReminderTest() {
-    try {
-      DatabaseDaemon.createNewDatabase("root", "", "forgetNot");
-      DatabaseDaemon.initializeTable("root", "", "forgetNot");
-    } catch (DatabaseDaemonException e) {
-      e.printStackTrace();
-    } finally
 
-    {
-      Database.connect();
+  /*
+    public ReminderTest() {
       try {
-        User.createUser(
-            "rayandrew",
-            PasswordEncryptor.generateMd5("testPassword"),
-            "Ray",
-            "Andrew",
-            "raydreww@gmail.com",
-            timeStamp,
-            "lel"
-        );
-      } catch (PasswordEncryptorException e) {
+        DatabaseDaemon.createNewDatabase("root", "", "forgetNot");
+        DatabaseDaemon.initializeTable("root", "", "forgetNot");
+      } catch (DatabaseDaemonException e) {
         e.printStackTrace();
-      }
-    }
-  }*/
-public ReminderTest() {
+      } finally
 
-}
+      {
+        Database.connect();
+        try {
+          User.createUser(
+              "rayandrew",
+              PasswordEncryptor.generateMd5("testPassword"),
+              "Ray",
+              "Andrew",
+              "raydreww@gmail.com",
+              timeStamp,
+              "lel"
+          );
+        } catch (PasswordEncryptorException e) {
+          e.printStackTrace();
+        }
+      }
+    }*/
+  public ReminderTest() {
+
+  }
 
   @Test
   public void createReminder() throws Exception {

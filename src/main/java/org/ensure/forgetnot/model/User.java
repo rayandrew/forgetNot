@@ -18,13 +18,13 @@ public class User extends Model {
 
   static {
     validatePresenceOf(
-        "user_name",
-        "password",
-        "first_name",
-        "last_name",
-        "user_email",
-        "join_date",
-        "profile_pic"
+      "user_name",
+      "password",
+      "first_name",
+      "last_name",
+      "user_email",
+      "join_date",
+      "profile_pic"
     );
   }
 
@@ -57,13 +57,13 @@ public class User extends Model {
    * @return mengembalikan apakah pembuatan berhasil atau tidak
    */
   public static boolean createUser(
-      String userName,
-      String password,
-      String firstName,
-      String lastName,
-      String userEmail,
-      String joinDate,
-      String profilePic
+    String userName,
+    String password,
+    String firstName,
+    String lastName,
+    String userEmail,
+    String joinDate,
+    String profilePic
   ) {
     User e = new User();
     e.set("user_name", userName);
@@ -78,18 +78,18 @@ public class User extends Model {
     e.set("join_date", joinDate);
     e.set("profile_pic", profilePic);
     logger.info(
-        "Creating user "
-            + userName
-            + " to table Users, firstname = "
-            + firstName
-            + " lastname = "
-            + lastName
-            + " email = "
-            + userEmail
-            + " joindate = "
-            + joinDate
-            + " profile pic ="
-            + profilePic
+      "Creating user "
+        + userName
+        + " to table Users, firstname = "
+        + firstName
+        + " lastname = "
+        + lastName
+        + " email = "
+        + userEmail
+        + " joindate = "
+        + joinDate
+        + " profile pic ="
+        + profilePic
     );
     return e.saveIt();
   }
@@ -106,12 +106,12 @@ public class User extends Model {
    * @return mengembalikan apakah pembuatan berhasil atau tidak
    */
   public static boolean createUser(
-      String userName,
-      String password,
-      String firstName,
-      String lastName,
-      String userEmail,
-      String joinDate
+    String userName,
+    String password,
+    String firstName,
+    String lastName,
+    String userEmail,
+    String joinDate
   ) {
     User e = new User();
     e.set("user_name", userName);
@@ -126,17 +126,17 @@ public class User extends Model {
     e.set("join_date", joinDate);
     e.set("profile_pic", "empty");
     logger.info(
-        "Creating user "
-            + userName
-            + " to table Users, firstname = "
-            + firstName
-            + " lastname = "
-            + lastName
-            + " email = "
-            + userEmail
-            + " joindate = "
-            + joinDate
-            + " profile pic = empty"
+      "Creating user "
+        + userName
+        + " to table Users, firstname = "
+        + firstName
+        + " lastname = "
+        + lastName
+        + " email = "
+        + userEmail
+        + " joindate = "
+        + joinDate
+        + " profile pic = empty"
     );
     return e.saveIt();
   }
@@ -162,7 +162,7 @@ public class User extends Model {
   public static boolean deleteUser(String username) {
     User e = User.findFirst("user_name = ?", username);
     logger.info(
-        "Deleting user " + username + "from table Users"
+      "Deleting user " + username + "from table Users"
     );
     return e.delete();
   }
@@ -177,16 +177,16 @@ public class User extends Model {
    */
   public static boolean updateUser(String username, String columnName, String value) {
     logger.info(
-        "Change from table Users => username : "
-            + username
-            + " , column "
-            + columnName
-            + " to "
-            + value
+      "Change from table Users => username : "
+        + username
+        + " , column "
+        + columnName
+        + " to "
+        + value
     );
     return User.findFirst("user_name = ?", username)
-        .set(columnName, value)
-        .saveIt();
+      .set(columnName, value)
+      .saveIt();
   }
 
   /**
@@ -198,16 +198,16 @@ public class User extends Model {
    */
   public static String getAttribute(String columnName, String username) {
     User u = User.findFirst(
-        "user_name = ?",
-        username
+      "user_name = ?",
+      username
     );
     logger.info(
-        "Get attribute table Users => username : "
-            + username
-            + " column "
-            + columnName
-            + " value "
-            + u.getString(columnName)
+      "Get attribute table Users => username : "
+        + username
+        + " column "
+        + columnName
+        + " value "
+        + u.getString(columnName)
     );
     return u.getString(columnName);
   }
@@ -219,7 +219,7 @@ public class User extends Model {
    */
   public static boolean deleteAllUsers() {
     logger.info(
-        "Delete all users from table Users"
+      "Delete all users from table Users"
     );
     return User.deleteAllUsers();
   }

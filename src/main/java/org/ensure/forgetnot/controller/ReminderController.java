@@ -1,8 +1,11 @@
 package org.ensure.forgetnot.controller;
 
+import com.alee.managers.popup.WebPopup;
+import org.ensure.forgetnot.core.Config;
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.view.ReminderView;
 
+import java.awt.Button;
 import java.awt.Component;
 import java.util.List;
 
@@ -16,7 +19,8 @@ public class ReminderController extends Controller {
    * Constructor.
    */
   public ReminderController() {
-    view = new ReminderView();
+    view = new ReminderView("", 0);
+    show = false;
   }
 
   /**
@@ -33,12 +37,8 @@ public class ReminderController extends Controller {
     Integer currprio = -1;
     String text = dateAndTime + ".0";
     for (Reminder r : reminders) {
-      System.out.println(r.getString("due_time"));
-      System.out.println(r.get("priority"));
-      System.out.println(text);
       Integer temp = r.getInteger("priority");
       if (temp > currprio) {
-        System.out.println("masuk1");
         if (text.equals(r.getString("due_time"))) {
           System.out.println("masuk2");
           ret = true;
@@ -52,6 +52,6 @@ public class ReminderController extends Controller {
 
   @Override
   public Component init() {
-    return view.init();
+    return new WebPopup();
   }
 }
