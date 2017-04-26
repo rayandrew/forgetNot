@@ -35,7 +35,7 @@ public class MainClass {
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     );
 
-    System.out.println(timeStamp);
+    logger.info(timeStamp);
     try {
       DatabaseDaemon.createNewDatabase("root", "", "forgetNot");
       DatabaseDaemon.initializeTable("root", "", "forgetNot");
