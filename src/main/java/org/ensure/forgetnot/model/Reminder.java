@@ -48,7 +48,7 @@ public class Reminder extends Model {
    * @param reminderTitle judul
    * @param reminderUser username
    * */
-  public static void createReminder(
+  public static boolean createReminder(
       String reminderTitle,
       String reminderUser,
       String content,
@@ -74,7 +74,7 @@ public class Reminder extends Model {
             + dueTime
             + "priority = 1"
     );
-    e.saveIt();
+    return e.saveIt();
   }
 
   /**
@@ -86,7 +86,7 @@ public class Reminder extends Model {
    * @param content konten
    * @param priority prioritas
    * */
-  public static void createReminder(
+  public static boolean createReminder(
       String reminderTitle,
       String reminderUser,
       String content,
@@ -114,7 +114,7 @@ public class Reminder extends Model {
             + "priority = "
             + priority
     );
-    e.saveIt();
+    return e.saveIt();
   }
 
   /**
@@ -194,13 +194,18 @@ public class Reminder extends Model {
             + " to "
             + value
     );
-    return Reminder
+    Reminder r = Reminder
         .findFirst("reminder_user = ? and reminder_id = ?",
             username,
             id
         ).set(
             columnName, value
-        ).saveIt();
+        );
+    if (r != null) {
+      return r.saveIt();
+    } else {
+      return false;
+    }
   }
 
   /**

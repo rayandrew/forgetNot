@@ -1,5 +1,7 @@
 package org.ensure.forgetnot.model;
 
+import org.ensure.forgetnot.utility.PasswordEncryptor;
+import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.javalite.activejdbc.Model;
 import org.javalite.activejdbc.annotations.IdName;
 import org.slf4j.Logger;
@@ -62,7 +64,11 @@ public class User extends Model {
   ) {
     User e = new User();
     e.set("user_name", userName);
-    e.set("password", password);
+    try {
+      e.set("password", PasswordEncryptor.generateMd5(password));
+    } catch (PasswordEncryptorException e1) {
+      e1.printStackTrace();
+    }
     e.set("first_name", firstName);
     e.set("last_name", lastName);
     e.set("user_email", userEmail);
@@ -71,16 +77,63 @@ public class User extends Model {
     logger.info(
         "Creating user "
             + userName
-            + "to table Users, firstname = "
+            + " to table Users, firstname = "
             + firstName
-            + "lastname = "
+            + " lastname = "
             + lastName
-            + "email = "
+            + " email = "
             + userEmail
-            + "joindate = "
+            + " joindate = "
             + joinDate
-            + "profile pic ="
+            + " profile pic ="
             + profilePic
+    );
+    return e.saveIt();
+  }
+
+  /**
+   * Method untuk membuat user baru.
+   *
+   * @param firstName nama depan
+   * @param joinDate  tanggal join
+   * @param lastName  nama belakang
+   * @param password  password
+   * @param userEmail email
+   * @param userName  username unik
+   * @return mengembalikan apakah pembuatan berhasil atau tidak
+   */
+  public static boolean createUser(
+      String userName,
+      String password,
+      String firstName,
+      String lastName,
+      String userEmail,
+      String joinDate
+  ) {
+    User e = new User();
+    e.set("user_name", userName);
+    try {
+      e.set("password", PasswordEncryptor.generateMd5(password));
+    } catch (PasswordEncryptorException e1) {
+      e1.printStackTrace();
+    }
+    e.set("first_name", firstName);
+    e.set("last_name", lastName);
+    e.set("user_email", userEmail);
+    e.set("join_date", joinDate);
+    e.set("profile_pic", "empty");
+    logger.info(
+        "Creating user "
+            + userName
+            + " to table Users, firstname = "
+            + firstName
+            + " lastname = "
+            + lastName
+            + " email = "
+            + userEmail
+            + " joindate = "
+            + joinDate
+            + " profile pic = empty"
     );
     return e.saveIt();
   }

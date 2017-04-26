@@ -11,6 +11,7 @@ import com.alee.laf.spinner.WebSpinner;
 import com.alee.laf.table.WebTable;
 import com.alee.laf.text.WebTextField;
 import org.ensure.forgetnot.controller.ActivityController;
+import org.ensure.forgetnot.core.Config;
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 
@@ -136,13 +137,25 @@ public class ActivityView extends View {
         public void actionPerformed(ActionEvent e) {
           Date temp = (Date) dueDate.getValue();
           LocalDateTime tempDate = LocalDateTime.ofInstant(temp.toInstant(), ZoneId.systemDefault());
-          activityDescription[0] = "rayandrew"; //nanti diisi dengan user
+          activityDescription[0] = Config.getLoginUser(); //nanti diisi dengan user
           activityDescription[2] = title.getText();
           activityDescription[4] = contentReminder.getText();
           activityDescription[6] = tempDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-          ActivityController.addActivity(activityDescription);
-          WebOptionPane.showMessageDialog(null,
-              "Your reminder has been saved!", "Success", WebOptionPane.INFORMATION_MESSAGE);
+          if (ActivityController.addActivity(activityDescription)) {
+            WebOptionPane.showMessageDialog(null,
+                "Your reminder has been saved!",
+                "Success",
+                WebOptionPane.INFORMATION_MESSAGE
+            );
+          } else {
+            WebOptionPane.showMessageDialog(null,
+                "Your reminder cannot be saved",
+                "Failed",
+                WebOptionPane.ERROR_MESSAGE
+            );
+          }
+          setVisible(false);
+          dispose();
         }
       };
       confirm.addActionListener(saveToDatabase);
@@ -191,33 +204,68 @@ public class ActivityView extends View {
       content.setOpaque(false);
 
       //fields
-      title = new WebTextField("Enter title", 15);
-      contentReminder = new WebTextField("Enter contentReminder", 15);
-      dueDate = new WebSpinner();
-      SpinnerDateModel spinner = new SpinnerDateModel();
-      spinner.setCalendarField(Calendar.YEAR);
-      dueDate.setModel(spinner);
-      dueDate.setValue(new Date());
+      Database.connect();
+      Reminder r = Reminder.selectReminder(Config.getLoginUser(), id);
+      if (r != null) {
+        title = new WebTextField(r.getString("reminder_title"), 15);
+        contentReminder = new WebTextField(r.getString("content"), 15);
+        dueDate = new WebSpinner();
+        SpinnerDateModel spinner = new SpinnerDateModel();
+        spinner.setCalendarField(Calendar.YEAR);
+        dueDate.setModel(spinner);
+        dueDate.setValue(new Date());
+      } else {
+        WebOptionPane.showMessageDialog(null,
+            "Reminder not found",
+            "Failed",
+            WebOptionPane.ERROR_MESSAGE
+        );
+        setVisible(false);
+        dispose();
+      }
+      Database.close();
       confirm = new WebButton("Set Reminder");
 
       //add ActionListener for confirm Button
-      ActionListener saveToDatabase = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-          Date temp = (Date) dueDate.getValue();
-          LocalDateTime tempDate = LocalDateTime.ofInstant(temp.toInstant(), ZoneId.systemDefault());
-          activityDescription[0] = "rayandrew"; //nanti diisi dengan user
-          activityDescription[2] = title.getText();
-          activityDescription[4] = contentReminder.getText();
-          activityDescription[6] = tempDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      ActionListener saveToDatabase = e -> {
+        Date temp = (Date) dueDate.getValue();
+        LocalDateTime tempDate = LocalDateTime.ofInstant(temp.toInstant(), ZoneId.systemDefault());
+        activityDescription[0] = Config.getLoginUser(); //nanti diisi dengan user
+        activityDescription[2] = title.getText();
+        activityDescription[4] = contentReminder.getText();
+        activityDescription[6] = tempDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-          Database.connect();
-          Reminder.updateReminder(activityDescription[0], id, "reminder_title", activityDescription[2]);
-          Reminder.updateReminder(activityDescription[0], id, "content", activityDescription[4]);
-          Reminder.updateReminder(activityDescription[0], id, "due_time", activityDescription[6]);
-          Database.close();
+        Database.connect();
+        boolean status = Reminder.updateReminder(
+            activityDescription[0],
+            id,
+            "reminder_title",
+            activityDescription[2]
+        );
+        status = status && Reminder.updateReminder(
+            activityDescription[0], id, "content", activityDescription[4]
+        );
+
+        status = status && Reminder.updateReminder(
+            activityDescription[0],
+            id,
+            "due_time",
+            activityDescription[6]
+        );
+        Database.close();
+        if (status) {
           WebOptionPane.showMessageDialog(null,
-              "Your reminder has been updated!", "Success", WebOptionPane.INFORMATION_MESSAGE);
+              "Your reminder has been updated!",
+              "Success",
+              WebOptionPane.INFORMATION_MESSAGE);
+          setVisible(false);
+          dispose();
+        } else {
+          WebOptionPane.showMessageDialog(null,
+              "Your reminder cannot be updated",
+              "Failed",
+              WebOptionPane.ERROR_MESSAGE
+          );
         }
       };
       confirm.addActionListener(saveToDatabase);

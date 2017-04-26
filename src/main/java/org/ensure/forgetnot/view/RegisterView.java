@@ -1,11 +1,18 @@
 package org.ensure.forgetnot.view;
 
 import com.alee.laf.button.WebButton;
+import com.alee.laf.label.WebLabel;
 import com.alee.laf.optionpane.WebOptionPane;
+import com.alee.laf.text.WebPasswordField;
+import com.alee.laf.text.WebTextField;
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.User;
 import org.ensure.forgetnot.utility.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.swing.Box;
+import javax.swing.JOptionPane;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +25,7 @@ import java.util.List;
  * @author Girvandi
  */
 public class RegisterView extends View {
+  static final Logger logger = LoggerFactory.getLogger(RegisterView.class);
   private Dialog dialog;
   private WebButton test;
 
@@ -224,42 +232,57 @@ public class RegisterView extends View {
      */
     public Dialog() {
       super();
-      arr[0] = WebOptionPane.showInputDialog(
+      Box boxContainer = Box.createVerticalBox();
+      Box boxUsername = Box.createHorizontalBox();
+      WebTextField username = new WebTextField(25);
+      boxUsername.add(new WebLabel("Username  : "));
+      boxUsername.add(username);
+      boxContainer.add(boxUsername);
+
+      Box boxPassword = Box.createHorizontalBox();
+      WebPasswordField password = new WebPasswordField(15);
+      boxPassword.add(new WebLabel(" Password  : "));
+      boxPassword.add(password);
+      boxContainer.add(boxPassword);
+
+      Box boxEmail = Box.createHorizontalBox();
+      WebTextField email = new WebTextField(25);
+      boxEmail.add(new WebLabel("Email     : "));
+      boxEmail.add(email);
+      boxContainer.add(boxEmail);
+
+      Box boxFirstname = Box.createHorizontalBox();
+      WebTextField firstname = new WebTextField(25);
+      boxFirstname.add(new WebLabel("Firstname : "));
+      boxFirstname.add(firstname);
+      boxContainer.add(boxFirstname);
+
+      Box boxLastname = Box.createHorizontalBox();
+      WebTextField lastname = new WebTextField(25);
+      boxLastname.add(new WebLabel("Lastname  : "));
+      boxLastname.add(lastname);
+      boxContainer.add(boxLastname);
+
+      if (WebOptionPane.showConfirmDialog(
           null,
+          boxContainer,
           "Enter Username",
-          "Register",
-          WebOptionPane.QUESTION_MESSAGE);
-      arr[1] = WebOptionPane.showInputDialog(
-          null,
-          "Enter Password",
-          "Register",
-          WebOptionPane.QUESTION_MESSAGE);
-      arr[2] = WebOptionPane.showInputDialog(
-          null,
-          "Enter First Name",
-          "Register",
-          WebOptionPane.QUESTION_MESSAGE);
-      arr[3] = WebOptionPane.showInputDialog(
-          null,
-          "Enter Last Name",
-          "Register",
-          WebOptionPane.QUESTION_MESSAGE);
-      arr[4] = WebOptionPane.showInputDialog(
-          null,
-          "Enter Email",
-          "Register",
-          WebOptionPane.QUESTION_MESSAGE);
-
-      String timeStamp = LocalDateTime.now().format(
-          DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-      );
-
-      Database.connect();
-      for (String a : arr) {
-        System.out.println(a);
+          WebOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+        arr[0] = username.getText();
+        arr[1] = String.valueOf(password.getPassword());
+        arr[2] = firstname.getText();
+        arr[3] = lastname.getText();
+        arr[4] = email.getText();
+        String timeStamp = LocalDateTime.now().format(
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        );
+        Database.connect();
+        for (String a : arr) {
+          logger.info(a);
+        }
+        User.createUser(arr[0], arr[1], arr[2], arr[3], arr[4], timeStamp);
+        Database.close();
       }
-      User.createUser(arr[0], arr[1], arr[2], arr[3], arr[4], timeStamp, arr[0]);
-      Database.close();
     }
 
     @Override

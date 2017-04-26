@@ -1,5 +1,6 @@
 package org.ensure.forgetnot.controller;
 
+import org.ensure.forgetnot.core.Config;
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.view.ActivityView;
@@ -21,9 +22,8 @@ public class ActivityController extends Controller {
    * Constructor.
    */
   public ActivityController() {
-    String username = "rayandrew"; //TODO: nanti ambil secara static
     Database.connect();
-    activities = Reminder.getAllReminderFromUser("rayandrew");
+    activities = Reminder.getAllReminderFromUser(Config.getLoginUser());
 
     String[][] temp = new String[activities.size()][4];
     for (int idx = 0; idx < activities.size(); idx++) {
@@ -41,7 +41,7 @@ public class ActivityController extends Controller {
    * Menambah activity seorang user.
    * @param activityDescription String yang menampung informasi untuk dimasukkan kedalam database
    */
-  public static void addActivity(String[] activityDescription) {
+  public static boolean addActivity(String[] activityDescription) {
     String username = activityDescription[0];
     String title = activityDescription[2];
     String content = activityDescription[4];
@@ -53,8 +53,9 @@ public class ActivityController extends Controller {
 
     //connect to database
     Database.connect();
-    Reminder.createReminder(title, username, content, timeCreate, timeDue);
+    boolean status = Reminder.createReminder(title, username, content, timeCreate, timeDue);
     Database.close();
+    return status;
   }
 
   /**
@@ -62,9 +63,8 @@ public class ActivityController extends Controller {
    * @return test mengembalikan sebuah matrix of Object yang akan ditampilkan ke layar
    */
   public static Object[][] refresh() {
-    String username = "rayandrew"; //TODO: nanti ambil secara static
     Database.connect();
-    List<Reminder> update = Reminder.getAllReminderFromUser("rayandrew");
+    List<Reminder> update = Reminder.getAllReminderFromUser(Config.getLoginUser());
 
     String[][] test = new String[update.size()][4];
     for (int idx = 0; idx < update.size(); idx++) {

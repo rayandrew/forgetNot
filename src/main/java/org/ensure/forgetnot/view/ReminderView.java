@@ -60,6 +60,7 @@ public class ReminderView extends View {
         clock.start ();
       }
     } );*/
+    notification2.setVisible(false);
     return notification2;
   }
 }

@@ -1,7 +1,9 @@
 package org.ensure.forgetnot.view;
 
+import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
 import org.ensure.forgetnot.controller.Controller;
+import org.ensure.forgetnot.core.Config;
 import org.ensure.forgetnot.utility.Clock;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
@@ -27,6 +29,7 @@ public class ContainerView extends WebPanel {
    * Konstruktor.
    */
   ContainerView() {
+    panelComponent.add(new WebLabel("Welcome, " + Config.getLoginUser() + " !"));
     panelComponent.add(Clock.clock.getClockLabel());
     Clock.clock.start();
 
@@ -53,7 +56,10 @@ public class ContainerView extends WebPanel {
             !bean
                 .getBeanClassName()
                 .equals("org.ensure.forgetnot.controller.RegisterController")
-            ){
+            &&
+            !bean
+                .getBeanClassName()
+                .equals("org.ensure.forgetnot.controller.LoginController")) {
           Class<?> classController = Class.forName(bean.getBeanClassName());
           Controller c = (Controller) classController.newInstance();
           if(c.isShow()){

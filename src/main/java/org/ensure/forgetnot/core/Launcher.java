@@ -11,7 +11,7 @@ public class Launcher {
   /**
    * Prosedur untuk membuat konfigurasi Main Controller untuk menjalankan swing.
    * */
-  public void launch() {
+  public static void launch() {
     new AnnotationConfigApplicationContext(MainController.class);
   }
 }

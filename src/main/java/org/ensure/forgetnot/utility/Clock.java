@@ -169,10 +169,13 @@ public class Clock implements Runnable {
 
   @Override
   public String toString() {
-    if(getJam() < 10){
-      return "0" + getJam() + ":" + getMenit() + ":" + getDetik();
-    } else {
-      return getJam() + ":" + getMenit() + ":" + getDetik();
-    }
+    String jam = getJam() < 10 ?
+        "0" + String.valueOf(getJam()) : String.valueOf(getJam());
+    String menit = getMenit() < 10 ?
+        "0" + String.valueOf(getMenit()) : String.valueOf(getMenit());
+    String detik = getDetik() < 10 ?
+        "0" + String.valueOf(getDetik()) : String.valueOf(getDetik());
+
+    return jam + ":" + menit + ":" + detik;
   }
 }

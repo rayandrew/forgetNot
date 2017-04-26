@@ -1,6 +1,7 @@
 package org.ensure.forgetnot.core;
 
 import com.alee.laf.progressbar.WebProgressBar;
+import org.ensure.forgetnot.controller.LoginController;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -66,9 +67,10 @@ public class SplashScreen extends JWindow {
       progressBar.setValue(count);
 
       if(count == 10){
-        Launcher launcher = new Launcher();
+        LoginController log = new LoginController();
+        log.init();
         execute.setVisible(false);
-        launcher.launch();
+        //launcher.launch();
         timer1.stop();
       }
 

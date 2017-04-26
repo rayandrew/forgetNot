@@ -6,6 +6,8 @@ import org.ensure.forgetnot.model.User;
 import org.ensure.forgetnot.utility.PasswordEncryptor;
 import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.ensure.forgetnot.view.LoginView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.Component;
 
@@ -14,6 +16,8 @@ import java.awt.Component;
  * @author girvandi
  */
 public class LoginController extends Controller {
+  static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
   /**
    * Constructor.
    */
@@ -28,7 +32,7 @@ public class LoginController extends Controller {
    * @param password password yang dimasukkan oleh user
    * @return loginStatus sebuah boolean yang menunjukkan apakah password yang dimasukkan cocok dengan password dalam database
    */
-  public boolean verifyLogin(String username, String password) {
+  public static boolean verifyLogin(String username, String password) {
     Database.connect();
     User u = User.findFirst("user_name = ?", username);
     boolean loginStatus = false;
@@ -39,6 +43,7 @@ public class LoginController extends Controller {
                   password
               )
           );
+      logger.info("Login status = " + loginStatus);
     } catch (PasswordEncryptorException e) {
       e.printStackTrace();
     }

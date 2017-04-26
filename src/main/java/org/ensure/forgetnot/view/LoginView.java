@@ -3,14 +3,20 @@ package org.ensure.forgetnot.view;
 import com.alee.extended.layout.TableLayout;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.label.WebLabel;
+import com.alee.laf.optionpane.WebOptionPane;
 import com.alee.laf.panel.WebPanel;
+import com.alee.laf.rootpane.WebFrame;
 import com.alee.laf.text.WebPasswordField;
 import com.alee.laf.text.WebTextField;
+import org.ensure.forgetnot.controller.LoginController;
+import org.ensure.forgetnot.core.Launcher;
 import org.ensure.forgetnot.utility.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
@@ -19,6 +25,8 @@ import java.util.List;
  * @author Ray
  */
 public class LoginView extends View {
+  static final Logger logger = LoggerFactory.getLogger(LoginView.class);
+  private WebFrame frameLogin = new WebFrame("Login forgetNot");
   private WebPanel content;
   private WebLabel usernameLabel = new WebLabel("Username", WebLabel.TRAILING);
   private WebLabel passwordLabel = new WebLabel("Password", WebLabel.TRAILING);
@@ -47,15 +55,31 @@ public class LoginView extends View {
     passwordField.setInputPrompt("Enter Password..");
     passwordField.setInputPromptFont(passwordField.getFont().deriveFont(Font.ITALIC));
     content.add(passwordField, "1,1");
-    ActionListener buttonclick = new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        RegisterView reg = new RegisterView("Register");
+    frameLogin.setVisible(true);
+    ActionListener loginVerify = e -> {
+      if (LoginController.verifyLogin(
+          usernameField.getText(),
+          String.valueOf(passwordField.getPassword())
+      )) {
+        frameLogin.setVisible(false);
+        frameLogin.dispose();
+        Launcher.launch();
+      } else {
+        WebOptionPane.showMessageDialog(null,
+            "Failed to login!",
+            "Failed Message",
+            WebOptionPane.ERROR_MESSAGE);
       }
     };
+
+    ActionListener buttonclick = e -> {
+      RegisterView reg = new RegisterView("Register");
+    };
     registerButton.addActionListener(buttonclick);
+    loginButton.addActionListener(loginVerify);
     content.add(loginButton, "1,2");
     content.add(registerButton, "0,2");
+    frameLogin.add(content);
   }
 
   /**
@@ -93,6 +117,10 @@ public class LoginView extends View {
 
   @Override
   public Component init() {
-    return content;
+    frameLogin.setSize(new Dimension(200, 200));
+    frameLogin.pack();
+    frameLogin.setLocationRelativeTo(null);
+    frameLogin.setDefaultCloseOperation(WebFrame.EXIT_ON_CLOSE);
+    return frameLogin;
   }
 }
