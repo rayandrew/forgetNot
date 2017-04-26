@@ -47,9 +47,9 @@ task run(dependsOn: 'build', type: JavaExec) {
     classpath += files('build/config/main')
 }
 
-task runTest(dependsOn: 'build', type: JavaExec) {
-    main = 'org.ensure.forgetnot.MainTest'
-    classpath = sourceSets.test.runtimeClasspath
+task runTest(type: Test) {
+    println 'Starting the Unit and Integration test'
+    include '**/TestSuite.class'
 }
 
 sourceCompatibility = 1.8
