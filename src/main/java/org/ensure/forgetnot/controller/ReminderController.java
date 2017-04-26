@@ -8,14 +8,22 @@ import java.util.List;
 
 
 /**
- * Created by DELL on 4/24/2017.
+ * @author girvandi
  */
 public class ReminderController extends Controller {
-
+  /**
+   * Constructor
+   */
   public ReminderController() {
     view = new ReminderView();
   }
 
+  /**
+   *
+   * @param username username yang akan dicek list remindernya
+   * @param dateAndTime date and time saat ini
+   * @return id dari Reminder yang harus ditampilkan
+   */
   public static Integer isReminderTime(String username, String dateAndTime) {
     List<Reminder> reminders = Reminder.where("reminder_user = ?", username);
     boolean ret = false;
@@ -40,6 +48,7 @@ public class ReminderController extends Controller {
     return id;
   }
 
+  @Override
   public Component init() {
     return view.init();
   }

@@ -8,16 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rufus on 4/12/2017.
+ * @author rayandrew
+ * Class Controller
  */
 public abstract class Controller {
   protected List<Pair<String, Object>> data = new ArrayList<>();
   protected View view;
   protected boolean show = true;
 
+  /**
+   * @return boolean Boolean yang mengindikasikan view ditunjukkan atau tidak
+   */
   public boolean isShow() {
     return show;
   }
 
+  /**
+   *
+   * @return Component swing yang akan ditampilkan ke layar
+   */
   public abstract Component init();
 }

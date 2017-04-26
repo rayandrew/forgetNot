@@ -10,12 +10,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * Created by rufus on 4/23/2017.
+ * @author aldrich
  */
 public class ActivityController extends Controller {
   private List<Reminder> activities;
   private ActivityView viewer;
 
+  /**
+   * Constructor
+   */
   public ActivityController() {
     String username = "rayandrew"; //TODO: nanti ambil secara static
     Database.connect();
@@ -33,6 +36,10 @@ public class ActivityController extends Controller {
     Database.close();
   }
 
+  /**
+   * Menambah activity seorang user
+   * @param activityDescription String yang menampung informasi untuk dimasukkan kedalam database
+   */
   public static void addActivity(String[] activityDescription) {
     String username = activityDescription[0];
     String title = activityDescription[2];
@@ -49,6 +56,10 @@ public class ActivityController extends Controller {
     Database.close();
   }
 
+  /**
+   * Refresh view setelah menambahkan/menghapus suatu reminder
+   * @return test mengembalikan sebuah matrix of Object yang akan ditampilkan ke layar
+   */
   public static Object[][] refresh() {
     String username = "rayandrew"; //TODO: nanti ambil secara static
     Database.connect();

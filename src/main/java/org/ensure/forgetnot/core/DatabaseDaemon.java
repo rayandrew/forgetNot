@@ -7,13 +7,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by rayandrew on 4/13/2017.
+ * @author rayandrewa
  */
 public class DatabaseDaemon {
+  /**
+   * Constructor
+   */
   public DatabaseDaemon() {
 
   }
 
+  /**
+   *
+   * @param username mysql
+   * @param password mysql
+   * @return connection
+   * @throws DatabaseDaemonException
+   */
   private static Connection connectServer(
       String username,
       String password
@@ -33,6 +43,14 @@ public class DatabaseDaemon {
     return conn;
   }
 
+  /**
+   *
+   * @param username mysql
+   * @param password mysql
+   * @param databaseName nama database aplikasi
+   * @return connection
+   * @throws DatabaseDaemonException
+   */
   private static Connection connectDatabase(
       String username,
       String password,
@@ -54,6 +72,13 @@ public class DatabaseDaemon {
     return conn;
   }
 
+  /**
+   *
+   * @param username mysql
+   * @param password mysql
+   * @param databaseName nama database aplikasi
+   * @throws DatabaseDaemonException
+   */
   public static void createNewDatabase(
       String username,
       String password,
@@ -78,6 +103,13 @@ public class DatabaseDaemon {
     }
   }
 
+  /**
+   * Membuat table dalam database
+   * @param username mysql
+   * @param password mysql
+   * @param databaseName nama database aplikasi
+   * @throws DatabaseDaemonException
+   */
   public static void initializeTable(
       String username,
       String password,

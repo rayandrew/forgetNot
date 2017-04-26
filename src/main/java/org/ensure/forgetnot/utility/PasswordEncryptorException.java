@@ -1,21 +1,37 @@
 package org.ensure.forgetnot.utility;
 
 /**
- * Created by rufus on 4/12/2017.
+ * @author rayandrew
  */
 public class PasswordEncryptorException extends Exception {
+  /**
+   * Constructor
+   */
   public PasswordEncryptorException() {
     super();
   }
 
+  /**
+   * Constructor dengan parameter
+   * @param message yang diencrypt
+   * @param throwable sebuah throwable
+   */
   public PasswordEncryptorException(String message, Throwable throwable) {
     super(message, throwable);
   }
 
+  /**
+   * Constructor dengan parameter
+   * @param message yang diencrypt
+   */
   public PasswordEncryptorException(String message) {
     super(message);
   }
 
+  /**
+   * Constructor
+   * @param throwable sebuah throwable
+   */
   public PasswordEncryptorException(Throwable throwable) {
     super(throwable);
   }

@@ -8,7 +8,7 @@ import javax.swing.SwingUtilities;
 import java.time.LocalDateTime;
 
 /**
- * Created by agath on 24/04/2017.
+ * @author tasya
  */
 public class Clock implements Runnable {
   static final Logger logger = LoggerFactory.getLogger(Clock.class);
@@ -19,7 +19,9 @@ public class Clock implements Runnable {
   private String threadname;
   private WebLabel clockLabel = new WebLabel();
 
-
+  /**
+   * Constructor
+   */
   public Clock() {
     LocalDateTime now = LocalDateTime.now();
     hh = now.getHour();
@@ -30,6 +32,10 @@ public class Clock implements Runnable {
     logger.info("Creating " + threadname);
   }
 
+  /**
+   * Constructor with parameter
+   * @param name Thread name
+   */
   public Clock(String name) {
     LocalDateTime now = LocalDateTime.now();
     hh = now.getHour();
@@ -40,30 +46,58 @@ public class Clock implements Runnable {
     logger.info("Creating " + threadname);
   }
 
+  /**
+   * getter jam
+   * @return hh
+   */
   public int getJam() {
     return hh;
   }
 
+  /**
+   * setter jam
+   * @param jam
+   */
   public void setJam(int jam) {
     hh = jam;
   }
 
+  /**
+   * getter menit
+   * @return mm
+   */
   public int getMenit() {
     return mm;
   }
 
+  /**
+   * setter menit
+   * @param menit
+   */
   public void setMenit(int menit) {
     mm = menit;
   }
 
+  /**
+   * getter detik
+   * @return ss
+   */
   public int getDetik() {
     return ss;
   }
 
+  /**
+   * setter detik
+   * @param detik
+   */
   public void setDetik(int detik) {
     ss = detik;
   }
 
+  /**
+   * Method untuk menambah detik dalam clock
+   * @param second
+   */
   public void AddSecond(int second) {
     setDetik(getDetik() + second);
 
@@ -106,6 +140,9 @@ public class Clock implements Runnable {
     logger.info("Thread " + threadname + " exiting.");
   }
 
+  /**
+   * Start clock
+   */
   public void start() {
     logger.info("Starting " + threadname);
     if(t == null){
@@ -114,10 +151,17 @@ public class Clock implements Runnable {
     }
   }
 
+  /**
+   * Stop clock, mengubah stop status menjadi true
+   */
   public void stop() {
     stopStatus = true;
   }
 
+  /**
+   *
+   * @return clockLabel sebuah WebLabel
+   */
   public WebLabel getClockLabel() {
     return clockLabel;
   }

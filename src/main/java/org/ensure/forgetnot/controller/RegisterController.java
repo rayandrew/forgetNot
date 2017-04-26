@@ -11,14 +11,25 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by rufus on 4/23/2017.
+ * @author girvandi
  */
 public class RegisterController extends Controller {
+  /**
+   * Constructor
+   */
   public RegisterController() {
     view = new RegisterView("Register");
     show = false;
   }
 
+  /**
+   *
+   * @param username username yang akan di register
+   * @param password password yang akan di register
+   * @param first_name
+   * @param last_name
+   * @param user_email
+   */
   public void registerUser(
       String username,
       String password,

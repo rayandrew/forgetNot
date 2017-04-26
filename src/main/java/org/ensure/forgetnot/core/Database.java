@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by rufus on 4/24/2017.
+ * @author rayandrew
  */
+
 public class Database {
   private static List<Pair<String, String>> dbSetting = new ArrayList<>();
 
@@ -23,6 +24,11 @@ public class Database {
     );
   }
 
+  /**
+   *
+   * @param key
+   * @return left value dari key
+   */
   public static String getDbSetting(String key) {
     for (Pair<String, String> p : dbSetting) {
       if(p.getLeft().equals(key)){
@@ -32,6 +38,9 @@ public class Database {
     return null;
   }
 
+  /**
+   * membuka koneksi database dengan aplikasi
+   */
   public static void connect() {
     Base.open(getDbSetting("dbDriver"),
         getDbSetting("dbUrl"),
@@ -40,6 +49,9 @@ public class Database {
     );
   }
 
+  /**
+   * menutup koneksi database dengan aplikasi
+   */
   public static void close() {
     Base.close();
   }
