@@ -1,6 +1,7 @@
 package org.ensure.forgetnot.utility;
 
 /**
+ * class Password Encryptor Exception.
  * @author rayandrew
  */
 public class PasswordEncryptorException extends Exception {
@@ -12,7 +13,7 @@ public class PasswordEncryptorException extends Exception {
   }
 
   /**
-   * Constructor dengan parameter
+   * Constructor dengan parameter.
    * @param message yang diencrypt
    * @param throwable sebuah throwable
    */
@@ -21,7 +22,7 @@ public class PasswordEncryptorException extends Exception {
   }
 
   /**
-   * Constructor dengan parameter
+   * Constructor dengan parameter.
    * @param message yang diencrypt
    */
   public PasswordEncryptorException(String message) {
@@ -29,7 +30,7 @@ public class PasswordEncryptorException extends Exception {
   }
 
   /**
-   * Constructor
+   * Constructor.
    * @param throwable sebuah throwable
    */
   public PasswordEncryptorException(Throwable throwable) {

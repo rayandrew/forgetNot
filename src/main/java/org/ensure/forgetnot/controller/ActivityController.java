@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
+ * class ActivityController.
  * @author aldrich
  */
 public class ActivityController extends Controller {
@@ -17,7 +18,7 @@ public class ActivityController extends Controller {
   private ActivityView viewer;
 
   /**
-   * Constructor
+   * Constructor.
    */
   public ActivityController() {
     String username = "rayandrew"; //TODO: nanti ambil secara static
@@ -37,7 +38,7 @@ public class ActivityController extends Controller {
   }
 
   /**
-   * Menambah activity seorang user
+   * Menambah activity seorang user.
    * @param activityDescription String yang menampung informasi untuk dimasukkan kedalam database
    */
   public static void addActivity(String[] activityDescription) {
@@ -57,7 +58,7 @@ public class ActivityController extends Controller {
   }
 
   /**
-   * Refresh view setelah menambahkan/menghapus suatu reminder
+   * Refresh view setelah menambahkan/menghapus suatu reminder.
    * @return test mengembalikan sebuah matrix of Object yang akan ditampilkan ke layar
    */
   public static Object[][] refresh() {

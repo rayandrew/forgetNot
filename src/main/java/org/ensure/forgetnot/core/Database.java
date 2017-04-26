@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * class Database.
  * @author rayandrew
  */
 
@@ -39,7 +40,7 @@ public class Database {
   }
 
   /**
-   * membuka koneksi database dengan aplikasi
+   * membuka koneksi database dengan aplikasi.
    */
   public static void connect() {
     Base.open(getDbSetting("dbDriver"),
@@ -50,7 +51,7 @@ public class Database {
   }
 
   /**
-   * menutup koneksi database dengan aplikasi
+   * menutup koneksi database dengan aplikasi.
    */
   public static void close() {
     Base.close();

@@ -17,11 +17,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by rayandrew on 4/12/2017.
+ * Main Class.
+ * @author rayandrew
  */
 public class MainClass {
   static final Logger logger = LoggerFactory.getLogger(MainClass.class);
 
+  /**
+   * Main program.
+   * @param args argumen
+   */
   public static void main(String[] args) {
 
     String timeStamp = LocalDateTime.now().format(

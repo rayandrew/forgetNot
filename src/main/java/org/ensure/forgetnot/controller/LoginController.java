@@ -10,11 +10,12 @@ import org.ensure.forgetnot.view.LoginView;
 import java.awt.Component;
 
 /**
+ * class LoginController.
  * @author girvandi
  */
 public class LoginController extends Controller {
   /**
-   * Constructor
+   * Constructor.
    */
   public LoginController() {
     view = new LoginView("Login");
@@ -22,7 +23,7 @@ public class LoginController extends Controller {
   }
 
   /**
-   *
+   * Method untuk verifikasi login.
    * @param username Username user yang akan diverifikasi passwordnya
    * @param password password yang dimasukkan oleh user
    * @return loginStatus sebuah boolean yang menunjukkan apakah password yang dimasukkan cocok dengan password dalam database

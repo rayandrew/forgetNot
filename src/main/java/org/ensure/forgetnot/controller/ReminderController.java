@@ -8,18 +8,19 @@ import java.util.List;
 
 
 /**
+ * class ReminderController.
  * @author girvandi
  */
 public class ReminderController extends Controller {
   /**
-   * Constructor
+   * Constructor.
    */
   public ReminderController() {
     view = new ReminderView();
   }
 
   /**
-   *
+   * Method untuk menghasilkan reminder yang harus ditampilkan.
    * @param username username yang akan dicek list remindernya
    * @param dateAndTime date and time saat ini
    * @return id dari Reminder yang harus ditampilkan

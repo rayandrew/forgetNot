@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * @author rayandrewa
+ * class DatabaseDaemon.
+ * @author rayandrew
  */
 public class DatabaseDaemon {
   /**
@@ -18,7 +19,7 @@ public class DatabaseDaemon {
   }
 
   /**
-   *
+   * Inisalisasi koneksi mysql.
    * @param username mysql
    * @param password mysql
    * @return connection
@@ -44,7 +45,7 @@ public class DatabaseDaemon {
   }
 
   /**
-   *
+   * inisialisasi koneksi dengan database aplikasi.
    * @param username mysql
    * @param password mysql
    * @param databaseName nama database aplikasi
@@ -73,7 +74,7 @@ public class DatabaseDaemon {
   }
 
   /**
-   *
+   * Pembuatan database aplikasi.
    * @param username mysql
    * @param password mysql
    * @param databaseName nama database aplikasi
@@ -104,7 +105,7 @@ public class DatabaseDaemon {
   }
 
   /**
-   * Membuat table dalam database
+   * Membuat table dalam database.
    * @param username mysql
    * @param password mysql
    * @param databaseName nama database aplikasi

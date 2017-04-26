@@ -5,11 +5,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * class Password Encryptor.
  * @author rayandrew
  */
 public class PasswordEncryptor {
   /**
-   *
+   * Method untuk enkripsi password.
    * @param message message yang akan direncrypt
    * @param algorithm algoritma yang dipakai untuk mengencrypt
    * @return String yang telah diencrypt
@@ -28,7 +29,7 @@ public class PasswordEncryptor {
   }
 
   /**
-   *
+   * Method untuk menconvert byte array ke hex string.
    * @param arrayBytes array of bytes yang akan diconvert
    * @return String yang telah diconvert
    */
@@ -42,7 +43,7 @@ public class PasswordEncryptor {
   }
 
   /**
-   *
+   * Method penggunaan algoritma MD5.
    * @param message message yang akan di encrypt
    * @return String yang telah diencrypt
    * @throws PasswordEncryptorException
@@ -52,7 +53,7 @@ public class PasswordEncryptor {
   }
 
   /**
-   *
+   * Method penggunaan algoritma SHA-1.
    * @param message message yang akan di encrypt
    * @return String yang telah diencrypt
    * @throws PasswordEncryptorException
@@ -62,7 +63,7 @@ public class PasswordEncryptor {
   }
 
   /**
-   *
+   * Method penggunaan algoritma SHA-256.
    * @param message message yang akan di encrypt
    * @return String yang telah diencrypt
    * @throws PasswordEncryptorException

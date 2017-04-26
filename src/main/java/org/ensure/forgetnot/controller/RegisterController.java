@@ -11,11 +11,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
+ * class RegisterController.
  * @author girvandi
  */
 public class RegisterController extends Controller {
   /**
-   * Constructor
+   * Constructor.
    */
   public RegisterController() {
     view = new RegisterView("Register");
@@ -23,7 +24,7 @@ public class RegisterController extends Controller {
   }
 
   /**
-   *
+   * Method untuk registrasi user.
    * @param username username yang akan di register
    * @param password password yang akan di register
    * @param first_name

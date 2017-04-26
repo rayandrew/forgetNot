@@ -1,18 +1,19 @@
 package org.ensure.forgetnot.core;
 
 /**
+ * class DatabaseDaemonException.
  * @author Ray
  */
 public class DatabaseDaemonException extends Exception {
   /**
-   * Konstruktor tanpa parameter
+   * Konstruktor tanpa parameter.
    * */
   public DatabaseDaemonException() {
     super();
   }
 
   /**
-   * Kontruktor dengan parameter
+   * Kontruktor dengan parameter.
    * @param message pesan error
    * @param throwable Kelas Exception
    * */
@@ -21,7 +22,7 @@ public class DatabaseDaemonException extends Exception {
   }
 
   /**
-   * Konstukror
+   * Konstukror.
    * @param message pesan error
    * */
   public DatabaseDaemonException(String message) {
@@ -29,7 +30,7 @@ public class DatabaseDaemonException extends Exception {
   }
 
   /**
-   * Konstruktor
+   * Konstruktor.
    * @param throwable Kelas Exception
    * */
   public DatabaseDaemonException(Throwable throwable) {

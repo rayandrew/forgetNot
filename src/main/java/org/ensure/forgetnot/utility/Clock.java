@@ -8,6 +8,7 @@ import javax.swing.SwingUtilities;
 import java.time.LocalDateTime;
 
 /**
+ * class Clock.
  * @author tasya
  */
 public class Clock implements Runnable {
@@ -159,7 +160,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   *
+   * method untuk mendapatkan clockLabel
    * @return clockLabel sebuah WebLabel
    */
   public WebLabel getClockLabel() {
