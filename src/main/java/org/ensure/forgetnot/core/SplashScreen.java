@@ -13,7 +13,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 
 /**
- * Created by rufus on 4/25/2017.
+ * @author Ray
  */
 public class SplashScreen extends JWindow {
   public static SplashScreen execute;
@@ -21,6 +21,10 @@ public class SplashScreen extends JWindow {
   private static int count;
   private static Timer timer1;
 
+  /**
+   * Konstruktor
+   * @param image nama gambar
+   * */
   public SplashScreen(String image) {
     this.getContentPane().setBackground(new Color(0, 0, 0));
     Container container = getContentPane();
@@ -52,6 +56,9 @@ public class SplashScreen extends JWindow {
     setVisible(true);
   }
 
+  /**
+   * Menampilkan Progress Bar
+   * */
   private void loadProgressBar() {
     ActionListener al = evt -> {
       count++;
