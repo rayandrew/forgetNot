@@ -1,5 +1,7 @@
 package org.ensure.forgetnot.controller;
 
+import java.awt.Component;
+
 import org.ensure.forgetnot.core.Config;
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.User;
@@ -8,8 +10,6 @@ import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.ensure.forgetnot.view.LoginView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.awt.Component;
 
 /**
  * class LoginController.
@@ -44,11 +44,11 @@ public class LoginController extends Controller {
     boolean loginStatus = false;
     try {
       loginStatus = u.getString("password")
-        .equals(
-          PasswordEncryptor.generateMd5(
-            password
-          )
-        );
+          .equals(
+              PasswordEncryptor.generateMd5(
+                  password
+              )
+          );
       logger.info("Login status = " + loginStatus);
     } catch (PasswordEncryptorException e) {
       e.printStackTrace();

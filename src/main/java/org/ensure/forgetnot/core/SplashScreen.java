@@ -51,7 +51,7 @@ public class SplashScreen extends JWindow {
     labelCopyright.setBounds(80, 130, 348, 20);
     panel.add(labelCopyright);
 
-    progressBar.setMaximum(10);
+    progressBar.setMaximum(100);
     progressBar.setBounds(55, 180, 250, 15);
     container.add(progressBar);
     loadProgressBar();
@@ -68,7 +68,7 @@ public class SplashScreen extends JWindow {
       count++;
       progressBar.setValue(count);
 
-      if (count == 10) {
+      if (count == 100) {
         LoginController log = new LoginController();
         log.init();
         execute.setVisible(false);

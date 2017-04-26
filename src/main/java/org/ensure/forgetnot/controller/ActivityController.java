@@ -1,14 +1,15 @@
 package org.ensure.forgetnot.controller;
 
+import java.awt.Component;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import org.ensure.forgetnot.core.Config;
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.view.ActivityView;
 
-import java.awt.Component;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * class ActivityController.
@@ -58,7 +59,7 @@ public class ActivityController extends Controller {
     String title = activityDescription[2];
     String content = activityDescription[4];
     String timeCreate = LocalDateTime.now().format(
-      DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     );
     //System.out.println(timeCreate);
     String timeDue = activityDescription[6];

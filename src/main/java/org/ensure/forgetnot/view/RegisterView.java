@@ -129,17 +129,17 @@ public class RegisterView extends View {
       boxContainer.add(boxLastname);
 
       if (WebOptionPane.showConfirmDialog(
-        null,
-        boxContainer,
-        "Enter Username",
-        WebOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+          null,
+          boxContainer,
+          "Enter Username",
+          WebOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
         arr[0] = username.getText();
         arr[1] = String.valueOf(password.getPassword());
         arr[2] = firstname.getText();
         arr[3] = lastname.getText();
         arr[4] = email.getText();
         String timeStamp = LocalDateTime.now().format(
-          DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         );
         Database.connect();
         for (String a : arr) {

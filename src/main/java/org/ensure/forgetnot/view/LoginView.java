@@ -44,7 +44,7 @@ public class LoginView extends View {
   public LoginView(String componentName) {
     super(componentName);
     TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
-      {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+        {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
     layout.setHGap(5);
     layout.setVGap(5);
     content = new WebPanel(layout);
@@ -59,17 +59,17 @@ public class LoginView extends View {
     frameLogin.setVisible(true);
     ActionListener loginVerify = e -> {
       if (LoginController.verifyLogin(
-        usernameField.getText(),
-        String.valueOf(passwordField.getPassword())
+          usernameField.getText(),
+          String.valueOf(passwordField.getPassword())
       )) {
         frameLogin.setVisible(false);
         frameLogin.dispose();
         Launcher.launch();
       } else {
         WebOptionPane.showMessageDialog(null,
-          "Failed to login!",
-          "Failed Message",
-          WebOptionPane.ERROR_MESSAGE);
+            "Failed to login!",
+            "Failed Message",
+            WebOptionPane.ERROR_MESSAGE);
       }
     };
 
