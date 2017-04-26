@@ -6,22 +6,23 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.SwingUtilities;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by agath on 24/04/2017.
+ * class Clock.
+ * @author tasya
  */
 public class Clock implements Runnable {
   static final Logger logger = LoggerFactory.getLogger(Clock.class);
+  public static Clock clock = new Clock("ClockController");
+  public boolean stopStatus = false;
   private int hh, mm, ss;
   private Thread t;
   private String threadname;
-  public static Clock clock = new Clock("ClockController");
-  public boolean stopStatus = false;
   private WebLabel clockLabel = new WebLabel();
 
-
+  /**
+   * Constructor.
+   */
   public Clock() {
     LocalDateTime now = LocalDateTime.now();
     hh = now.getHour();
@@ -32,6 +33,10 @@ public class Clock implements Runnable {
     logger.info("Creating " + threadname);
   }
 
+  /**
+   * Constructor with parameter.
+   * @param name Thread name
+   */
   public Clock(String name) {
     LocalDateTime now = LocalDateTime.now();
     hh = now.getHour();
@@ -42,44 +47,72 @@ public class Clock implements Runnable {
     logger.info("Creating " + threadname);
   }
 
+  /**
+   * getter jam.
+   * @return hh
+   */
   public int getJam() {
     return hh;
   }
 
-  public int getMenit() {
-    return mm;
-  }
-
-  public int getDetik() {
-    return ss;
-  }
-
+  /**
+   * setter jam.
+   * @param jam
+   */
   public void setJam(int jam) {
     hh = jam;
   }
 
+  /**
+   * getter menit.
+   * @return mm
+   */
+  public int getMenit() {
+    return mm;
+  }
+
+  /**
+   * setter menit.
+   * @param menit
+   */
   public void setMenit(int menit) {
     mm = menit;
   }
 
+  /**
+   * getter detik.
+   * @return ss
+   */
+  public int getDetik() {
+    return ss;
+  }
+
+  /**
+   * setter detik.
+   * @param detik
+   */
   public void setDetik(int detik) {
     ss = detik;
   }
 
+  /**
+   * Method untuk menambah detik dalam clock.
+   * @param second
+   */
   public void AddSecond(int second) {
     setDetik(getDetik() + second);
 
-    if (getDetik() >= 60) {
+    if(getDetik() >= 60){
       setMenit(getMenit() + getDetik() / 60);
       setDetik(getDetik() % 60);
     }
 
-    if (getMenit() >= 60) {
+    if(getMenit() >= 60){
       setJam(getJam() + getMenit() / 60);
       setMenit(getMenit() % 60);
     }
 
-    if (getJam() >= 24) {
+    if(getJam() >= 24){
       setJam(getJam() % 24);
     }
   }
@@ -108,25 +141,35 @@ public class Clock implements Runnable {
     logger.info("Thread " + threadname + " exiting.");
   }
 
+  /**
+   * Start clock.
+   */
   public void start() {
     logger.info("Starting " + threadname);
-    if (t == null) {
+    if(t == null){
       t = new Thread(this, threadname);
       t.start();
     }
   }
 
+  /**
+   * Stop clock, mengubah stop status menjadi true.
+   */
   public void stop() {
     stopStatus = true;
   }
 
+  /**
+   * method untuk mendapatkan clockLabel.
+   * @return clockLabel sebuah WebLabel
+   */
   public WebLabel getClockLabel() {
     return clockLabel;
   }
 
   @Override
   public String toString() {
-    if (getJam() < 10) {
+    if(getJam() < 10){
       return "0" + getJam() + ":" + getMenit() + ":" + getDetik();
     } else {
       return getJam() + ":" + getMenit() + ":" + getDetik();

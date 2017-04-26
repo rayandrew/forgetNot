@@ -7,20 +7,31 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Created by rayandrew on 4/13/2017.
+ * class DatabaseDaemon.
+ * @author rayandrew
  */
 public class DatabaseDaemon {
+  /**
+   * Constructor
+   */
   public DatabaseDaemon() {
 
   }
 
+  /**
+   * Inisalisasi koneksi mysql.
+   * @param username mysql
+   * @param password mysql
+   * @return connection
+   * @throws DatabaseDaemonException
+   */
   private static Connection connectServer(
       String username,
       String password
   ) throws DatabaseDaemonException {
     String url = "jdbc:mysql://localhost/?user=" + username;
 
-    if (!password.isEmpty()) {
+    if(!password.isEmpty()){
       url = url + "&password=" + password;
     }
 
@@ -33,6 +44,14 @@ public class DatabaseDaemon {
     return conn;
   }
 
+  /**
+   * inisialisasi koneksi dengan database aplikasi.
+   * @param username mysql
+   * @param password mysql
+   * @param databaseName nama database aplikasi
+   * @return connection
+   * @throws DatabaseDaemonException
+   */
   private static Connection connectDatabase(
       String username,
       String password,
@@ -41,7 +60,7 @@ public class DatabaseDaemon {
 
     String url = "jdbc:mysql://localhost/" + databaseName + "?user=" + username;
 
-    if (!password.isEmpty()) {
+    if(!password.isEmpty()){
       url = url + "&password=" + password;
     }
 
@@ -54,6 +73,13 @@ public class DatabaseDaemon {
     return conn;
   }
 
+  /**
+   * Pembuatan database aplikasi.
+   * @param username mysql
+   * @param password mysql
+   * @param databaseName nama database aplikasi
+   * @throws DatabaseDaemonException
+   */
   public static void createNewDatabase(
       String username,
       String password,
@@ -61,12 +87,12 @@ public class DatabaseDaemon {
   ) throws DatabaseDaemonException {
     String url = "jdbc:mysql://localhost/?user=" + username;
 
-    if (!password.isEmpty()) {
+    if(!password.isEmpty()){
       url = url + "&password=" + password;
     }
 
     try (Connection conn = connectServer(username, password)) {
-      if (conn != null) {
+      if(conn != null){
         DatabaseMetaData meta = conn.getMetaData();
         Statement s = conn.createStatement();
         s.executeUpdate("CREATE DATABASE IF NOT EXISTS " + databaseName);
@@ -78,12 +104,19 @@ public class DatabaseDaemon {
     }
   }
 
+  /**
+   * Membuat table dalam database.
+   * @param username mysql
+   * @param password mysql
+   * @param databaseName nama database aplikasi
+   * @throws DatabaseDaemonException
+   */
   public static void initializeTable(
       String username,
       String password,
       String databaseName
   ) throws DatabaseDaemonException {
-    if (username.isEmpty()) {
+    if(username.isEmpty()){
       throw new DatabaseDaemonException("[ERROR] No username when connect database");
     } else {
       String sqlIfUsersExist = "DROP TABLE IF EXISTS users;";

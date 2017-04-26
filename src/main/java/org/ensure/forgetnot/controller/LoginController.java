@@ -10,14 +10,24 @@ import org.ensure.forgetnot.view.LoginView;
 import java.awt.Component;
 
 /**
- * Created by rufus on 4/22/2017.
+ * class LoginController.
+ * @author girvandi
  */
 public class LoginController extends Controller {
+  /**
+   * Constructor.
+   */
   public LoginController() {
     view = new LoginView("Login");
     show = true;
   }
 
+  /**
+   * Method untuk verifikasi login.
+   * @param username Username user yang akan diverifikasi passwordnya
+   * @param password password yang dimasukkan oleh user
+   * @return loginStatus sebuah boolean yang menunjukkan apakah password yang dimasukkan cocok dengan password dalam database
+   */
   public boolean verifyLogin(String username, String password) {
     Database.connect();
     User u = User.findFirst("user_name = ?", username);
@@ -33,7 +43,7 @@ public class LoginController extends Controller {
       e.printStackTrace();
     }
     Database.close();
-    if (loginStatus) {
+    if(loginStatus){
       Config.setLoginUser(username);
     }
     return loginStatus;

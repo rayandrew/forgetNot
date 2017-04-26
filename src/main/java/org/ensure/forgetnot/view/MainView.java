@@ -1,28 +1,43 @@
 package org.ensure.forgetnot.view;
 
-import com.alee.laf.label.WebLabel;
 import com.alee.laf.rootpane.WebFrame;
-import org.ensure.forgetnot.utility.Clock;
 import org.ensure.forgetnot.utility.Pair;
 
-import javax.swing.SwingUtilities;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.util.List;
 
 /**
- * Created by rufus on 4/15/2017.
+ * Kelas MainView.
+ * @author Ray
  */
 public class MainView extends View {
+  /**
+   * Konstruktor.
+   *
+   * @param componentName Nama komponen
+   */
   public MainView(String componentName) {
     super(componentName);
   }
 
+  /**
+   * Konstruktor dengan parameter.
+   *
+   * @param componentName        nama komponen
+   * @param componentDescription deskripsi komponen
+   */
   public MainView(String componentName, String componentDescription) {
     super(componentName, componentDescription);
   }
 
+  /**
+   * Konstruktor dengan parameter.
+   *
+   * @param componentName        nama komponen
+   * @param componentDescription deskripsi komponen
+   * @param dataInput            list of pair Key - Value
+   */
   public MainView(String componentName,
                   String componentDescription,
                   List<Pair<String, Object>> dataInput
@@ -30,6 +45,11 @@ public class MainView extends View {
     super(componentName, componentDescription, dataInput);
   }
 
+  /**
+   * Konstruktor dengan parameter.
+   *
+   * @param dataInput List of Pair
+   */
   public MainView(List<Pair<String, Object>> dataInput) {
     super(dataInput);
   }

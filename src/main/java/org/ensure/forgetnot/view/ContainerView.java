@@ -15,13 +15,17 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
- * Created by rufus on 4/15/2017.
+ * Kelas Container.
+ * @author Ray
  */
 
 public class ContainerView extends WebPanel {
   private List<Component> panelComponent = new ArrayList<Component>();
   private int axis;
 
+  /**
+   * Konstruktor.
+   */
   ContainerView() {
     panelComponent.add(Clock.clock.getClockLabel());
     Clock.clock.start();
@@ -38,7 +42,7 @@ public class ContainerView extends WebPanel {
 
     for (BeanDefinition bean : classes) {
       try {
-        if (!bean
+        if(!bean
             .getBeanClassName()
             .equals("org.ensure.forgetnot.controller.MainController")
             &&
@@ -49,10 +53,10 @@ public class ContainerView extends WebPanel {
             !bean
                 .getBeanClassName()
                 .equals("org.ensure.forgetnot.controller.RegisterController")
-            ) {
+            ){
           Class<?> classController = Class.forName(bean.getBeanClassName());
           Controller c = (Controller) classController.newInstance();
-          if (c.isShow()) {
+          if(c.isShow()){
             panelComponent.add(c.init());
           }
         }
@@ -64,19 +68,35 @@ public class ContainerView extends WebPanel {
     }
   }
 
+  /**
+   * setAxis untuk menetapkan axis.
+   *
+   * @param axis posisi
+   */
   public void setAxis(int axis) {
     this.axis = axis;
   }
 
-
+  /**
+   * menambah komponen.
+   *
+   * @param elementComponent Komponen Swing yang ingin ditambah
+   */
   public void addComponent(Component elementComponent) {
     panelComponent.add(elementComponent);
   }
 
+  /**
+   * Mengeset Panel Komponen.
+   * @param panelComponent List of komponen
+   */
   public void setPanelComponent(List<Component> panelComponent) {
     this.panelComponent = panelComponent;
   }
 
+  /**
+   * Inisiasi Swing yang akan ditampilkan.
+   */
   public void init() {
     setLayout(new BoxLayout(this, axis));
 

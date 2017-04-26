@@ -11,9 +11,13 @@ import com.alee.managers.notification.WebNotification;
 import java.awt.Component;
 
 /**
- * Created by DELL on 4/24/2017.
+ * Kelas Reminder View.
+ * @author Girvandi
  */
 public class ReminderView extends View {
+  /**
+   * Konstruktor tanpa parameter.
+   */
   public ReminderView() {
     super("Reminder");
   }
@@ -23,7 +27,7 @@ public class ReminderView extends View {
     final WebButton notification2 = new WebButton("Limited duration notification");
     int x = 2;
     int y = 2;
-    if (x == y) {
+    if(x == y){
       final WebNotification notificationPopup = new WebNotification();
       notificationPopup.setIcon(NotificationIcon.clock);
       notificationPopup.setDisplayTime(8000);

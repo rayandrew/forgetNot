@@ -1,28 +1,36 @@
 package org.ensure.forgetnot.controller;
 
-import com.alee.laf.button.WebButton;
-
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.User;
 import org.ensure.forgetnot.utility.PasswordEncryptor;
 import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.ensure.forgetnot.view.RegisterView;
 
-import javax.xml.crypto.Data;
-import java.awt.Button;
 import java.awt.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by rufus on 4/23/2017.
+ * class RegisterController.
+ * @author girvandi
  */
 public class RegisterController extends Controller {
+  /**
+   * Constructor.
+   */
   public RegisterController() {
     view = new RegisterView("Register");
     show = false;
   }
 
+  /**
+   * Method untuk registrasi user.
+   * @param username username yang akan di register
+   * @param password password yang akan di register
+   * @param first_name
+   * @param last_name
+   * @param user_email
+   */
   public void registerUser(
       String username,
       String password,
@@ -31,7 +39,7 @@ public class RegisterController extends Controller {
       String user_email
   ) {
     Database.connect();
-    if (!User.findFirst("user_name = ?", username).exists()) {
+    if(!User.findFirst("user_name = ?", username).exists()){
       try {
         User.createUser(username,
             PasswordEncryptor.generateMd5(password),

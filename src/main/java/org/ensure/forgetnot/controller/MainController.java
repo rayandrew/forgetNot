@@ -6,9 +6,13 @@ import org.springframework.context.annotation.Bean;
 import java.awt.Component;
 
 /**
- * Created by rufus on 4/23/2017.
+ * class MainController.
+ * @author rayandrew
  */
 public class MainController extends Controller {
+  /**
+   * Constructor.
+   */
   public MainController() {
     view = new MainView("forgetNot by Ensure");
   }

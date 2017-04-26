@@ -4,7 +4,6 @@ import com.alee.laf.WebLookAndFeel;
 import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.core.DatabaseDaemon;
 import org.ensure.forgetnot.core.DatabaseDaemonException;
-import org.ensure.forgetnot.core.Launcher;
 import org.ensure.forgetnot.core.SplashScreen;
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.model.User;
@@ -18,19 +17,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by rayandrew on 4/12/2017.
+ * Main Class.
+ * @author rayandrew
  */
 public class MainClass {
   static final Logger logger = LoggerFactory.getLogger(MainClass.class);
 
+  /**
+   * Main program.
+   * @param args argumen
+   */
   public static void main(String[] args) {
-    SwingUtilities.invokeLater(new Runnable() {
-      public void run() {
-        // Install WebLaF as application L&F
-        WebLookAndFeel.install();
-        SplashScreen.execute = new SplashScreen("./image/forget.png");
-      }
-    });
 
     String timeStamp = LocalDateTime.now().format(
         DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
@@ -79,5 +76,13 @@ public class MainClass {
       Reminder.selectReminder("rayandrew", 1);
       Database.close();
     }
+
+    SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+        // Install WebLaF as application L&F
+        WebLookAndFeel.install();
+        SplashScreen.execute = new SplashScreen("./image/forget.png");
+      }
+    });
   }
 }

@@ -3,27 +3,29 @@ package org.ensure.forgetnot.core;
 import com.alee.laf.progressbar.WebProgressBar;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.Timer;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by rufus on 4/25/2017.
+ * Class SplashScreen.
+ * @author Rayandrew
  */
 public class SplashScreen extends JWindow {
-  private static WebProgressBar progressBar = new WebProgressBar();
   public static SplashScreen execute;
+  private static WebProgressBar progressBar = new WebProgressBar();
   private static int count;
   private static Timer timer1;
 
+  /**
+   * Konstruktor.
+   * @param image nama gambar
+   * */
   public SplashScreen(String image) {
     this.getContentPane().setBackground(new Color(0, 0, 0));
     Container container = getContentPane();
@@ -55,12 +57,15 @@ public class SplashScreen extends JWindow {
     setVisible(true);
   }
 
+  /**
+   * Menampilkan Progress Bar.
+   * */
   private void loadProgressBar() {
     ActionListener al = evt -> {
       count++;
       progressBar.setValue(count);
 
-      if (count == 10) {
+      if(count == 10){
         Launcher launcher = new Launcher();
         execute.setVisible(false);
         launcher.launch();
