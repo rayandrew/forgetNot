@@ -21,7 +21,7 @@ public class Clock implements Runnable {
   private WebLabel clockLabel = new WebLabel();
 
   /**
-   * Constructor
+   * Constructor.
    */
   public Clock() {
     LocalDateTime now = LocalDateTime.now();
@@ -34,7 +34,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   * Constructor with parameter
+   * Constructor with parameter.
    * @param name Thread name
    */
   public Clock(String name) {
@@ -48,7 +48,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   * getter jam
+   * getter jam.
    * @return hh
    */
   public int getJam() {
@@ -56,7 +56,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   * setter jam
+   * setter jam.
    * @param jam
    */
   public void setJam(int jam) {
@@ -64,7 +64,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   * getter menit
+   * getter menit.
    * @return mm
    */
   public int getMenit() {
@@ -72,7 +72,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   * setter menit
+   * setter menit.
    * @param menit
    */
   public void setMenit(int menit) {
@@ -80,7 +80,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   * getter detik
+   * getter detik.
    * @return ss
    */
   public int getDetik() {
@@ -88,7 +88,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   * setter detik
+   * setter detik.
    * @param detik
    */
   public void setDetik(int detik) {
@@ -96,7 +96,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   * Method untuk menambah detik dalam clock
+   * Method untuk menambah detik dalam clock.
    * @param second
    */
   public void AddSecond(int second) {
@@ -142,7 +142,7 @@ public class Clock implements Runnable {
   }
 
   /**
-   * Start clock
+   * Start clock.
    */
   public void start() {
     logger.info("Starting " + threadname);
@@ -153,14 +153,14 @@ public class Clock implements Runnable {
   }
 
   /**
-   * Stop clock, mengubah stop status menjadi true
+   * Stop clock, mengubah stop status menjadi true.
    */
   public void stop() {
     stopStatus = true;
   }
 
   /**
-   * method untuk mendapatkan clockLabel
+   * method untuk mendapatkan clockLabel.
    * @return clockLabel sebuah WebLabel
    */
   public WebLabel getClockLabel() {

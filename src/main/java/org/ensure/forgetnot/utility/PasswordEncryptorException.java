@@ -6,7 +6,7 @@ package org.ensure.forgetnot.utility;
  */
 public class PasswordEncryptorException extends Exception {
   /**
-   * Constructor
+   * Constructor.
    */
   public PasswordEncryptorException() {
     super();
