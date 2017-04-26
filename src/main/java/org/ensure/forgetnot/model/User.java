@@ -6,12 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by rufus on 4/13/2017.
+ * @author Ray
  */
 @IdName("user_id")
 public class User extends Model {
   static final Logger logger = LoggerFactory.getLogger(User.class);
-
   static {
     validatePresenceOf(
         "user_name",
@@ -24,14 +23,32 @@ public class User extends Model {
     );
   }
 
+  /**
+   * Konstruktor User
+   * */
   public User() {
 
   }
 
+  /**
+   * Konstruktor dengan parameter
+   * @param username nama user yang akan disimpan di database
+   * */
   public User(String username) {
     set("user_name", username);
   }
 
+  /**
+   * Method untuk membuat user baru
+   * @return mengembalikan apakah pembuatan berhasil atau tidak
+   * @param firstName nama depan
+   * @param joinDate tanggal join
+   * @param lastName nama belakang
+   * @param password password
+   * @param profilePic gambar
+   * @param userEmail email
+   * @param userName username unik
+   * */
   public static boolean createUser(
       String userName,
       String password,
@@ -66,12 +83,20 @@ public class User extends Model {
     return e.saveIt();
   }
 
+  /**
+   * @return kelas User yang diambil
+   * @param username Username yang diinginkan
+   * */
   public static User selectUser(String username) {
     User e = User.findFirst("user_name = ?", username);
     logger.info("User : " + e.getString("user_name"));
     return e;
   }
 
+  /**
+   * @return apakah User berhasil dihapus
+   * @param username username yang akan dihapus
+   * */
   public static boolean deleteUser(String username) {
     User e = User.findFirst("user_name = ?", username);
     logger.info(
@@ -80,6 +105,12 @@ public class User extends Model {
     return e.delete();
   }
 
+  /**
+   * @return apakah update berhasil
+   * @param username username yang ingin diganti
+   * @param columnName kolom yang ingin diupdate
+   * @param value nilai yang ingin dimasukan
+   * */
   public static boolean updateUser(String username, String columnName, String value) {
     logger.info(
         "Change from table Users => username : "
@@ -94,12 +125,16 @@ public class User extends Model {
         .saveIt();
   }
 
+  /**
+   * @return atribut user
+   * @param username username yang bersangkutan
+   * @param columnName nama field
+   * */
   public static String getAttribute(String columnName, String username) {
     User u = User.findFirst(
         "user_name = ?",
         username
     );
-
     logger.info(
         "Get attribute table Users => username : "
             + username
@@ -108,10 +143,12 @@ public class User extends Model {
             + " value "
             + u.getString(columnName)
     );
-
     return u.getString(columnName);
   }
 
+  /**
+   * @return apakah penghapusan berhasil
+   * */
   public static boolean deleteAllUsers() {
     logger.info(
         "Delete all users from table Users"

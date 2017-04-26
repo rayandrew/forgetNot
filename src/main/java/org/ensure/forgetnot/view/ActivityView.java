@@ -15,7 +15,6 @@ import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 
 import javax.swing.SpinnerDateModel;
-import javax.swing.table.DefaultTableModel;
 import java.awt.Component;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
@@ -27,7 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by rufus on 4/23/2017.
+ * @author Aldrich
  */
 public class ActivityView extends View {
   private Panel activityPanel;
@@ -36,6 +35,11 @@ public class ActivityView extends View {
   private WebButton deleteButton;
   private WebButton updateButton;
 
+  /**
+   * Konstruktor
+   *
+   * @param dataInput array of object yang akan ditampilkan di layar sebagai tabel
+   */
   public ActivityView(Object[][] dataInput) {
     super("activityViewer");
     activityPanel = new Panel();
@@ -73,19 +77,11 @@ public class ActivityView extends View {
     });
 
     String[] columns = {"ID", "Activity", "Description", "Time"};
-    /*DefaultTableModel tableModel = new DefaultTableModel(columns, dataInput.length) {
-      public boolean isCellEditable(int row, int column) {
-        return false;//This causes all cells to be not editable
-      }
-    };*/
-
     tab = new WebTable(dataInput, columns);
-    //tab.setModel(tableModel);
     tab.getColumnModel().getColumn(0).setPreferredWidth(20);
     tab.getColumnModel().getColumn(1).setPreferredWidth(100);
     tab.getColumnModel().getColumn(2).setPreferredWidth(400);
     tab.getColumnModel().getColumn(3).setPreferredWidth(150);
-
     activityPanel.add(tab);
     Panel buttons = new Panel();
     buttons.add(addActivityButton);
@@ -94,15 +90,14 @@ public class ActivityView extends View {
     activityPanel.add(new GroupPanel(false, tab, buttons));
   }
 
-  public void addWebContent(DefaultTableModel table) {
-    tab.setModel(table);
-  }
-
   @Override
   public Component init() {
     return activityPanel;
   }
 
+  /**
+   * Kelas Dialog untuk menampilkan dialog box
+   */
   private class Dialog extends WebDialog implements ActionListener {
     private WebTextField title;
     private WebTextField contentReminder;
@@ -110,6 +105,9 @@ public class ActivityView extends View {
     private WebButton confirm;
     private String[] activityDescription;
 
+    /**
+     * Konstruktor
+     */
     public Dialog() {
       super();
       setSize(500, 175);
@@ -144,23 +142,18 @@ public class ActivityView extends View {
           activityDescription[2] = title.getText();
           activityDescription[4] = contentReminder.getText();
           activityDescription[6] = tempDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-          //System.out.println("ini waktu format dari input : " + activityDescription[6]);
           ActivityController.addActivity(activityDescription);
           WebOptionPane.showMessageDialog(null,
               "Your reminder has been saved!", "Success", WebOptionPane.INFORMATION_MESSAGE);
         }
       };
       confirm.addActionListener(saveToDatabase);
-
       content.add(new WebLabel("Reminder Title", WebLabel.TRAILING), "0,0");
       content.add(title, "1,0");
-
       content.add(new WebLabel("Content", WebLabel.TRAILING), "0,1");
       content.add(contentReminder, "1,1");
-
       content.add(new WebLabel("Choose Due Date", WebLabel.TRAILING), "0,2");
       content.add(dueDate, "1,2");
-
       add(content);
       add(confirm);
       add(new GroupPanel(false, content, confirm));
@@ -175,6 +168,9 @@ public class ActivityView extends View {
     }
   }
 
+  /**
+   * Kelas Dialog untuk Update
+   */
   private class UpdateDialog extends WebDialog {
     private WebTextField title;
     private WebTextField contentReminder;
@@ -182,6 +178,9 @@ public class ActivityView extends View {
     private WebButton confirm;
     private String[] activityDescription;
 
+    /**
+     * Konstruktor
+     */
     public UpdateDialog(int id) {
       super();
       setSize(500, 175);
@@ -227,16 +226,12 @@ public class ActivityView extends View {
         }
       };
       confirm.addActionListener(saveToDatabase);
-
       content.add(new WebLabel("Reminder Title", WebLabel.TRAILING), "0,0");
       content.add(title, "1,0");
-
       content.add(new WebLabel("Content", WebLabel.TRAILING), "0,1");
       content.add(contentReminder, "1,1");
-
       content.add(new WebLabel("Choose Due Date", WebLabel.TRAILING), "0,2");
       content.add(dueDate, "1,2");
-
       add(content);
       add(confirm);
       add(new GroupPanel(false, content, confirm));

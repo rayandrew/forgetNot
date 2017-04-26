@@ -11,9 +11,12 @@ import com.alee.managers.notification.WebNotification;
 import java.awt.Component;
 
 /**
- * Created by DELL on 4/24/2017.
+ * @author Girvandi
  */
 public class ReminderView extends View {
+  /**
+   * Konstruktor tanpa parameter
+   */
   public ReminderView() {
     super("Reminder");
   }

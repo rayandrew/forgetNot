@@ -14,12 +14,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
- * Created by rufus on 4/24/2017.
+ * @author Girvandi
  */
 public class RegisterView extends View {
-  Dialog dialog;
-  WebButton test;
+  private Dialog dialog;
+  private WebButton test;
 
+  /**
+   * Konstruktor
+   *
+   * @param componentName menerima nama komponen
+   */
   public RegisterView(String componentName) {
     super(componentName);
     //Dialog dialog = new Dialog(new Button());
@@ -27,10 +32,23 @@ public class RegisterView extends View {
     test.addActionListener(new Dialog());
   }
 
+  /**
+   * Konstruktor dengan parameter
+   *
+   * @param componentName        nama komponen
+   * @param componentDescription deskripsi komponen
+   */
   public RegisterView(String componentName, String componentDescription) {
     super(componentName, componentDescription);
   }
 
+  /**
+   * Konstruktor dengan parameter
+   *
+   * @param componentName        nama komonen
+   * @param componentDescription Deskripsi komeponen
+   * @param dataInput            List pair key - value
+   */
   public RegisterView(String componentName,
                       String componentDescription,
                       List<Pair<String, Object>> dataInput
@@ -38,6 +56,11 @@ public class RegisterView extends View {
     super(componentName, componentDescription, dataInput);
   }
 
+  /**
+   * Konstruktor
+   *
+   * @param dataInput Input data yang akan digunakan
+   */
   public RegisterView(List<Pair<String, Object>> dataInput) {
     super(dataInput);
   }
@@ -188,9 +211,16 @@ public class RegisterView extends View {
     return test;
   }
 
+
+  /**
+   * Kelas Dialog untuk menampilkan dialog box sekaligus Action Listener
+   */
   private class Dialog implements ActionListener {
     private String[] arr = new String[5];
 
+    /**
+     * Konstruktor
+     */
     public Dialog() {
       super();
       arr[0] = WebOptionPane.showInputDialog(
@@ -232,7 +262,7 @@ public class RegisterView extends View {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent event) {
 
     }
   }

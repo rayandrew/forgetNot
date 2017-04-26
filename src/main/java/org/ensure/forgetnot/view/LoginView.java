@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
- * Created by rufus on 4/23/2017.
+ * @author Ray
  */
 public class LoginView extends View {
   private WebPanel content;
@@ -26,6 +26,11 @@ public class LoginView extends View {
   private WebTextField usernameField = new WebTextField(15);
   private WebPasswordField passwordField = new WebPasswordField(15);
 
+  /**
+   * Konstruktor
+   *
+   * @param componentName Nama komponen
+   */
   public LoginView(String componentName) {
     super(componentName);
     TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
@@ -52,10 +57,23 @@ public class LoginView extends View {
     content.add(registerButton, "0,2");
   }
 
+  /**
+   * Konstruktor dengan parameter
+   *
+   * @param componentName        nama komponen
+   * @param componentDescription deskripsi komponen
+   */
   public LoginView(String componentName, String componentDescription) {
     super(componentName, componentDescription);
   }
 
+  /**
+   * Konstuktor dengan parameter
+   *
+   * @param componentName        nama komponen
+   * @param componentDescription deskripsi komponen
+   * @param dataInput            list of pair
+   */
   public LoginView(String componentName,
                    String componentDescription,
                    List<Pair<String, Object>> dataInput
@@ -63,6 +81,11 @@ public class LoginView extends View {
     super(componentName, componentDescription, dataInput);
   }
 
+  /**
+   * Konstuktor dengan parameter
+   *
+   * @param dataInput list of pair
+   */
   public LoginView(List<Pair<String, Object>> dataInput) {
     super(dataInput);
   }
