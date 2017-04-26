@@ -2,6 +2,16 @@ package org.ensure.forgetnot.view;
 
 import com.alee.laf.label.WebLabel;
 import com.alee.laf.panel.WebPanel;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
+
+import javax.swing.BoxLayout;
+
 import org.ensure.forgetnot.controller.Controller;
 import org.ensure.forgetnot.core.Config;
 import org.ensure.forgetnot.utility.Clock;
@@ -9,13 +19,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
-import javax.swing.BoxLayout;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.regex.Pattern;
+
 
 /**
  * Kelas Container.

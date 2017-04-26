@@ -1,10 +1,10 @@
 package org.ensure.forgetnot.core;
 
-import org.ensure.forgetnot.utility.Pair;
-import org.javalite.activejdbc.Base;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.ensure.forgetnot.utility.Pair;
+import org.javalite.activejdbc.Base;
 
 /**
  * class Database.

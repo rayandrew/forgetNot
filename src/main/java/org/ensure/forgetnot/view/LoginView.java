@@ -8,17 +8,18 @@ import com.alee.laf.panel.WebPanel;
 import com.alee.laf.rootpane.WebFrame;
 import com.alee.laf.text.WebPasswordField;
 import com.alee.laf.text.WebTextField;
-import org.ensure.forgetnot.controller.LoginController;
-import org.ensure.forgetnot.core.Launcher;
-import org.ensure.forgetnot.utility.Pair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.List;
+
+import org.ensure.forgetnot.controller.LoginController;
+import org.ensure.forgetnot.core.Launcher;
+import org.ensure.forgetnot.utility.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Kelas Login View.

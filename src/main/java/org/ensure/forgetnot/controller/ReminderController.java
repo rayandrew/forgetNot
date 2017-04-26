@@ -1,13 +1,13 @@
 package org.ensure.forgetnot.controller;
 
 import com.alee.managers.popup.WebPopup;
-import org.ensure.forgetnot.core.Config;
+
+import java.awt.Component;
+import java.util.List;
+
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.view.ReminderView;
 
-import java.awt.Button;
-import java.awt.Component;
-import java.util.List;
 
 /**
  * class ReminderController.

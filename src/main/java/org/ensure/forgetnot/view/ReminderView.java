@@ -24,8 +24,8 @@ public class ReminderView extends View {
   /**
    * Konstruktor tanpa parameter.
    *
-   * @param loginUser
-   * @param temp
+   * @param loginUser return string
+   * @param temp return integer
    */
   public ReminderView(String loginUser, int temp) {
     super("Reminder");

@@ -10,7 +10,6 @@ import org.ensure.forgetnot.core.Database;
 import org.ensure.forgetnot.model.Reminder;
 import org.ensure.forgetnot.view.ActivityView;
 
-
 /**
  * class ActivityController.
  *

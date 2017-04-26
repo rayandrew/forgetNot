@@ -10,14 +10,7 @@ import com.alee.laf.rootpane.WebDialog;
 import com.alee.laf.spinner.WebSpinner;
 import com.alee.laf.table.WebTable;
 import com.alee.laf.text.WebTextField;
-import org.ensure.forgetnot.controller.ActivityController;
-import org.ensure.forgetnot.core.Config;
-import org.ensure.forgetnot.core.Database;
-import org.ensure.forgetnot.model.Reminder;
 
-import javax.swing.SpinnerDateModel;
-import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
 import java.awt.Component;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
@@ -27,6 +20,14 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
+import org.ensure.forgetnot.controller.ActivityController;
+import org.ensure.forgetnot.core.Config;
+import org.ensure.forgetnot.core.Database;
+import org.ensure.forgetnot.model.Reminder;
 
 /**
  * Kelas ActivityView.

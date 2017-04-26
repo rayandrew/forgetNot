@@ -1,6 +1,12 @@
 package org.ensure.forgetnot;
 
 import com.alee.laf.WebLookAndFeel;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.swing.SwingUtilities;
+
 import org.ensure.forgetnot.controller.ReminderController;
 import org.ensure.forgetnot.core.Config;
 import org.ensure.forgetnot.core.Database;
@@ -14,10 +20,6 @@ import org.ensure.forgetnot.utility.PasswordEncryptorException;
 import org.ensure.forgetnot.view.ReminderView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.swing.SwingUtilities;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Main Class.

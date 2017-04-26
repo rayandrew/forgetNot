@@ -5,20 +5,19 @@ import com.alee.laf.label.WebLabel;
 import com.alee.laf.optionpane.WebOptionPane;
 import com.alee.laf.text.WebPasswordField;
 import com.alee.laf.text.WebTextField;
-import org.ensure.forgetnot.core.Database;
-import org.ensure.forgetnot.model.User;
-import org.ensure.forgetnot.utility.Pair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.swing.Box;
-import javax.swing.JOptionPane;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.Box;
+import javax.swing.JOptionPane;
+import org.ensure.forgetnot.core.Database;
+import org.ensure.forgetnot.model.User;
+import org.ensure.forgetnot.utility.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Kelas Register.

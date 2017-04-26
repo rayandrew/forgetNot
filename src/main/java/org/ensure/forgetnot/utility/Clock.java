@@ -1,12 +1,12 @@
 package org.ensure.forgetnot.utility;
 
 import com.alee.laf.label.WebLabel;
+
+import java.time.LocalDateTime;
+import javax.swing.SwingUtilities;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.swing.SwingUtilities;
-import java.time.LocalDateTime;
-
 
 /**
  * class Clock.
