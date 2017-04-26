@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Class Controller.
+ *
  * @author rayandrew
  */
 public abstract class Controller {
@@ -18,6 +19,7 @@ public abstract class Controller {
 
   /**
    * Boolean untuk view ditunjukkan atau tidak.
+   *
    * @return boolean Boolean yang mengindikasikan view ditunjukkan atau tidak
    */
   public boolean isShow() {
@@ -26,6 +28,7 @@ public abstract class Controller {
 
   /**
    * Method Component.
+   *
    * @return Component swing yang akan ditampilkan ke layar
    */
   public abstract Component init();

@@ -28,6 +28,7 @@ import java.util.Date;
 
 /**
  * Kelas ActivityView.
+ *
  * @author Aldrich
  */
 public class ActivityView extends View {
@@ -57,7 +58,7 @@ public class ActivityView extends View {
             "Delete Reminder",
             WebOptionPane.WARNING_MESSAGE));
         //TODO: usernamenya jgn lupa
-        if(temp != null){
+        if (temp != null) {
           Database.connect();
           Reminder.deleteReminder("rayandrew", temp);
           Database.close();
@@ -135,12 +136,17 @@ public class ActivityView extends View {
       ActionListener saveToDatabase = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-          Date temp = (Date) dueDate.getValue();
-          LocalDateTime tempDate = LocalDateTime.ofInstant(temp.toInstant(), ZoneId.systemDefault());
           activityDescription[0] = Config.getLoginUser(); //nanti diisi dengan user
           activityDescription[2] = title.getText();
           activityDescription[4] = contentReminder.getText();
-          activityDescription[6] = tempDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+          Date temp = (Date) dueDate.getValue();
+          LocalDateTime tempDate = LocalDateTime.ofInstant(
+              temp.toInstant(),
+              ZoneId.systemDefault()
+          );
+          activityDescription[6] = tempDate.format(
+              DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+          );
           if (ActivityController.addActivity(activityDescription)) {
             WebOptionPane.showMessageDialog(null,
                 "Your reminder has been saved!",
@@ -228,12 +234,14 @@ public class ActivityView extends View {
 
       //add ActionListener for confirm Button
       ActionListener saveToDatabase = e -> {
-        Date temp = (Date) dueDate.getValue();
-        LocalDateTime tempDate = LocalDateTime.ofInstant(temp.toInstant(), ZoneId.systemDefault());
         activityDescription[0] = Config.getLoginUser(); //nanti diisi dengan user
         activityDescription[2] = title.getText();
         activityDescription[4] = contentReminder.getText();
-        activityDescription[6] = tempDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        Date temp = (Date) dueDate.getValue();
+        LocalDateTime tempDate = LocalDateTime.ofInstant(temp.toInstant(), ZoneId.systemDefault());
+        activityDescription[6] = tempDate.format(
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        );
 
         Database.connect();
         boolean status = Reminder.updateReminder(

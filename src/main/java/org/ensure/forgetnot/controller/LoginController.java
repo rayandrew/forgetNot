@@ -13,6 +13,7 @@ import java.awt.Component;
 
 /**
  * class LoginController.
+ *
  * @author girvandi
  */
 public class LoginController extends Controller {
@@ -28,9 +29,14 @@ public class LoginController extends Controller {
 
   /**
    * Method untuk verifikasi login.
+   *
    * @param username Username user yang akan diverifikasi passwordnya
    * @param password password yang dimasukkan oleh user
-   * @return loginStatus sebuah boolean yang menunjukkan apakah password yang dimasukkan cocok dengan password dalam database
+   * @return loginStatus
+   * <p>
+   *   sebuah boolean yang menunjukkan apakah password yang
+   *   dimasukkan cocok dengan password dalam database
+   * </p>
    */
   public static boolean verifyLogin(String username, String password) {
     Database.connect();
@@ -48,7 +54,7 @@ public class LoginController extends Controller {
       e.printStackTrace();
     }
     Database.close();
-    if(loginStatus){
+    if (loginStatus) {
       Config.setLoginUser(username);
     }
     return loginStatus;

@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 /**
  * Kelas Container.
+ *
  * @author Ray
  */
 
@@ -45,7 +46,7 @@ public class ContainerView extends WebPanel {
 
     for (BeanDefinition bean : classes) {
       try {
-        if(!bean
+        if (!bean
             .getBeanClassName()
             .equals("org.ensure.forgetnot.controller.MainController")
             &&
@@ -62,7 +63,7 @@ public class ContainerView extends WebPanel {
                 .equals("org.ensure.forgetnot.controller.LoginController")) {
           Class<?> classController = Class.forName(bean.getBeanClassName());
           Controller c = (Controller) classController.newInstance();
-          if(c.isShow()){
+          if (c.isShow()) {
             panelComponent.add(c.init());
           }
         }
@@ -94,6 +95,7 @@ public class ContainerView extends WebPanel {
 
   /**
    * Mengeset Panel Komponen.
+   *
    * @param panelComponent List of komponen
    */
   public void setPanelComponent(List<Component> panelComponent) {

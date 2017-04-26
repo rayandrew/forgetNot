@@ -2,6 +2,7 @@ package org.ensure.forgetnot.utility;
 
 /**
  * class Pair.
+ *
  * @author rayandrew
  */
 public class Pair<A, B> {
@@ -10,7 +11,8 @@ public class Pair<A, B> {
 
   /**
    * Constructor.
-   * @param first tipe data pertama
+   *
+   * @param first  tipe data pertama
    * @param second tipe data kedua
    */
   public Pair(A first, B second) {
@@ -20,6 +22,7 @@ public class Pair<A, B> {
 
   /**
    * Method untuk mengembalikan int dr hashCode.
+   *
    * @return int
    */
   public int hashCode() {
@@ -31,11 +34,12 @@ public class Pair<A, B> {
 
   /**
    * Method untuk menyamapakan current objek dan Objek other.
+   *
    * @param other object yang akan dibandingkan
    * @return boolean apakah current objek sama dengan Objek other
    */
   public boolean equals(Object other) {
-    if(other instanceof Pair){
+    if (other instanceof Pair) {
       Pair otherPair = (Pair) other;
       return
           (
@@ -56,6 +60,7 @@ public class Pair<A, B> {
 
   /**
    * Implementasi toString.
+   *
    * @return print Pair
    */
   public String toString() {
@@ -64,6 +69,7 @@ public class Pair<A, B> {
 
   /**
    * getter left value.
+   *
    * @return value pertama
    */
   public A getLeft() {
@@ -72,6 +78,7 @@ public class Pair<A, B> {
 
   /**
    * getter right value.
+   *
    * @return value kedua
    */
   public B getRight() {

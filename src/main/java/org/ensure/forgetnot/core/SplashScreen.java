@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 
 /**
  * Class SplashScreen.
+ *
  * @author Rayandrew
  */
 public class SplashScreen extends JWindow {
@@ -25,8 +26,9 @@ public class SplashScreen extends JWindow {
 
   /**
    * Konstruktor.
+   *
    * @param image nama gambar
-   * */
+   */
   public SplashScreen(String image) {
     this.getContentPane().setBackground(new Color(0, 0, 0));
     Container container = getContentPane();
@@ -60,13 +62,13 @@ public class SplashScreen extends JWindow {
 
   /**
    * Menampilkan Progress Bar.
-   * */
+   */
   private void loadProgressBar() {
     ActionListener al = evt -> {
       count++;
       progressBar.setValue(count);
 
-      if(count == 10){
+      if (count == 10) {
         LoginController log = new LoginController();
         log.init();
         execute.setVisible(false);

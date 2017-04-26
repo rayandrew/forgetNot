@@ -22,6 +22,7 @@ import java.util.List;
 
 /**
  * Kelas Login View.
+ *
  * @author Ray
  */
 public class LoginView extends View {

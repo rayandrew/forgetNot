@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * class Database.
+ *
  * @author rayandrew
  */
 
@@ -26,13 +27,13 @@ public class Database {
   }
 
   /**
-   *
-   * @param key
+   * Method getdbSetting.
+   * @param key untuk mengambil value dari sebuah key
    * @return left value dari key
    */
   public static String getDbSetting(String key) {
     for (Pair<String, String> p : dbSetting) {
-      if(p.getLeft().equals(key)){
+      if (p.getLeft().equals(key)) {
         return p.getRight();
       }
     }

@@ -7,17 +7,21 @@ import org.slf4j.LoggerFactory;
 import javax.swing.SwingUtilities;
 import java.time.LocalDateTime;
 
+
 /**
  * class Clock.
+ *
  * @author tasya
  */
 public class Clock implements Runnable {
   static final Logger logger = LoggerFactory.getLogger(Clock.class);
   public static Clock clock = new Clock("ClockController");
   public boolean stopStatus = false;
-  private int hh, mm, ss;
-  private Thread t;
+  private int hh;
+  private int mm;
+  private int ss;
   private String threadname;
+  private Thread thread;
   private WebLabel clockLabel = new WebLabel();
 
   /**
@@ -35,6 +39,7 @@ public class Clock implements Runnable {
 
   /**
    * Constructor with parameter.
+   *
    * @param name Thread name
    */
   public Clock(String name) {
@@ -49,6 +54,7 @@ public class Clock implements Runnable {
 
   /**
    * getter jam.
+   *
    * @return hh
    */
   public int getJam() {
@@ -57,7 +63,8 @@ public class Clock implements Runnable {
 
   /**
    * setter jam.
-   * @param jam
+   *
+   * @param jam jam in integer
    */
   public void setJam(int jam) {
     hh = jam;
@@ -65,6 +72,7 @@ public class Clock implements Runnable {
 
   /**
    * getter menit.
+   *
    * @return mm
    */
   public int getMenit() {
@@ -73,7 +81,8 @@ public class Clock implements Runnable {
 
   /**
    * setter menit.
-   * @param menit
+   *
+   * @param menit minute in integer
    */
   public void setMenit(int menit) {
     mm = menit;
@@ -81,6 +90,7 @@ public class Clock implements Runnable {
 
   /**
    * getter detik.
+   *
    * @return ss
    */
   public int getDetik() {
@@ -89,7 +99,8 @@ public class Clock implements Runnable {
 
   /**
    * setter detik.
-   * @param detik
+   *
+   * @param detik seconds in integer
    */
   public void setDetik(int detik) {
     ss = detik;
@@ -97,22 +108,23 @@ public class Clock implements Runnable {
 
   /**
    * Method untuk menambah detik dalam clock.
-   * @param second
+   *
+   * @param second seconds in integer
    */
-  public void AddSecond(int second) {
+  public void addSecond(int second) {
     setDetik(getDetik() + second);
 
-    if(getDetik() >= 60){
+    if (getDetik() >= 60) {
       setMenit(getMenit() + getDetik() / 60);
       setDetik(getDetik() % 60);
     }
 
-    if(getMenit() >= 60){
+    if (getMenit() >= 60) {
       setJam(getJam() + getMenit() / 60);
       setMenit(getMenit() % 60);
     }
 
-    if(getJam() >= 24){
+    if (getJam() >= 24) {
       setJam(getJam() % 24);
     }
   }
@@ -122,7 +134,7 @@ public class Clock implements Runnable {
     logger.info("Running " + threadname);
     try {
       while (!stopStatus) {
-        AddSecond(1);
+        addSecond(1);
         logger.info("Thread: "
             + threadname
             + ", jam: "
@@ -146,9 +158,9 @@ public class Clock implements Runnable {
    */
   public void start() {
     logger.info("Starting " + threadname);
-    if(t == null){
-      t = new Thread(this, threadname);
-      t.start();
+    if (thread == null) {
+      thread = new Thread(this, threadname);
+      thread.start();
     }
   }
 
@@ -161,6 +173,7 @@ public class Clock implements Runnable {
 
   /**
    * method untuk mendapatkan clockLabel.
+   *
    * @return clockLabel sebuah WebLabel
    */
   public WebLabel getClockLabel() {
@@ -169,12 +182,12 @@ public class Clock implements Runnable {
 
   @Override
   public String toString() {
-    String jam = getJam() < 10 ?
-        "0" + String.valueOf(getJam()) : String.valueOf(getJam());
-    String menit = getMenit() < 10 ?
-        "0" + String.valueOf(getMenit()) : String.valueOf(getMenit());
-    String detik = getDetik() < 10 ?
-        "0" + String.valueOf(getDetik()) : String.valueOf(getDetik());
+    String jam = getJam() < 10
+        ? "0" + String.valueOf(getJam()) : String.valueOf(getJam());
+    String menit = getMenit() < 10
+        ? "0" + String.valueOf(getMenit()) : String.valueOf(getMenit());
+    String detik = getDetik() < 10
+        ? "0" + String.valueOf(getDetik()) : String.valueOf(getDetik());
 
     return jam + ":" + menit + ":" + detik;
   }

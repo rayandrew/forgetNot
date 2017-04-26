@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Main Class.
+ *
  * @author rayandrew
  */
 public class MainClass {
@@ -25,6 +26,7 @@ public class MainClass {
 
   /**
    * Main program.
+   *
    * @param args argumen
    */
   public static void main(String[] args) {

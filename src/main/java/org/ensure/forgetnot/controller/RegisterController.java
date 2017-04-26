@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * class RegisterController.
+ *
  * @author girvandi
  */
 public class RegisterController extends Controller {
@@ -25,27 +26,28 @@ public class RegisterController extends Controller {
 
   /**
    * Method untuk registrasi user.
-   * @param username username yang akan di register
-   * @param password password yang akan di register
-   * @param first_name
-   * @param last_name
-   * @param user_email
+   *
+   * @param username   username yang akan di register
+   * @param password   password yang akan di register
+   * @param firstname first name yang di register
+   * @param lastname last name yang di register
+   * @param useremail email yang diregister
    */
   public void registerUser(
       String username,
       String password,
-      String first_name,
-      String last_name,
-      String user_email
+      String firstname,
+      String lastname,
+      String useremail
   ) {
     Database.connect();
-    if(!User.findFirst("user_name = ?", username).exists()){
+    if (!User.findFirst("user_name = ?", username).exists()) {
       try {
         User.createUser(username,
             PasswordEncryptor.generateMd5(password),
-            first_name,
-            last_name,
-            user_email,
+            firstname,
+            lastname,
+            useremail,
             LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
             ),

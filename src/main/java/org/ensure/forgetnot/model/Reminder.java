@@ -9,11 +9,13 @@ import java.util.List;
 
 /**
  * Kelas Model Reminder.
+ *
  * @author Ray
  */
 @IdName("reminder_id")
 public class Reminder extends Model {
   static final Logger logger = LoggerFactory.getLogger(Reminder.class);
+
   static {
     validatePresenceOf(
         "reminder_title",
@@ -27,27 +29,29 @@ public class Reminder extends Model {
 
   /**
    * Konstruktor.
-   * */
+   */
   public Reminder() {
 
   }
 
   /**
    * Konstruktor.
+   *
    * @param title Judul reminder
-   * */
+   */
   public Reminder(String title) {
     set("reminder_title", title);
   }
 
   /**
    * Fungsi untuk membuat reminder.
-   * @param content konten reminder
-   * @param createdTime tanggal dibuat
-   * @param dueTime tanggal selesai
+   *
+   * @param content       konten reminder
+   * @param createdTime   tanggal dibuat
+   * @param dueTime       tanggal selesai
    * @param reminderTitle judul
-   * @param reminderUser username
-   * */
+   * @param reminderUser  username
+   */
   public static boolean createReminder(
       String reminderTitle,
       String reminderUser,
@@ -79,13 +83,14 @@ public class Reminder extends Model {
 
   /**
    * Membuat Reminder.
-   * @param reminderUser nama user
+   *
+   * @param reminderUser  nama user
    * @param reminderTitle judul
-   * @param dueTime tanggal berakhir
-   * @param createdTime tanggal dibuat
-   * @param content konten
-   * @param priority prioritas
-   * */
+   * @param dueTime       tanggal berakhir
+   * @param createdTime   tanggal dibuat
+   * @param content       konten
+   * @param priority      prioritas
+   */
   public static boolean createReminder(
       String reminderTitle,
       String reminderUser,
@@ -121,9 +126,9 @@ public class Reminder extends Model {
    * Metode untuk mengambil reminder.
    *
    * @param username nama user
-   * @param id id reminder
-   *           @return Sebuah reminder
-   * */
+   * @param id       id reminder
+   * @return Sebuah reminder
+   */
   public static Reminder selectReminder(String username, int id) {
     Reminder e = Reminder.findFirst(
         "reminder_user = ? and reminder_id = ?",
@@ -143,8 +148,8 @@ public class Reminder extends Model {
    * Metode untuk mengambil seluruh reminder.
    *
    * @param username nama user
-   *                 @return sebuah list of reminder
-   * */
+   * @return sebuah list of reminder
+   */
   public static List<Reminder> getAllReminderFromUser(String username) {
     List<Reminder> reminderList = Reminder
         .where("reminder_user =" + "\"" + username + "\"")
@@ -160,9 +165,9 @@ public class Reminder extends Model {
    * Metode untuk menghapus reminder.
    *
    * @param username username yang akan dicari
-   * @param id id yang akan dihapus
-   *           @return apakah berhasil dihapus
-   * */
+   * @param id       id yang akan dihapus
+   * @return apakah berhasil dihapus
+   */
   public static boolean deleteReminder(String username, int id) {
     Reminder e = Reminder.findFirst(
         "reminder_user = ? and reminder_id = ?",
@@ -178,8 +183,9 @@ public class Reminder extends Model {
 
   /**
    * Metode untuk mengupdate reminder.
+   *
    * @return apakah update berhasl
-   * */
+   */
   public static boolean updateReminder(
       String username,
       int id,
@@ -211,11 +217,11 @@ public class Reminder extends Model {
   /**
    * Mengambil Atribut.
    *
-   * @param id id reminder
-   * @param username nama user
+   * @param id         id reminder
+   * @param username   nama user
    * @param columnName field yang ingin diambil
-   *                   @return Atribut dari reminder
-   * */
+   * @return Atribut dari reminder
+   */
   public static String getAttribute(
       String username,
       int id,

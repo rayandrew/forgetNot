@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Kelas MainView.
+ *
  * @author Ray
  */
 public class MainView extends View {

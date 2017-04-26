@@ -6,9 +6,9 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Kelas Abstract View.
+ *
  * @author Ray
  */
 public abstract class View {

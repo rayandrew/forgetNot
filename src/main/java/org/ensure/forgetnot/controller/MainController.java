@@ -7,6 +7,7 @@ import java.awt.Component;
 
 /**
  * class MainController.
+ *
  * @author rayandrew
  */
 public class MainController extends Controller {
