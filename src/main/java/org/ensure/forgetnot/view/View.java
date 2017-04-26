@@ -8,6 +8,7 @@ import java.util.List;
 
 
 /**
+ * Kelas Abstract View.
  * @author Ray
  */
 public abstract class View {
@@ -16,7 +17,7 @@ public abstract class View {
   protected String componentDescription;
 
   /**
-   * View sebagai Konstruktor
+   * View sebagai Konstruktor.
    *
    * @param componentName menerima nama komponen
    */
@@ -25,7 +26,7 @@ public abstract class View {
   }
 
   /**
-   * View sebagai Konstruktor
+   * View sebagai Konstruktor.
    *
    * @param componentName        nama komponen
    * @param componentDescription deskripsi komponen
@@ -36,7 +37,7 @@ public abstract class View {
   }
 
   /**
-   * View konstruktor
+   * View konstruktor.
    *
    * @param componentName        nama komponen
    * @param componentDescription deskripsi komponen
@@ -52,7 +53,7 @@ public abstract class View {
   }
 
   /**
-   * View Konstruktor
+   * View Konstruktor.
    *
    * @param dataInput menerima list of pair Key - Value
    */
@@ -61,7 +62,7 @@ public abstract class View {
   }
 
   /**
-   * getData untuk mengembalikan dataInput yang dimiliki
+   * getData untuk mengembalikan dataInput yang dimiliki.
    *
    * @return Mengembalikan list of pair key - value
    */
@@ -70,7 +71,7 @@ public abstract class View {
   }
 
   /**
-   * setData untuk mengeset dataInput dengan input dari user
+   * setData untuk mengeset dataInput dengan input dari user.
    *
    * @param dataInput objek yang ingin dimasukan
    */
@@ -79,7 +80,7 @@ public abstract class View {
   }
 
   /**
-   * getTitle mengembalikan title
+   * getTitle mengembalikan title.
    *
    * @return mengembalikan judul view
    */
@@ -88,7 +89,7 @@ public abstract class View {
   }
 
   /**
-   * getDescription untuk mengembalikan Deskripsi komponen
+   * getDescription untuk mengembalikan Deskripsi komponen.
    *
    * @return mengembalikan deskripsi
    */
@@ -97,7 +98,7 @@ public abstract class View {
   }
 
   /**
-   * @return Mengembalikan suatu komponen Swing yang akan ditampilkan
+   * @return Mengembalikan suatu komponen Swing yang akan ditampilkan.
    */
   public abstract Component init();
 }

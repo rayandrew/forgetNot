@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
+ * Kelas Model Reminder.
  * @author Ray
  */
 @IdName("reminder_id")
@@ -25,14 +26,14 @@ public class Reminder extends Model {
   }
 
   /**
-   * Konstruktor
+   * Konstruktor.
    * */
   public Reminder() {
 
   }
 
   /**
-   * Konstruktor
+   * Konstruktor.
    * @param title Judul reminder
    * */
   public Reminder(String title) {
@@ -40,7 +41,7 @@ public class Reminder extends Model {
   }
 
   /**
-   * Fungsi untuk membuat reminder
+   * Fungsi untuk membuat reminder.
    * @param content konten reminder
    * @param createdTime tanggal dibuat
    * @param dueTime tanggal selesai
@@ -77,7 +78,7 @@ public class Reminder extends Model {
   }
 
   /**
-   * Membuat Reminder
+   * Membuat Reminder.
    * @param reminderUser nama user
    * @param reminderTitle judul
    * @param dueTime tanggal berakhir
@@ -117,9 +118,11 @@ public class Reminder extends Model {
   }
 
   /**
-   * @return Sebuah reminder
+   * Metode untuk mengambil reminder.
+   *
    * @param username nama user
    * @param id id reminder
+   *           @return Sebuah reminder
    * */
   public static Reminder selectReminder(String username, int id) {
     Reminder e = Reminder.findFirst(
@@ -137,8 +140,10 @@ public class Reminder extends Model {
   }
 
   /**
-   * @return sebuah list of reminder
+   * Metode untuk mengambil seluruh reminder.
+   *
    * @param username nama user
+   *                 @return sebuah list of reminder
    * */
   public static List<Reminder> getAllReminderFromUser(String username) {
     List<Reminder> reminderList = Reminder
@@ -152,9 +157,11 @@ public class Reminder extends Model {
   }
 
   /**
-   * @return apakah berhasil dihapus
+   * Metode untuk menghapus reminder.
+   *
    * @param username username yang akan dicari
    * @param id id yang akan dihapus
+   *           @return apakah berhasil dihapus
    * */
   public static boolean deleteReminder(String username, int id) {
     Reminder e = Reminder.findFirst(
@@ -170,6 +177,7 @@ public class Reminder extends Model {
   }
 
   /**
+   * Metode untuk mengupdate reminder.
    * @return apakah update berhasl
    * */
   public static boolean updateReminder(
@@ -196,10 +204,12 @@ public class Reminder extends Model {
   }
 
   /**
-   * @return Atribut dari reminder
+   * Mengambil Atribut.
+   *
    * @param id id reminder
    * @param username nama user
    * @param columnName field yang ingin diambil
+   *                   @return Atribut dari reminder
    * */
   public static String getAttribute(
       String username,

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Kelas Model User.
  * @author Ray
  */
 @IdName("user_id")
@@ -24,14 +25,14 @@ public class User extends Model {
   }
 
   /**
-   * Konstruktor User
+   * Konstruktor User.
    * */
   public User() {
 
   }
 
   /**
-   * Konstruktor dengan parameter
+   * Konstruktor dengan parameter.
    * @param username nama user yang akan disimpan di database
    * */
   public User(String username) {
@@ -39,8 +40,8 @@ public class User extends Model {
   }
 
   /**
-   * Method untuk membuat user baru
-   * @return mengembalikan apakah pembuatan berhasil atau tidak
+   * Method untuk membuat user baru.
+   *
    * @param firstName nama depan
    * @param joinDate tanggal join
    * @param lastName nama belakang
@@ -48,6 +49,7 @@ public class User extends Model {
    * @param profilePic gambar
    * @param userEmail email
    * @param userName username unik
+   *                 @return mengembalikan apakah pembuatan berhasil atau tidak
    * */
   public static boolean createUser(
       String userName,
@@ -84,8 +86,10 @@ public class User extends Model {
   }
 
   /**
-   * @return kelas User yang diambil
+   * Mengambil User.
+   *
    * @param username Username yang diinginkan
+   *                 @return kelas User yang diambil
    * */
   public static User selectUser(String username) {
     User e = User.findFirst("user_name = ?", username);
@@ -94,8 +98,10 @@ public class User extends Model {
   }
 
   /**
-   * @return apakah User berhasil dihapus
+   * Menghapus user.
+   *
    * @param username username yang akan dihapus
+   *                 @return apakah User berhasil dihapus
    * */
   public static boolean deleteUser(String username) {
     User e = User.findFirst("user_name = ?", username);
@@ -106,10 +112,12 @@ public class User extends Model {
   }
 
   /**
-   * @return apakah update berhasil
+   * Mengupdate User.
+   *
    * @param username username yang ingin diganti
    * @param columnName kolom yang ingin diupdate
    * @param value nilai yang ingin dimasukan
+   *              @return apakah update berhasil
    * */
   public static boolean updateUser(String username, String columnName, String value) {
     logger.info(
@@ -126,9 +134,11 @@ public class User extends Model {
   }
 
   /**
-   * @return atribut user
+   * Mengambil atribut user.
+   *
    * @param username username yang bersangkutan
    * @param columnName nama field
+   *                   @return atribut user
    * */
   public static String getAttribute(String columnName, String username) {
     User u = User.findFirst(
@@ -147,6 +157,7 @@ public class User extends Model {
   }
 
   /**
+   * Menghapus seluruh user.
    * @return apakah penghapusan berhasil
    * */
   public static boolean deleteAllUsers() {

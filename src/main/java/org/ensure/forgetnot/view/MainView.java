@@ -8,11 +8,12 @@ import java.awt.Dimension;
 import java.util.List;
 
 /**
+ * Kelas MainView.
  * @author Ray
  */
 public class MainView extends View {
   /**
-   * Konstruktor
+   * Konstruktor.
    *
    * @param componentName Nama komponen
    */
@@ -21,7 +22,7 @@ public class MainView extends View {
   }
 
   /**
-   * Konstruktor dengan parameter
+   * Konstruktor dengan parameter.
    *
    * @param componentName        nama komponen
    * @param componentDescription deskripsi komponen
@@ -31,7 +32,7 @@ public class MainView extends View {
   }
 
   /**
-   * Konstruktor dengan parameter
+   * Konstruktor dengan parameter.
    *
    * @param componentName        nama komponen
    * @param componentDescription deskripsi komponen
@@ -45,7 +46,7 @@ public class MainView extends View {
   }
 
   /**
-   * Konstruktor dengan parameter
+   * Konstruktor dengan parameter.
    *
    * @param dataInput List of Pair
    */

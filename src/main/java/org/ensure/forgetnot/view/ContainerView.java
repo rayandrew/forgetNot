@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
+ * Kelas Container.
  * @author Ray
  */
 
@@ -23,7 +24,7 @@ public class ContainerView extends WebPanel {
   private int axis;
 
   /**
-   * Konstruktor
+   * Konstruktor.
    */
   ContainerView() {
     panelComponent.add(Clock.clock.getClockLabel());
@@ -68,7 +69,7 @@ public class ContainerView extends WebPanel {
   }
 
   /**
-   * setAxis untuk menetapkan axis
+   * setAxis untuk menetapkan axis.
    *
    * @param axis posisi
    */
@@ -77,7 +78,7 @@ public class ContainerView extends WebPanel {
   }
 
   /**
-   * menambah komponen
+   * menambah komponen.
    *
    * @param elementComponent Komponen Swing yang ingin ditambah
    */
@@ -86,6 +87,7 @@ public class ContainerView extends WebPanel {
   }
 
   /**
+   * Mengeset Panel Komponen.
    * @param panelComponent List of komponen
    */
   public void setPanelComponent(List<Component> panelComponent) {
@@ -93,7 +95,7 @@ public class ContainerView extends WebPanel {
   }
 
   /**
-   * Inisiasi Swing yang akan ditampilkan
+   * Inisiasi Swing yang akan ditampilkan.
    */
   public void init() {
     setLayout(new BoxLayout(this, axis));

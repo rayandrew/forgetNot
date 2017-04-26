@@ -11,11 +11,12 @@ import com.alee.managers.notification.WebNotification;
 import java.awt.Component;
 
 /**
+ * Kelas Reminder View.
  * @author Girvandi
  */
 public class ReminderView extends View {
   /**
-   * Konstruktor tanpa parameter
+   * Konstruktor tanpa parameter.
    */
   public ReminderView() {
     super("Reminder");

@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
+ * Kelas Register.
  * @author Girvandi
  */
 public class RegisterView extends View {
@@ -21,7 +22,7 @@ public class RegisterView extends View {
   private WebButton test;
 
   /**
-   * Konstruktor
+   * Konstruktor.
    *
    * @param componentName menerima nama komponen
    */
@@ -33,7 +34,7 @@ public class RegisterView extends View {
   }
 
   /**
-   * Konstruktor dengan parameter
+   * Konstruktor dengan parameter.
    *
    * @param componentName        nama komponen
    * @param componentDescription deskripsi komponen
@@ -43,7 +44,7 @@ public class RegisterView extends View {
   }
 
   /**
-   * Konstruktor dengan parameter
+   * Konstruktor dengan parameter.
    *
    * @param componentName        nama komonen
    * @param componentDescription Deskripsi komeponen
@@ -57,7 +58,7 @@ public class RegisterView extends View {
   }
 
   /**
-   * Konstruktor
+   * Konstruktor.
    *
    * @param dataInput Input data yang akan digunakan
    */
@@ -213,13 +214,13 @@ public class RegisterView extends View {
 
 
   /**
-   * Kelas Dialog untuk menampilkan dialog box sekaligus Action Listener
+   * Kelas Dialog untuk menampilkan dialog box sekaligus Action Listener.
    */
   private class Dialog implements ActionListener {
     private String[] arr = new String[5];
 
     /**
-     * Konstruktor
+     * Konstruktor.
      */
     public Dialog() {
       super();

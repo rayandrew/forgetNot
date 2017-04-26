@@ -26,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
+ * Kelas ActivityView.
  * @author Aldrich
  */
 public class ActivityView extends View {
@@ -36,7 +37,7 @@ public class ActivityView extends View {
   private WebButton updateButton;
 
   /**
-   * Konstruktor
+   * Konstruktor.
    *
    * @param dataInput array of object yang akan ditampilkan di layar sebagai tabel
    */
@@ -95,9 +96,6 @@ public class ActivityView extends View {
     return activityPanel;
   }
 
-  /**
-   * Kelas Dialog untuk menampilkan dialog box
-   */
   private class Dialog extends WebDialog implements ActionListener {
     private WebTextField title;
     private WebTextField contentReminder;
@@ -106,7 +104,7 @@ public class ActivityView extends View {
     private String[] activityDescription;
 
     /**
-     * Konstruktor
+     * Konstruktor.
      */
     public Dialog() {
       super();
@@ -168,9 +166,6 @@ public class ActivityView extends View {
     }
   }
 
-  /**
-   * Kelas Dialog untuk Update
-   */
   private class UpdateDialog extends WebDialog {
     private WebTextField title;
     private WebTextField contentReminder;
@@ -179,7 +174,7 @@ public class ActivityView extends View {
     private String[] activityDescription;
 
     /**
-     * Konstruktor
+     * Konstruktor.
      */
     public UpdateDialog(int id) {
       super();

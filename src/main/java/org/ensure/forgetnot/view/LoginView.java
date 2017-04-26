@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
+ * Kelas Login View.
  * @author Ray
  */
 public class LoginView extends View {
@@ -27,7 +28,7 @@ public class LoginView extends View {
   private WebPasswordField passwordField = new WebPasswordField(15);
 
   /**
-   * Konstruktor
+   * Konstruktor.
    *
    * @param componentName Nama komponen
    */
@@ -58,7 +59,7 @@ public class LoginView extends View {
   }
 
   /**
-   * Konstruktor dengan parameter
+   * Konstruktor dengan parameter.
    *
    * @param componentName        nama komponen
    * @param componentDescription deskripsi komponen
@@ -68,7 +69,7 @@ public class LoginView extends View {
   }
 
   /**
-   * Konstuktor dengan parameter
+   * Konstuktor dengan parameter.
    *
    * @param componentName        nama komponen
    * @param componentDescription deskripsi komponen
@@ -82,7 +83,7 @@ public class LoginView extends View {
   }
 
   /**
-   * Konstuktor dengan parameter
+   * Konstuktor dengan parameter.
    *
    * @param dataInput list of pair
    */
