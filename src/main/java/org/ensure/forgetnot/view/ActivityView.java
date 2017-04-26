@@ -52,40 +52,40 @@ public class ActivityView extends View {
     deleteButton = new WebButton("Delete a Reminder");
     deleteButton.addActionListener(e -> {
       Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
-          null,
-          "Insert reminder ID to be deleted",
-          "Delete Reminder",
-          WebOptionPane.WARNING_MESSAGE));
+        null,
+        "Insert reminder ID to be deleted",
+        "Delete Reminder",
+        WebOptionPane.WARNING_MESSAGE));
       Database.connect();
       boolean status = Reminder.deleteReminder(Config.getLoginUser(), temp);
       Database.close();
       if (status) {
         DefaultTableModel table = new DefaultTableModel(
-            ActivityController.refresh(),
-            columns
+          ActivityController.refresh(),
+          columns
         );
         tab.setModel(table);
         SwingUtilities.getRootPane(activityPanel).revalidate();
         WebOptionPane.showMessageDialog(
-            null,
-            "Success deleted reminder id" + temp,
-            "Delete Reminder",
-            WebOptionPane.INFORMATION_MESSAGE);
+          null,
+          "Success deleted reminder id" + temp,
+          "Delete Reminder",
+          WebOptionPane.INFORMATION_MESSAGE);
       } else {
         WebOptionPane.showMessageDialog(
-            null,
-            "Failed to delete reminder id" + temp,
-            "Delete Reminder",
-            WebOptionPane.WARNING_MESSAGE);
+          null,
+          "Failed to delete reminder id" + temp,
+          "Delete Reminder",
+          WebOptionPane.WARNING_MESSAGE);
       }
     });
     updateButton = new WebButton("Modify a Reminder");
     updateButton.addActionListener(e -> {
       Integer temp = Integer.parseInt(WebOptionPane.showInputDialog(
-          null,
-          "Please input your reminder ID",
-          "Modify Reminder",
-          WebOptionPane.WARNING_MESSAGE)
+        null,
+        "Please input your reminder ID",
+        "Modify Reminder",
+        WebOptionPane.WARNING_MESSAGE)
       );
       new UpdateDialog(temp);
     });
@@ -125,7 +125,7 @@ public class ActivityView extends View {
       activityDescription = new String[7];
 
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
-          {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+        {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
       layout.setHGap(2);
       layout.setVGap(2);
       WebPanel content = new WebPanel(layout);
@@ -149,28 +149,28 @@ public class ActivityView extends View {
         activityDescription[4] = contentReminder.getText();
         Date temp = (Date) dueDate.getValue();
         LocalDateTime tempDate = LocalDateTime.ofInstant(
-            temp.toInstant(),
-            ZoneId.systemDefault()
+          temp.toInstant(),
+          ZoneId.systemDefault()
         );
         activityDescription[6] = tempDate.format(
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+          DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         );
         if (ActivityController.addActivity(activityDescription)) {
           WebOptionPane.showMessageDialog(null,
-              "Your reminder has been saved!",
-              "Success",
-              WebOptionPane.INFORMATION_MESSAGE
+            "Your reminder has been saved!",
+            "Success",
+            WebOptionPane.INFORMATION_MESSAGE
           );
         } else {
           WebOptionPane.showMessageDialog(null,
-              "Your reminder cannot be saved",
-              "Failed",
-              WebOptionPane.ERROR_MESSAGE
+            "Your reminder cannot be saved",
+            "Failed",
+            WebOptionPane.ERROR_MESSAGE
           );
         }
         DefaultTableModel table = new DefaultTableModel(
-            ActivityController.refresh(),
-            columns
+          ActivityController.refresh(),
+          columns
         );
         tab.setModel(table);
         SwingUtilities.getRootPane(activityPanel).revalidate();
@@ -213,7 +213,7 @@ public class ActivityView extends View {
       activityDescription = new String[7];
 
       TableLayout layout = new TableLayout(new double[][]{{TableLayout.PREFERRED, TableLayout.FILL},
-          {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
+        {TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED}});
       layout.setHGap(2);
       layout.setVGap(2);
       WebPanel content = new WebPanel(layout);
@@ -233,9 +233,9 @@ public class ActivityView extends View {
         dueDate.setValue(new Date());
       } else {
         WebOptionPane.showMessageDialog(null,
-            "Reminder not found",
-            "Failed",
-            WebOptionPane.ERROR_MESSAGE
+          "Reminder not found",
+          "Failed",
+          WebOptionPane.ERROR_MESSAGE
         );
         setVisible(false);
         dispose();
@@ -251,46 +251,46 @@ public class ActivityView extends View {
         Date temp = (Date) dueDate.getValue();
         LocalDateTime tempDate = LocalDateTime.ofInstant(temp.toInstant(), ZoneId.systemDefault());
         activityDescription[6] = tempDate.format(
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+          DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         );
 
         Database.connect();
         boolean status = Reminder.updateReminder(
-            activityDescription[0],
-            id,
-            "reminder_title",
-            activityDescription[2]
+          activityDescription[0],
+          id,
+          "reminder_title",
+          activityDescription[2]
         );
         status = status && Reminder.updateReminder(
-            activityDescription[0], id, "content", activityDescription[4]
+          activityDescription[0], id, "content", activityDescription[4]
         );
 
         status = status && Reminder.updateReminder(
-            activityDescription[0],
-            id,
-            "due_time",
-            activityDescription[6]
+          activityDescription[0],
+          id,
+          "due_time",
+          activityDescription[6]
         );
         Database.close();
         if (status) {
           DefaultTableModel table = new DefaultTableModel(
-              ActivityController.refresh(),
-              columns
+            ActivityController.refresh(),
+            columns
           );
           tab.setModel(table);
           SwingUtilities.getRootPane(activityPanel).revalidate();
 
           WebOptionPane.showMessageDialog(null,
-              "Your reminder has been updated!",
-              "Success",
-              WebOptionPane.INFORMATION_MESSAGE);
+            "Your reminder has been updated!",
+            "Success",
+            WebOptionPane.INFORMATION_MESSAGE);
           setVisible(false);
           dispose();
         } else {
           WebOptionPane.showMessageDialog(null,
-              "Your reminder cannot be updated",
-              "Failed",
-              WebOptionPane.ERROR_MESSAGE
+            "Your reminder cannot be updated",
+            "Failed",
+            WebOptionPane.ERROR_MESSAGE
           );
         }
       };

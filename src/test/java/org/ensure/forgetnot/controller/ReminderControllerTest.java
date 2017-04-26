@@ -2,7 +2,10 @@ package org.ensure.forgetnot.controller;
 
 //import org.ensure.forgetnot.controller.ReminderController;
 
+import org.ensure.forgetnot.core.Database;
 import org.junit.Test;
+
+import javax.xml.crypto.Data;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -16,15 +19,19 @@ public class ReminderControllerTest {
   }
 
   @Test
-  public void makeTest(){
+  public void makeTest() {
+    Database.connect();
     ReminderController rc = new ReminderController();
     assertNotNull(rc);
+    Database.close();
   }
 
   @Test
   public void init() throws Exception {
+    Database.connect();
     ReminderController rc = new ReminderController();
     assertNotNull(rc.init());
+    Database.close();
   }
 
 }

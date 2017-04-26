@@ -34,24 +34,24 @@ public class RegisterController extends Controller {
    * @param useremail email yang diregister
    */
   public void registerUser(
-      String username,
-      String password,
-      String firstname,
-      String lastname,
-      String useremail
+    String username,
+    String password,
+    String firstname,
+    String lastname,
+    String useremail
   ) {
     Database.connect();
     if (!User.findFirst("user_name = ?", username).exists()) {
       try {
         User.createUser(username,
-            PasswordEncryptor.generateMd5(password),
-            firstname,
-            lastname,
-            useremail,
-            LocalDateTime.now().format(
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-            ),
-            null);
+          PasswordEncryptor.generateMd5(password),
+          firstname,
+          lastname,
+          useremail,
+          LocalDateTime.now().format(
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+          ),
+          null);
       } catch (PasswordEncryptorException e) {
         e.printStackTrace();
       }

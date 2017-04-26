@@ -136,13 +136,13 @@ public class Clock implements Runnable {
       while (!stopStatus) {
         addSecond(1);
         logger.info("Thread: "
-            + threadname
-            + ", jam: "
-            + getJam()
-            + ", menit: "
-            + getMenit()
-            + ", detik: "
-            + getDetik()
+          + threadname
+          + ", jam: "
+          + getJam()
+          + ", menit: "
+          + getMenit()
+          + ", detik: "
+          + getDetik()
         );
         SwingUtilities.invokeLater(() -> clockLabel.setText(this.toString()));
         Thread.sleep(1000);
@@ -183,11 +183,11 @@ public class Clock implements Runnable {
   @Override
   public String toString() {
     String jam = getJam() < 10
-        ? "0" + String.valueOf(getJam()) : String.valueOf(getJam());
+      ? "0" + String.valueOf(getJam()) : String.valueOf(getJam());
     String menit = getMenit() < 10
-        ? "0" + String.valueOf(getMenit()) : String.valueOf(getMenit());
+      ? "0" + String.valueOf(getMenit()) : String.valueOf(getMenit());
     String detik = getDetik() < 10
-        ? "0" + String.valueOf(getDetik()) : String.valueOf(getDetik());
+      ? "0" + String.valueOf(getDetik()) : String.valueOf(getDetik());
 
     return jam + ":" + menit + ":" + detik;
   }

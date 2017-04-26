@@ -18,12 +18,12 @@ public class Reminder extends Model {
 
   static {
     validatePresenceOf(
-        "reminder_title",
-        "reminder_user",
-        "priority",
-        "content",
-        "created_time",
-        "due_time"
+      "reminder_title",
+      "reminder_user",
+      "priority",
+      "content",
+      "created_time",
+      "due_time"
     );
   }
 
@@ -53,11 +53,11 @@ public class Reminder extends Model {
    * @param reminderUser  username
    */
   public static boolean createReminder(
-      String reminderTitle,
-      String reminderUser,
-      String content,
-      String createdTime,
-      String dueTime
+    String reminderTitle,
+    String reminderUser,
+    String content,
+    String createdTime,
+    String dueTime
   ) {
     Reminder e = new Reminder(reminderTitle);
     e.set("reminder_user", reminderUser);
@@ -66,17 +66,17 @@ public class Reminder extends Model {
     e.set("due_time", dueTime);
     e.set("priority", 1);
     logger.info(
-        "Creating reminder "
-            + reminderTitle
-            + "to table Reminders, reminder user = "
-            + reminderUser
-            + "content = "
-            + content
-            + "created time = "
-            + createdTime
-            + "due time = "
-            + dueTime
-            + "priority = 1"
+      "Creating reminder "
+        + reminderTitle
+        + "to table Reminders, reminder user = "
+        + reminderUser
+        + "content = "
+        + content
+        + "created time = "
+        + createdTime
+        + "due time = "
+        + dueTime
+        + "priority = 1"
     );
     return e.saveIt();
   }
@@ -92,12 +92,12 @@ public class Reminder extends Model {
    * @param priority      prioritas
    */
   public static boolean createReminder(
-      String reminderTitle,
-      String reminderUser,
-      String content,
-      String createdTime,
-      String dueTime,
-      int priority
+    String reminderTitle,
+    String reminderUser,
+    String content,
+    String createdTime,
+    String dueTime,
+    int priority
   ) {
     Reminder e = new Reminder(reminderTitle);
     e.set("reminder_user", reminderUser);
@@ -106,18 +106,18 @@ public class Reminder extends Model {
     e.set("priority", priority);
     e.set("due_time", dueTime);
     logger.info(
-        "Creating reminder "
-            + reminderTitle
-            + "to table Reminders, reminder user = "
-            + reminderUser
-            + "content = "
-            + content
-            + "created time = "
-            + createdTime
-            + "due time = "
-            + dueTime
-            + "priority = "
-            + priority
+      "Creating reminder "
+        + reminderTitle
+        + "to table Reminders, reminder user = "
+        + reminderUser
+        + "content = "
+        + content
+        + "created time = "
+        + createdTime
+        + "due time = "
+        + dueTime
+        + "priority = "
+        + priority
     );
     return e.saveIt();
   }
@@ -131,15 +131,15 @@ public class Reminder extends Model {
    */
   public static Reminder selectReminder(String username, int id) {
     Reminder e = Reminder.findFirst(
-        "reminder_user = ? and reminder_id = ?",
-        username,
-        id
+      "reminder_user = ? and reminder_id = ?",
+      username,
+      id
     );
     logger.info(
-        "Reminder title = "
-            + e.getString("reminder_title")
-            + " , user : "
-            + username
+      "Reminder title = "
+        + e.getString("reminder_title")
+        + " , user : "
+        + username
     );
     return e;
   }
@@ -152,8 +152,8 @@ public class Reminder extends Model {
    */
   public static List<Reminder> getAllReminderFromUser(String username) {
     List<Reminder> reminderList = Reminder
-        .where("reminder_user =" + "\"" + username + "\"")
-        .orderBy("reminder_id asc");
+      .where("reminder_user =" + "\"" + username + "\"")
+      .orderBy("reminder_id asc");
 
     for (Reminder reminder : reminderList) {
       logger.info(reminder.getString("reminder_title"));
@@ -170,12 +170,12 @@ public class Reminder extends Model {
    */
   public static boolean deleteReminder(String username, int id) {
     Reminder e = Reminder.findFirst(
-        "reminder_user = ? and reminder_id = ?",
-        username,
-        id
+      "reminder_user = ? and reminder_id = ?",
+      username,
+      id
     );
     logger.info(
-        "Deleting reminder id " + id + ", username " + username + "from table Reminders"
+      "Deleting reminder id " + id + ", username " + username + "from table Reminders"
     );
 
     return e.delete();
@@ -187,26 +187,26 @@ public class Reminder extends Model {
    * @return apakah update berhasl
    */
   public static boolean updateReminder(
-      String username,
-      int id,
-      String columnName,
-      String value
+    String username,
+    int id,
+    String columnName,
+    String value
   ) {
     logger.info(
-        "Change from table Reminder => username : "
-            + username
-            + " , column "
-            + columnName
-            + " to "
-            + value
+      "Change from table Reminder => username : "
+        + username
+        + " , column "
+        + columnName
+        + " to "
+        + value
     );
     Reminder r = Reminder
-        .findFirst("reminder_user = ? and reminder_id = ?",
-            username,
-            id
-        ).set(
-            columnName, value
-        );
+      .findFirst("reminder_user = ? and reminder_id = ?",
+        username,
+        id
+      ).set(
+        columnName, value
+      );
     if (r != null) {
       return r.saveIt();
     } else {
@@ -223,21 +223,21 @@ public class Reminder extends Model {
    * @return Atribut dari reminder
    */
   public static String getAttribute(
-      String username,
-      int id,
-      String columnName
+    String username,
+    int id,
+    String columnName
   ) {
     Reminder e = Reminder.findFirst("reminder_user = ? and reminder_id = ?",
-        username,
-        id
+      username,
+      id
     );
     logger.info(
-        "Get attribute table Reminders => username : "
-            + username
-            + " column "
-            + columnName
-            + " value "
-            + e.getString(columnName)
+      "Get attribute table Reminders => username : "
+        + username
+        + " column "
+        + columnName
+        + " value "
+        + e.getString(columnName)
     );
     return e.getString(columnName);
   }

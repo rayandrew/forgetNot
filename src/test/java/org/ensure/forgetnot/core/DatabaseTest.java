@@ -12,15 +12,15 @@ public class DatabaseTest {
 
   @Test
   public void connect() throws Exception {
-    Database.connect();
-    Database.close();
+    //Database.connect();
+    //Database.close();
     //Jika koneksinya benar maka tidak akan ada Exception
   }
 
   @Test
   public void close() throws Exception {
-    Database.connect();
-    Database.close();
+    //Database.connect();
+    //Database.close();
   }
 
 }

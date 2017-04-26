@@ -15,7 +15,7 @@ public class MainControllerTest {
   @Test
   public void createMain() throws Exception {
     MainController mc = new MainController();
-    assertEquals(mc.isShow(),true);
+    assertEquals(mc.isShow(), true);
   }
 
 }

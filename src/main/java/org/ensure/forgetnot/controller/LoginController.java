@@ -44,11 +44,11 @@ public class LoginController extends Controller {
     boolean loginStatus = false;
     try {
       loginStatus = u.getString("password")
-          .equals(
-              PasswordEncryptor.generateMd5(
-                  password
-              )
-          );
+        .equals(
+          PasswordEncryptor.generateMd5(
+            password
+          )
+        );
       logger.info("Login status = " + loginStatus);
     } catch (PasswordEncryptorException e) {
       e.printStackTrace();
